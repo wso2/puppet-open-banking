@@ -1,0 +1,24 @@
+        @Plan:name('global_FreqPerDay')
+        @Plan:description('ExecutionPlan for global_FreqPerDay')
+
+        @Import('org.wso2.throttle.processed.request.stream:1.0.0')
+        define stream RequestStream (messageID string, appKey string, appTier string, subscriptionKey string, apiKey string, apiTier string, subscriptionTier string, resourceKey string, resourceTier string, userId string,  apiContext string, apiVersion string, appTenant string, apiTenant string, appId string, apiName string, propertiesMap string);
+
+        @Export('org.wso2.throttle.globalThrottle.stream:1.0.0')
+        define stream GlobalThrottleStream (throttleKey string, isThrottled bool, expiryTimeStamp long);
+
+        @From(eventtable='rdbms', jdbc.url='<%= @wso2_consent_db['url'] %>', username='<%= @wso2_consent_db['username'] %>', password='<%= @wso2_consent_db['password'] %>', driver.name='<%= @wso2_consent_db['driver_class_name'] %>', table.name='BG_ACCOUNT_CONSENT_FREQUENCY')
+define table FrequencyTable (USER_ID string, TPP_UNIQUE_ID string, FREQUENCY_PER_DAY int);
+
+FROM RequestStream JOIN FrequencyTable on FrequencyTable.USER_ID == RequestStream.userId And FrequencyTable.TPP_UNIQUE_ID == RequestStream.appId
+select userId, appId, str:concat(userId,':', appId,':',apiContext) as throttleKey, FREQUENCY_PER_DAY
+insert into FrequencyStream;
+
+FROM FrequencyStream#throttler:timeBatch(1 day) 
+SELECT throttleKey, (count(throttleKey) >= FREQUENCY_PER_DAY) as isThrottled, expiryTimeStamp
+group by throttleKey
+INSERT ALL EVENTS into ResultStream;
+
+        from ResultStream#throttler:emitOnStateChange(throttleKey, isThrottled)
+        select *
+        insert into GlobalThrottleStream;
