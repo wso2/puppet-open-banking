@@ -1,0 +1,45 @@
+<!--
+  ~ Copyright (c) 2018, WSO2 Inc. (http://www.wso2.com). All Rights Reserved.
+  ~
+  ~ This software is the property of WSO2 Inc. and its suppliers, if any.
+  ~ Dissemination of any information or reproduction of any material contained
+  ~ herein is strictly forbidden, unless permitted by WSO2 in accordance with
+  ~ the WSO2 Commercial License available at http://wso2.com/licenses. For specific
+  ~ language governing the permissions and limitations under this license,
+  ~ please see the license as well as any agreement you’ve entered into with
+  ~ WSO2 governing the purchase of this software and any associated services.
+  ~
+  -->
+
+<datasources-configuration xmlns:svns="http://org.wso2.securevault/configuration">
+
+    <providers>
+        <provider>org.wso2.carbon.ndatasource.rdbms.RDBMSDataSourceReader</provider>
+    </providers>
+
+    <datasources>
+        <datasource>
+            <name>WSO2_CONSENT_DB</name>
+            <description>The datasource used for registry and user manager</description>
+            <jndiConfig>
+                <name>jdbc/WSO2ConsentDB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <!--<url>jdbc:mysql://192.168.23.45:3306/openbank_consent_db?autoReconnect=true&useSSL=false</url>-->
+                    <url><%= @wso2_consent_db['url'] %></url>
+                    <username><%= @wso2_consent_db['username'] %></username>
+                    <password><%= @wso2_consent_db['password'] %></password>
+                    <driverClassName><%= @wso2_consent_db['driver_class_name'] %></driverClassName>
+                    <maxActive>150</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery><%= @wso2_consent_db['validation_query'] %></validationQuery>
+                    <validationInterval>30000</validationInterval>
+                    <defaultAutoCommit>false</defaultAutoCommit>
+                </configuration>
+            </definition>
+        </datasource>
+    </datasources>
+
+</datasources-configuration>
