@@ -1,5 +1,7 @@
 class obam140 inherits obam140::params{
 
+  /* From apim::common */
+
   package { 'unzip': 
     ensure => installed
   }
@@ -18,12 +20,13 @@ class obam140 inherits obam140::params{
     gid     => $user_group_id,
     home    => "/home/${user}",
     system  => true,
-    require => Group["${user_group}"]
+    require => Group["${user_group}"],
+    notify => File["jdk-distribution"],
   }
 
   # Copy JDK to Java distribution path
   file { "jdk-distribution":
-    path => "${java_dir}/${jdk_name}",
+    path => "${java_home}.tar.gz",
     source => "puppet:///modules/${module_name}/jdk/${jdk_name}.tar.gz", #need to add jdk to the master
     notify => Exec["unpack-jdk"],
   }
@@ -35,6 +38,17 @@ class obam140 inherits obam140::params{
     cwd     => "${java_dir}",
     onlyif  => "/usr/bin/test ! -d ${java_home}",
   }
+
+  # Create symlink to Java binary
+  file { "${java_symlink}":
+    ensure  => "link",
+    target  => "${java_home}",
+    require => Exec["unpack-jdk"]
+  }
+
+  
+
+  
 
   /*
   * WSO2 Distribution
@@ -69,9 +83,45 @@ class obam140 inherits obam140::params{
     cwd     => "${pack_dir}",
   }
 
+  # Copy the unit file required to deploy the server as a service
+  file { "/etc/systemd/system/${wso2_service_name}.service":
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => '0754',
+    content => template("${module_name}/carbon.service.erb"),
+  }
+
+  exec { 'systemctl daemon-reload':
+    path        => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
+    subscribe   => File["/etc/systemd/system/${wso2_service_name}.service"],
+    refreshonly => true,
+  }
+
+
+  /* From apim */
+
+
+  # Copy wso2server.sh to installed directory
+  file { "${carbon_home}/${start_script_template}":
+    ensure  => file,
+    owner   => $user,
+    group   => $user_group,
+    mode    => '0754',
+    content => template("${module_name}/carbon-home/${start_script_template}.erb"),
+    notify  => Service["${wso2_service_name}"],
+#    require => Class["apim_common"]           //original 
+    require => Exec["unzip-update"],
+  }
 
 
 
+ /* from service.pp */
+
+ service { "${wso2_service_name}":
+    enable => true,
+    ensure => running,
+  }
 
 
 }
