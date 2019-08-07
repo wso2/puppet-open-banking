@@ -1,0 +1,3 @@
+class obkm::custom {
+
+}
