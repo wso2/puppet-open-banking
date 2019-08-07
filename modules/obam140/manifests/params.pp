@@ -39,4 +39,20 @@ class obam140::params {
 
   $server_script_path ="${product_dir}/${pack}/bin/wso2server.sh"
   $pid_file_path="${product_dir}/${pack}/wso2carbon.pid"
+
+  #template list
+
+  $template_list = [
+    'repository/conf/api-manager.xml', #done
+    'repository/conf/datasources/master-datasources.xml',
+    'repository/conf/datasources/open-banking-datasources.xml',
+    'repository/conf/carbon.xml',     #done
+    'repository/conf/registry.xml',   #no changes in config
+    'repository/conf/user-mgt.xml',   #no changes in config
+    #'repository/conf/axis2/axis2.xml', not available in configure-am.sh
+    # 'repository/deployment/server/executionplans/global_FreqPerDay.siddhiql',  #removed in OBAM 1.4
+  ]
+
+
+
 }

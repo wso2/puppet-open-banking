@@ -46,10 +46,6 @@ class obam140 inherits obam140::params{
     require => Exec["unpack-jdk"]
   }
 
-  
-
-  
-
   /*
   * WSO2 Distribution
   */
@@ -100,6 +96,15 @@ class obam140 inherits obam140::params{
 
 
   /* From apim */
+
+  # Copy configuration changes to the installed directory
+  $template_list.each |String $template| {
+    file { "${carbon_home}/${template}":
+      ensure  => file,
+      mode    => '0644',
+      content => template("${module_name}/carbon-home/${template}.erb"),
+      notify  => Service["${wso2_service_name}"],
+    }
 
 
   # Copy wso2server.sh to installed directory
