@@ -107,6 +107,22 @@ class obkm inherits obkm::params {
     	require => EXEC["unzip-update"]
   	}
 
+	/* Configuration Changes */
+
+	# Copy configuration changes to the installed directory
+  	$template_list.each |String $template| {
+    		file { "${carbon_home}/${template}":
+      			ensure  => file,
+      			mode    => '0644',
+      			content => template("${module_name}/carbon-home/${template}.erb"),
+      			notify  => Service["${wso2_service_name}"],
+      			#require => Class["is_common"]
+    		}
+  	}
+
+
+
+
 	service { "${wso2_service_name}":
     		enable => true,
     		ensure => running,
