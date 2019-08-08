@@ -4,7 +4,7 @@ class obam140::params {
   $jvmxms = '2048m'
   $jvmxmx = '2048m'
 
-  $version = "1.3.0"
+  $version = "1.4.0"
 
   # User details
   $user = 'wso2carbon'
@@ -45,59 +45,61 @@ class obam140::params {
   #database system related variables
   
   #common params to master-datasources.xml and open-banking-datasources.xml
-  $dbms = '?'
-  $db_host = '?'
-  $db_user = '?'
-  $db_pass = '?'
-  $db_driver = '?'
+  $dbms = 'mysql'
+  $db_host = 'localhost'
+  $db_user = 'root'
+  $db_pass = 'root'
+  $db_driver = 'com.mysql.jdbc.Driver'
 
   #master-datasources.xml params
-  $db_apimgt = '?'
-  $db_apimgt_stat = '?'
-  $db_mb_store = '?'
-  $db_am_config = '?'
-  $db_gov = '?'
-  $db_user_store = '?'
+  $db_apimgt = 'openbank_apimgtdb'
+  $db_apimgt_stat = 'openbank_apimgt_statsdb'
+  $db_mb_store = 'openbank_mbstoredb'
+  $db_am_config = 'openbank_am_configdb'
+  $db_gov = 'openbank_govdb'
+  $db_user_store = 'openbank_userdb'
 
   #open-banking-datasources.xml params
-  $db_open_banking_store = '?'
+  $db_open_banking_store = 'openbank_openbankingdb'
 
 
   #apimanager.xml,openbanking.xml,carbon.xml params
 
-  $iam_hostname == '?'   #available in velocity_template.xml as well
-  $analytics_hostname= '?'
-  $apim_hostname= '?'
+  $iam_hostname = 'localhost'   #available in velocity_template.xml as well
+  $analytics_hostname= 'localhost'
+  $apim_hostname= 'localhost'
 
 
   #jaggeryapps/admin/site/conf/site.json params
 
-  $bps_hostname = '?'
+  $bps_hostname = 'localhost'
 
   #jaggeryapps/admin/site/conf/site.json params
-  $spec = '?' #UK or Berlin , common to openbanking.xml as well
+  $spec = 'UK' #UK or Berlin , common to openbanking.xml as well
 
 
   #does nested variables work?
   # different databases issue (configured only for mysql for now)
+
+  /*
   if $dbms == 'mysql'{
 
-    $db_apimgt_url = 'jdbc:mysql://'${db_host}':3306/'${db_apimgt}'?autoReconnect=true\&amp;useSSL=false',
-    $db_apimgt_stat_url= 'jdbc:mysql://'${db_host}':3306/'${db_apimgt_stat}'?autoReconnect=true\&amp;useSSL=false',
-    $db_mb_store_url = 'jdbc:mysql://'${db_host}':3306/'${db_mb_store}'?autoReconnect=true\&amp;useSSL=false',
-    $db_am_config_url ='jdbc:mysql://'${db_host}':3306/'${db_am_config}'?autoReconnect=true\&amp;useSSL=false',
-    $db_gov_url = 'jdbc:mysql://'${db_host}':3306/'${db_gov}'?autoReconnect=true\&amp;useSSL=false',
-    $DB_USER_STORE_URL = 'jdbc:mysql://'${db_host}':3306/'${db_user_store}'?autoReconnect=true\&amp;useSSL=false',
+    $db_apimgt_url = 'jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true\&amp;useSSL=false',
+    $db_apimgt_stat_url= 'jdbc:mysql://${db_host}:3306/${db_apimgt_stat}?autoReconnect=true\&amp;useSSL=false',
+    $db_mb_store_url = 'jdbc:mysql://${db_host}:3306/${db_mb_store}?autoReconnect=true\&amp;useSSL=false',
+    $db_am_config_url ='jdbc:mysql://${db_host}:3306/${db_am_config}?autoReconnect=true\&amp;useSSL=false',
+    $db_gov_url = 'jdbc:mysql://${db_host}:3306/${db_gov}?autoReconnect=true\&amp;useSSL=false',
+    $db_user_store_url = 'jdbc:mysql://${db_host}:3306/${db_user_store}?autoReconnect=true\&amp;useSSL=false',
     
   }
 
   #open-banking-datasources.xml params
 
   if $dbms == 'mysql' {
-    db_open_banking_store_url = 'jdbc:mysql://'${DB_HOST}':3306/'${DB_OPEN_BANKING_STORE}'?autoReconnect=true\&amp;useSSL=false',
+    db_open_banking_store_url = 'jdbc:mysql://${db_host}:3306/${db_open_banking_store}?autoReconnect=true\&amp;useSSL=false',
   }
 
-
+*/
 
   
   #template list
@@ -111,16 +113,12 @@ class obam140::params {
     'repository/conf/user-mgt.xml',   #no changes in config
     #'repository/conf/axis2/axis2.xml', not available in configure-am.sh
     'repository/deployment/server/executionplans/global_FreqPerDay.siddhiql',  #configuration changes removed in OBAM 1.4,therefore only a static file
-    #replace_mysql7_file_names_as_mysql() in config.sh - files are already renamed in OBAM 1.4
-    'repository/conf/datasources/master-datasources.xml',
-    'repository/conf/datasources/open-banking-datasources.xml',
     'repository/deployment/server/jaggeryapps/admin/site/conf/site.json',
-    'repository/deployment/server/jaggeryapps/admin/store/conf/site.json',
+    'repository/deployment/server/jaggeryapps/store/site/conf/site.json',
   ]
 
-  
 
-
+ # TODO :replace_mysql7_file_names_as_mysql() in config.sh 
   
 
 

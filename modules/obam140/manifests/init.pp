@@ -105,7 +105,7 @@ class obam140 inherits obam140::params{
       content => template("${module_name}/carbon-home/${template}.erb"),
       notify  => Service["${wso2_service_name}"],
     }
-
+  }
 
   # Copy wso2server.sh to installed directory
   file { "${carbon_home}/${start_script_template}":
