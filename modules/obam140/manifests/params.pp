@@ -46,55 +46,55 @@ class obam140::params {
   
   #common params to master-datasources.xml and open-banking-datasources.xml
   $dbms = '?'
-  $DB_HOST = '?'
-  $DB_USER = '?'
-  $DB_PASS = '?'
-  $DB_DRIVER = '?'
+  $db_host = '?'
+  $db_user = '?'
+  $db_pass = '?'
+  $db_driver = '?'
 
   #master-datasources.xml params
-  $DB_APIMGT = '?'
-  $DB_APIMGT_STAT = '?'
-  $DB_MB_STORE = '?'
-  $DB_AM_CONFIG = '?'
-  $DB_GOV = '?'
-  $DB_USER_STORE = '?'
+  $db_apimgt = '?'
+  $db_apimgt_stat = '?'
+  $db_mb_store = '?'
+  $db_am_config = '?'
+  $db_gov = '?'
+  $db_user_store = '?'
 
   #open-banking-datasources.xml params
-  $DB_OPEN_BANKING_STORE = '?'
+  $db_open_banking_store = '?'
 
 
-  #apimanager.xml,openbanking.xml params
+  #apimanager.xml,openbanking.xml,carbon.xml params
 
-  $IAM_HOSTNAME == '?'   #available in velocity_template.xml as well
-  $ANALYTICS_HOSTNAME= '?'
-  $APIM_HOSTNAME= '?'
+  $iam_hostname == '?'   #available in velocity_template.xml as well
+  $analytics_hostname= '?'
+  $apim_hostname= '?'
 
 
   #jaggeryapps/admin/site/conf/site.json params
 
-  $BPS_HOSTNAME = '?'
+  $bps_hostname = '?'
 
   #jaggeryapps/admin/site/conf/site.json params
   $spec = '?' #UK or Berlin , common to openbanking.xml as well
 
 
-  #nested variable issue , different database issue (configured only for mysql for now)
+  #does nested variables work?
+  # different databases issue (configured only for mysql for now)
   if $dbms == 'mysql'{
 
-    $DB_APIMGT_URL = 'jdbc:mysql://'${DB_HOST}':3306/'${DB_APIMGT}'?autoReconnect=true\&amp;useSSL=false',
-    $DB_APIMGT_STAT_URL= 'jdbc:mysql://'${DB_HOST}':3306/'${DB_APIMGT_STAT}'?autoReconnect=true\&amp;useSSL=false',
-    $DB_MB_STORE_URL = 'jdbc:mysql://'${DB_HOST}':3306/'${DB_MB_STORE}'?autoReconnect=true\&amp;useSSL=false',
-    $DB_AM_CONFIG_URL ='jdbc:mysql://'${DB_HOST}':3306/'${DB_AM_CONFIG}'?autoReconnect=true\&amp;useSSL=false',
-    $DB_GOV_URL = 'jdbc:mysql://'${DB_HOST}':3306/'${DB_GOV}'?autoReconnect=true\&amp;useSSL=false',
-    $DB_USER_STORE_URL = 'jdbc:mysql://'${DB_HOST}':3306/'${DB_USER_STORE}'?autoReconnect=true\&amp;useSSL=false',
+    $db_apimgt_url = 'jdbc:mysql://'${db_host}':3306/'${db_apimgt}'?autoReconnect=true\&amp;useSSL=false',
+    $db_apimgt_stat_url= 'jdbc:mysql://'${db_host}':3306/'${db_apimgt_stat}'?autoReconnect=true\&amp;useSSL=false',
+    $db_mb_store_url = 'jdbc:mysql://'${db_host}':3306/'${db_mb_store}'?autoReconnect=true\&amp;useSSL=false',
+    $db_am_config_url ='jdbc:mysql://'${db_host}':3306/'${db_am_config}'?autoReconnect=true\&amp;useSSL=false',
+    $db_gov_url = 'jdbc:mysql://'${db_host}':3306/'${db_gov}'?autoReconnect=true\&amp;useSSL=false',
+    $DB_USER_STORE_URL = 'jdbc:mysql://'${db_host}':3306/'${db_user_store}'?autoReconnect=true\&amp;useSSL=false',
     
   }
 
   #open-banking-datasources.xml params
 
   if $dbms == 'mysql' {
-
-    DB_OPEN_BANKING_STORE_URL = 'jdbc:mysql://'${DB_HOST}':3306/'${DB_OPEN_BANKING_STORE}'?autoReconnect=true\&amp;useSSL=false',
+    db_open_banking_store_url = 'jdbc:mysql://'${DB_HOST}':3306/'${DB_OPEN_BANKING_STORE}'?autoReconnect=true\&amp;useSSL=false',
   }
 
 
@@ -103,10 +103,10 @@ class obam140::params {
   #template list
 
   $template_list = [
-    'repository/conf/api-manager.xml', #Only change IAM_HOSTNAME here not OBAM_HOSTNAME
-    'repository/conf/datasources/master-datasources.xml',
-    'repository/conf/datasources/open-banking-datasources.xml',
-    'repository/conf/carbon.xml',     #done
+    'repository/conf/api-manager.xml',
+    'repository/conf/datasources/master-datasources.xml',  
+    'repository/conf/datasources/open-banking-datasources.xml',  
+    'repository/conf/carbon.xml',     
     'repository/conf/registry.xml',   #no changes in config
     'repository/conf/user-mgt.xml',   #no changes in config
     #'repository/conf/axis2/axis2.xml', not available in configure-am.sh
