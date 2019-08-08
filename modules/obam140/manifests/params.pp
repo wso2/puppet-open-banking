@@ -113,7 +113,9 @@ class obam140::params {
     'repository/deployment/server/executionplans/global_FreqPerDay.siddhiql',  #configuration changes removed in OBAM 1.4,therefore only a static file
     #replace_mysql7_file_names_as_mysql() in config.sh - files are already renamed in OBAM 1.4
     'repository/conf/datasources/master-datasources.xml',
-    'repository/conf/datasources/open-banking-datasources.xml'
+    'repository/conf/datasources/open-banking-datasources.xml',
+    'repository/deployment/server/jaggeryapps/admin/site/conf/site.json',
+    'repository/deployment/server/jaggeryapps/admin/store/conf/site.json',
   ]
 
   
