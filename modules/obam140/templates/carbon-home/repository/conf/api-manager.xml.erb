@@ -17,7 +17,7 @@
     <AuthManager>
         <!-- Server URL of the Authentication service -->
         <!--openbanking_hostname Required in OB-->
-        <ServerURL>https://localhost:9446${carbon.context}services/</ServerURL>
+        <ServerURL>https://<%= @IAM_HOSTNAME %>:9446${carbon.context}services/</ServerURL>
         <!-- Admin username for the Authentication manager. -->
         <Username>${admin.username}</Username>
         <!-- Admin password for the Authentication manager. -->
@@ -153,7 +153,7 @@
 
             Ex - Multiple Receiver Groups with two receivers each
             {tcp://localhost:7612/,tcp://localhost:7613},{tcp://localhost:7712/,tcp://localhost:7713/} -->
-        <StreamProcessorServerURL>{tcp://localhost:7612}</StreamProcessorServerURL>
+        <StreamProcessorServerURL>{tcp://<%= @ANALYTICS_HOSTNAME %>:7612}</StreamProcessorServerURL>
         <!--StreamProcessorAuthServerURL>{ssl://localhost:7712}</StreamProcessorAuthServerURL-->
         <!-- Administrator username to login to the remote StreamProcessor server. -->
         <StreamProcessorUsername>admin@wso2.com@carbon.super</StreamProcessorUsername>
@@ -164,7 +164,7 @@
         <StatsProviderImpl>org.wso2.carbon.apimgt.usage.client.impl.APIUsageStatisticsRestClientImpl</StatsProviderImpl>
 
         <!-- StreamProcessor REST API configuration -->
-        <StreamProcessorRestApiURL>https://localhost:7444</StreamProcessorRestApiURL>
+        <StreamProcessorRestApiURL>https://<%= @ANALYTICS_HOSTNAME %>:7444</StreamProcessorRestApiURL>
         <StreamProcessorRestApiUsername>admin@wso2.com@carbon.super</StreamProcessorRestApiUsername>
         <StreamProcessorRestApiPassword>${admin.password}</StreamProcessorRestApiPassword>
 
@@ -215,7 +215,7 @@
     <APIKeyValidator>
         <!-- Server URL of the API key manager -->
         <!--Required in OB-->
-        <ServerURL>https://localhost:9446${carbon.context}services/</ServerURL>
+        <ServerURL>https://<%= @IAM_HOSTNAME%>:9446${carbon.context}services/</ServerURL>
 
         <!-- Admin username for API key manager. -->
         <Username>${admin.username}</Username>
@@ -254,7 +254,7 @@
         <!--KeyManagerClientImpl>org.wso2.carbon.apimgt.impl.AMDefaultKeyManagerImpl</KeyManagerClientImpl-->
         <KeyManagerClientImpl>com.wso2.finance.open.banking.sca.keymanager.SCABasedKeyManagerClient</KeyManagerClientImpl>
         <Configuration>
-            <ServerURL>https://localhost:9446${carbon.context}services/</ServerURL>
+            <ServerURL>https://<%= @IAM_HOSTNAME%>:9446${carbon.context}services/</ServerURL>
             <Username>${admin.username}</Username>
             <Password>${admin.password}</Password>
             <TokenURL>https://<%= @APIM_HOSTNAME %>:${https.nio.port}/token</TokenURL>
@@ -663,40 +663,5 @@
             <SupportedLanguages>java,android</SupportedLanguages>
         </ClientGeneration>
     </SwaggerCodegen>
-
-
-	
-	<!--For DCR flow of OBAM -->
-
-
-<ApplicationConfiguration>
-    <ApplicationAttributes>
-        <Attribute required="false">
-            <Name>software_id_sandbox</Name>
-            <Description>Software ID of the sandbox</Description>
-        </Attribute>
-        <Attribute required="false">
-            <Name>software_id_production</Name>
-            <Description>Software ID of the production</Description>
-        </Attribute>
-       <Attribute required="false">
-            <Name>software_roles_production</Name>
-            <Description>Software roles of the production</Description>
-        </Attribute>
-       <Attribute required="false">
-            <Name>software_roles_sandbox</Name>
-            <Description>Software roles of the sandbox</Description>
-        </Attribute>
-        <Attribute required="false">
-            <Name>software_jwks_endpoint_sandbox</Name>
-            <Description>JWKS endpoint of sandbox</Description>
-        </Attribute>
-        <Attribute required="false">
-            <Name>software_jwks_endpoint_production</Name>
-            <Description>JWKS endpoint of production</Description>
-        </Attribute>
-    </ApplicationAttributes>
-</ApplicationConfiguration>
-
 
 </APIManager>
