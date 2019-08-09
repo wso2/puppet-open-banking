@@ -32,11 +32,31 @@ class obkm::params {
 	$pid_file_path = "${product_dir}/${pack}/wso2carbon.pid"
 
 	$template_list = [
+		#configure_datasources
 		"repository/conf/datasources/master-datasources.xml",
 		"repository/conf/datasources/open-banking-datasources.xml",
 		"repository/conf/carbon.xml",
 		"repository/conf/registry.xml",
-		"repository/conf/user-mgt.xml"	
+		"repository/conf/user-mgt.xml",	
+
+		#change_dns
+		"repository/conf/identity/identity.xml",
+		"repository/conf/identity/application-authentication.xml",
+		"repository/conf/finance/open-banking.xml",
+		"repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json"
+	
+	]
+
+	#sql files
+	$sqlfile_list = [
+		"dbscripts/mysql5.7.sql",
+		"dbscripts/apimgt/mysql5.7.sql",
+		"dbscripts/consent/mysql-5.7.sql",
+		"dbscripts/identity/mysql-5.7.sql",
+		"dbscripts/identity/uma/mysql5.7.sql",
+		"dbscripts/finance/openbanking.org.uk/mysql-5-7.sql",
+		"dbscripts/finance/berlin-group.org/mysql-5-7.sql",
+		"dbscripts/finance/STET/mysql-5-7.sql"	
 	]
 
 	# Configure databases related properties
@@ -52,6 +72,13 @@ class obkm::params {
 	$db_user_store = "openbank_userdb"
 	$db_open_banking_store = "openbank_openbankingdb" 
 	
+	#hostname configurations
+	$iam_hostname = "localhost"
+	$apim_hostname = "localhost"
+	$analytics_hostname = "localhost"
+	
+	
+
 
 
 	# ----- datasources config params -----

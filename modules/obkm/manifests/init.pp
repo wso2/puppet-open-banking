@@ -119,8 +119,10 @@ class obkm inherits obkm::params {
       			#require => Class["is_common"]
     		}
   	}
-
-
+	
+	
+	
+	
 
 
 	service { "${wso2_service_name}":
