@@ -2,6 +2,7 @@ class obkm::params {
 	
 	$packages = ["unzip"]
 
+	#User Details
 	$user = 'wso2carbon'
   	$user_group = 'wso2'
   	$user_id = 802
@@ -13,10 +14,10 @@ class obkm::params {
   	$jdk_name = 'jdk1.8.0_161'
   	$java_home = "${java_dir}/${jdk_name}"
 
-	$profile = $profile
   	$target = "/mnt"
   	$product_dir = "${target}/${profile}"
   	$pack_dir = "${target}/${profile}/packs"
+
 	$wso2_service_name = "wso2${profile}"
 
 	$version = "1.4.0"
@@ -24,10 +25,9 @@ class obkm::params {
 
 	# Pack Directories
 	$product_binary = "${pack}.zip"
-	
 	$carbon_home = "${product_dir}/${pack}"
-	$start_script_template = 'bin/wso2server.sh'
 
+	$start_script_template = 'bin/wso2server.sh'
 	$server_script_path = "${product_dir}/${pack}/bin/wso2server.sh"
 	$pid_file_path = "${product_dir}/${pack}/wso2carbon.pid"
 
@@ -44,6 +44,9 @@ class obkm::params {
 		"repository/conf/identity/application-authentication.xml",
 		"repository/conf/finance/open-banking.xml",
 		"repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json"
+
+		#configure spec
+		"repository/deployment/server/jaggeryapps/ccportal/configs/conf.json"
 	
 	]
 
@@ -107,6 +110,10 @@ class obkm::params {
 		$db_user_store_url = "jdbc:sqlserver://'${db_host}':1433;databaseName='${db_user_store}';encrypt=false"	
 
 	}
+
+
+	#jaggeryapps/admin/site/conf/site.json and openbanking.xml params
+  	$spec = 'UK' #UK or BERLIN 
 	
 
 	

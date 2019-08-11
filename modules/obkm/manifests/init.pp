@@ -1,5 +1,8 @@
 class obkm inherits obkm::params {
 
+	/* From is::common */
+
+
 	#Install system packages
 	package { $packages:
     		ensure => installed
@@ -30,6 +33,7 @@ class obkm inherits obkm::params {
   	file { "jdk-distribution":
     		path   => "${java_home}.tar.gz",
     		source => "puppet:///modules/${module_name}/jdk/${jdk_name}.tar.gz",
+		notify => Exec["unpack-jdk"]	
 	}
 
 	# Unzip distribution
@@ -38,7 +42,7 @@ class obkm inherits obkm::params {
     		path        => "/bin/",
     		cwd         => "${java_dir}",
     		onlyif      => "/usr/bin/test ! -d ${java_home}",
-    		subscribe   => File["jdk-distribution"],
+    		#subscribe   => File["jdk-distribution"],
     		refreshonly => true
   	}
 
@@ -53,6 +57,8 @@ class obkm inherits obkm::params {
   	* WSO2 Distribution
   	*/
 
+
+	#Create product folder and pack folder
   	file { ["${product_dir}", "${pack_dir}"]:
     		ensure  => directory,
     		owner   => $user,
@@ -77,8 +83,8 @@ class obkm inherits obkm::params {
     		user        => $user,
     		group       => $user_group,
     		cwd         => "${pack_dir}",
-    		subscribe   => File["wso2-binary"],
-    		refreshonly => true,
+    		#subscribe   => File["wso2-binary"],
+    		#refreshonly => true,
   	}
 
   	# Copy the unit file required to deploy the server as a service
@@ -96,16 +102,7 @@ class obkm inherits obkm::params {
     		refreshonly => true,
   	}
 	
-	# Copy wso2server.sh to installed directory
-	file { "${carbon_home}/${start_script_template}":
-    	ensure  => file,
-    	owner   => $user,
-    	group   => $user_group,
-    	mode    => '0754',
-    	content => template("${module_name}/carbon-home/${start_script_template}.erb"),
-    	notify  => Service["${wso2_service_name}"],
-    	require => EXEC["unzip-update"]
-  	}
+	
 
 	/* Configuration Changes */
 
@@ -119,19 +116,28 @@ class obkm inherits obkm::params {
       			#require => Class["is_common"]
     		}
   	}
+
 	
-	
-	
-	
+	# Copy wso2server.sh to installed directory
+		file { "${carbon_home}/${start_script_template}":
+    		ensure  => file,
+    		owner   => $user,
+    		group   => $user_group,
+    		mode    => '0754',
+    		content => template("${module_name}/carbon-home/${start_script_template}.erb"),
+    		notify  => Service["${wso2_service_name}"],
+    		require => EXEC["unzip-update"]
+  	}
+		
+	/* 
+	from service.pp 
+	*/
 
 
 	service { "${wso2_service_name}":
     		enable => true,
     		ensure => running,
   	}
-
-	
-
 
 
 }
