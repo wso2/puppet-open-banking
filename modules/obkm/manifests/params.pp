@@ -43,7 +43,7 @@ class obkm::params {
 		"repository/conf/identity/identity.xml",
 		"repository/conf/identity/application-authentication.xml",
 		"repository/conf/finance/open-banking.xml",
-		"repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json"
+		"repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json",
 
 		#configure spec
 		"repository/deployment/server/jaggeryapps/ccportal/configs/conf.json"

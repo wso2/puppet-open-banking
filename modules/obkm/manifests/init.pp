@@ -83,8 +83,8 @@ class obkm inherits obkm::params {
     		user        => $user,
     		group       => $user_group,
     		cwd         => "${pack_dir}",
-    		#subscribe   => File["wso2-binary"],
-    		#refreshonly => true,
+    		subscribe   => File["wso2-binary"],
+    		refreshonly => true,
   	}
 
   	# Copy the unit file required to deploy the server as a service
@@ -94,6 +94,17 @@ class obkm inherits obkm::params {
     		group   => root,
     		mode    => '0754',
     		content => template("${module_name}/carbon.service.erb"),
+  	}
+
+	# Copy wso2server.sh to installed directory
+		file { "${carbon_home}/${start_script_template}":
+    		ensure  => file,
+    		owner   => $user,
+    		group   => $user_group,
+    		mode    => '0754',
+    		content => template("${module_name}/carbon-home/${start_script_template}.erb"),
+    		notify  => Service["${wso2_service_name}"],
+    		require => EXEC["unzip-update"]
   	}
 
   	exec { 'systemctl daemon-reload':
@@ -118,16 +129,7 @@ class obkm inherits obkm::params {
   	}
 
 	
-	# Copy wso2server.sh to installed directory
-		file { "${carbon_home}/${start_script_template}":
-    		ensure  => file,
-    		owner   => $user,
-    		group   => $user_group,
-    		mode    => '0754',
-    		content => template("${module_name}/carbon-home/${start_script_template}.erb"),
-    		notify  => Service["${wso2_service_name}"],
-    		require => EXEC["unzip-update"]
-  	}
+	
 		
 	/* 
 	from service.pp 
