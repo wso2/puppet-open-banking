@@ -31,37 +31,7 @@ class obkm::params {
 	$server_script_path = "${product_dir}/${pack}/bin/wso2server.sh"
 	$pid_file_path = "${product_dir}/${pack}/wso2carbon.pid"
 
-	$template_list = [
-		#configure_datasources
-		"repository/conf/datasources/master-datasources.xml",
-		"repository/conf/datasources/open-banking-datasources.xml",
-		"repository/conf/carbon.xml",
-		"repository/conf/registry.xml",
-		"repository/conf/user-mgt.xml",	
-
-		#change_dns
-		"repository/conf/identity/identity.xml",
-		"repository/conf/identity/application-authentication.xml",
-		"repository/conf/finance/open-banking.xml",
-		"repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json",
-
-		#configure spec
-		"repository/deployment/server/jaggeryapps/ccportal/configs/conf.json"
 	
-	]
-
-	#sql files
-	$sqlfile_list = [
-		"dbscripts/mysql5.7.sql",
-		"dbscripts/apimgt/mysql5.7.sql",
-		"dbscripts/consent/mysql-5.7.sql",
-		"dbscripts/identity/mysql-5.7.sql",
-		"dbscripts/identity/uma/mysql5.7.sql",
-		"dbscripts/finance/openbanking.org.uk/mysql-5-7.sql",
-		"dbscripts/finance/berlin-group.org/mysql-5-7.sql",
-		"dbscripts/finance/STET/mysql-5-7.sql"	
-	]
-
 	# Configure databases related properties
 	$db_type = "mysql"
 	$db_host = "localhost"
@@ -79,10 +49,9 @@ class obkm::params {
 	$iam_hostname = "localhost"
 	$apim_hostname = "localhost"
 	$analytics_hostname = "localhost"
-	
-	
 
-
+	#jaggeryapps/admin/site/conf/site.json and openbanking.xml params
+	$spec = "UK"
 
 	# ----- datasources config params -----
 
@@ -95,8 +64,7 @@ class obkm::params {
 		$db_apimgt_url = "jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true\&amp;useSSL=false"
 		$db_km_config_url = "jdbc:mysql://'${db_host}':3306/'${db_is_config}'?autoReconnect=true\&amp;useSSL=false"
 		$db_gov_url = "jdbc:mysql://'${db_host}':3306/'${db_gov}'?autoReconnect=true\&amp;useSSL=false"
-		$db_user_store_url = "jdbc:mysql://'${db_host}':3306/'${db_user_store}'?autoReconnect=true\&amp;useSSL=false"
-		
+		$db_user_store_url = "jdbc:mysql://'${db_host}':3306/'${db_user_store}'?autoReconnect=true\&amp;useSSL=false"	
 
 	} else {
 		
@@ -108,13 +76,36 @@ class obkm::params {
 		$db_km_config_url = "jdbc:sqlserver://'${db_host}':1433;databaseName='${db_is_config}';encrypt=false"
 		$db_gov_url = "jdbc:sqlserver://'${db_host}':1433;databaseName='${db_gov}';encrypt=false"
 		$db_user_store_url = "jdbc:sqlserver://'${db_host}':1433;databaseName='${db_user_store}';encrypt=false"	
-
 	}
 
 
-	#jaggeryapps/admin/site/conf/site.json and openbanking.xml params
-  	$spec = 'UK' #UK or BERLIN 
-	
+	$template_list = [
+		#configure_datasources
+		"repository/conf/datasources/master-datasources.xml",
+		"repository/conf/datasources/open-banking-datasources.xml",
+		"repository/conf/carbon.xml",
+		"repository/conf/registry.xml",
+		"repository/conf/user-mgt.xml",	
 
-	
+		#change_dns
+		"repository/conf/identity/identity.xml",
+		"repository/conf/identity/application-authentication.xml",
+		"repository/conf/finance/open-banking.xml",
+		"repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json",
+
+		#configure speccarbon_homecarbon_home
+		"repository/deployment/server/jaggeryapps/ccportal/configs/conf.json"	
+	]
+
+	#sql files
+	$sqlfile_list = [
+		"${carbon_home}/dbscripts/mysql5.7.sql ${carbon_home}/dbscripts/mysql.sql ",
+		"${carbon_home}/dbscripts/apimgt/mysql5.7.sql ${carbon_home}/dbscripts/apimgt/mysql.sql",
+		"${carbon_home}/dbscripts/consent/mysql-5.7.sql ${carbon_home}/dbscripts/consent/mysql.sql",
+		"${carbon_home}/dbscripts/identity/mysql-5.7.sql ${carbon_home}/dbscripts/identity/mysql.sql",
+		"${carbon_home}/dbscripts/identity/uma/mysql5.7.sql ${carbon_home}/dbscripts/identity/uma/mysql.sql",
+		"${carbon_home}/dbscripts/finance/openbanking.org.uk/mysql-5-7.sql ${carbon_home}/dbscripts/finance/openbanking.org.uk/mysql.sql",
+		"${carbon_home}/dbscripts/finance/berlin-group.org/mysql-5-7.sql ${carbon_home}/dbscripts/finance/berlin-group.org/mysql.sql",
+		"${carbon_home}/dbscripts/finance/STET/mysql-5-7.sql ${carbon_home}/dbscripts/finance/STET/mysql.sql"	
+	]
 }

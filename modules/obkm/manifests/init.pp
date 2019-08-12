@@ -22,7 +22,8 @@ class obkm inherits obkm::params {
     		gid     => $user_group_id,
     		home    => "/home/${user}",
     		system  => true,
-    		require => Group["${user_group}"]
+    		require => Group["${user_group}"],
+		notify => File["jdk-distribution"]
   	}
 
 	/*
@@ -43,7 +44,7 @@ class obkm inherits obkm::params {
     		cwd         => "${java_dir}",
     		onlyif      => "/usr/bin/test ! -d ${java_home}",
     		#subscribe   => File["jdk-distribution"],
-    		refreshonly => true
+    		#refreshonly => true
   	}
 
 	# Create symlink to Java binary
@@ -96,17 +97,7 @@ class obkm inherits obkm::params {
     		content => template("${module_name}/carbon.service.erb"),
   	}
 
-	# Copy wso2server.sh to installed directory
-		file { "${carbon_home}/${start_script_template}":
-    		ensure  => file,
-    		owner   => $user,
-    		group   => $user_group,
-    		mode    => '0754',
-    		content => template("${module_name}/carbon-home/${start_script_template}.erb"),
-    		notify  => Service["${wso2_service_name}"],
-    		require => EXEC["unzip-update"]
-  	}
-
+	
   	exec { 'systemctl daemon-reload':
     		path    =>  '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
     		subscribe => File["/etc/systemd/system/${wso2_service_name}.service"],
@@ -123,17 +114,29 @@ class obkm inherits obkm::params {
       			ensure  => file,
       			mode    => '0644',
       			content => template("${module_name}/carbon-home/${template}.erb"),
-      			notify  => Service["${wso2_service_name}"],
+      			notify  => Service["${wso2_service_name}"]
       			#require => Class["is_common"]
     		}
   	}
 
-	
+
+	# Copy wso2server.sh to installed directory
+		file { "${carbon_home}/${start_script_template}":
+    		ensure  => file,
+    		owner   => $user,
+    		group   => $user_group,
+    		mode    => '0754',
+    		content => template("${module_name}/carbon-home/${start_script_template}.erb"),
+    		notify  => Service["${wso2_service_name}"],
+    		require => EXEC["unzip-update"]
+  	}
 	
 		
 	/* 
 	from service.pp 
 	*/
+
+	
 
 
 	service { "${wso2_service_name}":

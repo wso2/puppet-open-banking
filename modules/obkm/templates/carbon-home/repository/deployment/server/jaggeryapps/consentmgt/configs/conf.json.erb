@@ -2,17 +2,17 @@
 	"app" : "consentmgt",
 	"applicationType" : "oauth2",
 	"tenantDomain": "carbon.super",
-	"apimHost":"http://<% @apim_hostname %>",
+	"apimHost":"http://<%= @apim_hostname %>",
 	"apimNioPort":"8280",
 	"apimHttpPort":"9763",
-	"kmHost" : "https://<% @iam_hostname %>",
+	"kmHost" : "https://<%= @iam_hostname %>",
 	"kmPort" : "9446",
 	"kmTokenAPI" : "oauth2/token",
 	"kmAuthorizeAPI" : "oauth2/authorize",
 	"applicationId":"",
 	"authCredential":"",
-	"redirectUrl":"https://<% @iam_hostname %>:9446/consentmgt",
-	"logoutUrl": "https://<% @iam_hostname %>\:9446/consentmgt",
+	"redirectUrl":"https://<%= @iam_hostname %>:9446/consentmgt",
+	"logoutUrl": "https://<%= @iam_hostname %>\:9446/consentmgt",
 	"tokenApiName" : "token",
 	"tokenApiVersion" : "",
 	"authorizeApiName" : "authorize",
@@ -22,5 +22,5 @@
 		"actualLimit" : 10,
 		"offset": 0
 	},
-	"DeployedSpecification" : <% @spec %>
+	"DeployedSpecification" : <%= @spec %>
 }
