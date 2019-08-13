@@ -21,7 +21,7 @@ class obam140::params {
   $java_home = "${java_dir}/${jdk_name}"
 
   $target = "/mnt"
-  $product_dir = "${target}/${profile}"
+  $product_dir = "${target}/${profile}" 
   $pack_dir = "${target}/${profile}/packs"
 
   $wso2_service_name = "wso2${profile}"
@@ -37,12 +37,12 @@ class obam140::params {
 
   $start_script_template = 'bin/wso2server.sh'
 
-  #params for carbon.service.erb
+  # params for carbon.service.erb
 
   $server_script_path ="${product_dir}/${pack}/bin/wso2server.sh"
   $pid_file_path="${product_dir}/${pack}/wso2carbon.pid"
 
-  #database system related variables
+  /* database system related variables */
   
   #common params to master-datasources.xml and open-banking-datasources.xml
   $dbms = 'mysql'
@@ -52,6 +52,7 @@ class obam140::params {
   $db_driver = 'com.mysql.jdbc.Driver'
 
   #master-datasources.xml params
+
   $db_apimgt = 'openbank_apimgtdb'
   $db_apimgt_stat = 'openbank_apimgt_statsdb'
   $db_mb_store = 'openbank_mbstoredb'
@@ -78,28 +79,28 @@ class obam140::params {
   $spec = 'UK' #UK or Berlin , common to openbanking.xml as well
 
 
-  #does nested variables work?
-  # different databases issue (configured only for mysql for now)
+  
+  # Need to configure for databases other than mysql
 
-  /*
-  if $dbms == 'mysql'{
+  
+  if ($dbms == 'mysql'){
 
-    $db_apimgt_url = 'jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true\&amp;useSSL=false',
-    $db_apimgt_stat_url= 'jdbc:mysql://${db_host}:3306/${db_apimgt_stat}?autoReconnect=true\&amp;useSSL=false',
-    $db_mb_store_url = 'jdbc:mysql://${db_host}:3306/${db_mb_store}?autoReconnect=true\&amp;useSSL=false',
-    $db_am_config_url ='jdbc:mysql://${db_host}:3306/${db_am_config}?autoReconnect=true\&amp;useSSL=false',
-    $db_gov_url = 'jdbc:mysql://${db_host}:3306/${db_gov}?autoReconnect=true\&amp;useSSL=false',
-    $db_user_store_url = 'jdbc:mysql://${db_host}:3306/${db_user_store}?autoReconnect=true\&amp;useSSL=false',
+    $db_apimgt_url = "jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true&amp;useSSL=false"
+    $db_apimgt_stat_url= "jdbc:mysql://${db_host}:3306/${db_apimgt_stat}?autoReconnect=true&amp;useSSL=false"
+    $db_mb_store_url = "jdbc:mysql://${db_host}:3306/${db_mb_store}?autoReconnect=true&amp;useSSL=false"
+    $db_am_config_url ="jdbc:mysql://${db_host}:3306/${db_am_config}?autoReconnect=true&amp;useSSL=false"
+    $db_gov_url = "jdbc:mysql://${db_host}:3306/${db_gov}?autoReconnect=true&amp;useSSL=false"
+    $db_user_store_url = "jdbc:mysql://${db_host}:3306/${db_user_store}?autoReconnect=true&amp;useSSL=false"
     
   }
 
   #open-banking-datasources.xml params
 
-  if $dbms == 'mysql' {
-    db_open_banking_store_url = 'jdbc:mysql://${db_host}:3306/${db_open_banking_store}?autoReconnect=true\&amp;useSSL=false',
+  if ($dbms == 'mysql') {
+    $db_open_banking_store_url = "jdbc:mysql://${db_host}:3306/${db_open_banking_store}?autoReconnect=true&amp;useSSL=false"
   }
 
-*/
+
 
   
   #template list

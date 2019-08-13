@@ -1,11 +1,11 @@
 [Unit]
-Description=WSO2 API Manager: <% @profile %>
+Description=WSO2 API Manager: <%= @profile %>
 After=network.target
 
 [Service]
 ExecStart=<%= @server_script_path %> <%= @optimize_params %> start
 ExecStop=<%= @server_script_path %> stop
-ExecRestart=<%= @server_script_path %> restart
+ExecReload=<%= @server_script_path %> restart
 PIDFile=<%= @pid_file_path %>
 User=<%= @user %>
 Group=<%= @user_group %>

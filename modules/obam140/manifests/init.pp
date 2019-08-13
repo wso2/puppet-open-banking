@@ -58,6 +58,8 @@ class obam140 inherits obam140::params{
     require => [ User["${user}"], Group["${user_group}"] ]
   }
 
+  
+
   # Copy binary to distribution path
    file { "wso2-binary":
       path    => "${pack_dir}/${product_binary}",
@@ -75,7 +77,7 @@ class obam140 inherits obam140::params{
     command => "unzip -o ${product_binary} -d ${product_dir}",
     path    => "/usr/bin/",
     user    => $user,
-    group   => $user_group,
+    group   => $user_group,                         
     cwd     => "${pack_dir}",
   }
 
@@ -97,6 +99,8 @@ class obam140 inherits obam140::params{
 
   /* From apim */
 
+  
+
   # Copy configuration changes to the installed directory
   $template_list.each |String $template| {
     file { "${carbon_home}/${template}":
@@ -110,7 +114,7 @@ class obam140 inherits obam140::params{
   # Copy wso2server.sh to installed directory
   file { "${carbon_home}/${start_script_template}":
     ensure  => file,
-    owner   => $user,
+    owner   => $user,                                      
     group   => $user_group,
     mode    => '0754',
     content => template("${module_name}/carbon-home/${start_script_template}.erb"),
@@ -123,10 +127,12 @@ class obam140 inherits obam140::params{
 
  /* from service.pp */
 
+ 
  service { "${wso2_service_name}":
     enable => true,
     ensure => running,
   }
 
+ 
 
 }
