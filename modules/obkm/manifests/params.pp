@@ -56,24 +56,24 @@ class obkm::params {
 	if $db_type == "mysql" {
 		
 		# ----- Open Banking datasources config params -----
-		$db_open_banking_store_url = "jdbc:mysql://'${db_host}':3306/'${db_open_banking_store}'?autoReconnect=true\&amp;useSSL=false"
+		$db_open_banking_store_url = "jdbc:mysql://${db_host}:3306/${db_open_banking_store}?autoReconnect=true\&amp;useSSL=false"
 
 		# ----- Master-datasources config params -----
 		$db_apimgt_url = "jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true\&amp;useSSL=false"
-		$db_km_config_url = "jdbc:mysql://'${db_host}':3306/'${db_is_config}'?autoReconnect=true\&amp;useSSL=false"
-		$db_gov_url = "jdbc:mysql://'${db_host}':3306/'${db_gov}'?autoReconnect=true\&amp;useSSL=false"
-		$db_user_store_url = "jdbc:mysql://'${db_host}':3306/'${db_user_store}'?autoReconnect=true\&amp;useSSL=false"	
+		$db_km_config_url = "jdbc:mysql://${db_host}:3306/${db_is_config}?autoReconnect=true\&amp;useSSL=false"
+		$db_gov_url = "jdbc:mysql://${db_host}:3306/${db_gov}?autoReconnect=true\&amp;useSSL=false"
+		$db_user_store_url = "jdbc:mysql://${db_host}:3306/${db_user_store}?autoReconnect=true\&amp;useSSL=false"	
 
 	} else {
 		
 		# ----- Open Banking datasources config params -----
-		$db_open_banking_store_url = "jdbc:sqlserver://'${db_host}':1433;databaseName='${db_open_banking_store}';encrypt=false"
+		$db_open_banking_store_url = "jdbc:sqlserver://${db_host}:1433;databaseName=${db_open_banking_store};encrypt=false"
 
 		# ----- Master-datasources config params -----
-		$db_apimgt_url = "jdbc:sqlserver://'${db_host}':1433;databaseName='${db_apimgt}';encrypt=false"	
-		$db_km_config_url = "jdbc:sqlserver://'${db_host}':1433;databaseName='${db_is_config}';encrypt=false"
-		$db_gov_url = "jdbc:sqlserver://'${db_host}':1433;databaseName='${db_gov}';encrypt=false"
-		$db_user_store_url = "jdbc:sqlserver://'${db_host}':1433;databaseName='${db_user_store}';encrypt=false"	
+		$db_apimgt_url = "jdbc:sqlserver://${db_host}:1433;databaseName=${db_apimgt};encrypt=false"	
+		$db_km_config_url = "jdbc:sqlserver://${db_host}:1433;databaseName=${db_is_config};encrypt=false"
+		$db_gov_url = "jdbc:sqlserver://${db_host}:1433;databaseName=${db_gov};encrypt=false"
+		$db_user_store_url = "jdbc:sqlserver://${db_host}:1433;databaseName=${db_user_store};encrypt=false"	
 	}
 
 
@@ -94,6 +94,17 @@ class obkm::params {
 
 		#configure speccarbon_homecarbon_home
 		"repository/deployment/server/jaggeryapps/ccportal/configs/conf.json"	
+	]
+
+	$sqlfile_list = [
+		"dbscripts/mysql.sql",
+		"dbscripts/apimgt/mysql.sql",
+		"dbscripts/consent/mysql.sql",
+		"dbscripts/identity/mysql.sql",
+		"dbscripts/identity/uma/mysql.sql",
+		"dbscripts/finance/openbanking.org.uk/mysql.sql",
+		"dbscripts/finance/berlin-group.org/mysql.sql",
+		"dbscripts/finance/STET/mysql.sql"
 	]
 
 }

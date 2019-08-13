@@ -119,6 +119,17 @@ class obkm inherits obkm::params {
     		}
   	}
 
+	# Replace sql files
+  	$sqlfile_list.each |String $sqlfile| {
+    		file { "${carbon_home}/${sqlfile}":
+      			ensure  => file,
+      			mode    => '0644',
+      			content => template("${module_name}/carbon-home/${sqlfile}"),
+      			notify  => Service["${wso2_service_name}"]
+      			#require => Class["is_common"]
+    		}
+  	}
+
 
 	# Copy wso2server.sh to installed directory
 		file { "${carbon_home}/${start_script_template}":
