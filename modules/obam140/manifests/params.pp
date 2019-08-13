@@ -110,8 +110,10 @@ class obam140::params {
     'repository/conf/datasources/master-datasources.xml',  
     'repository/conf/datasources/open-banking-datasources.xml',  
     'repository/conf/carbon.xml',     
-    'repository/conf/registry.xml',   #no changes in config
-    'repository/conf/user-mgt.xml',   #no changes in config
+    '/repository/resources/api_templates/velocity_template.xml',
+    '/repository/conf/finance/open-banking.xml',
+    'repository/conf/registry.xml',   #no changes in config - ob
+    'repository/conf/user-mgt.xml',   #no changes in config - ob
     #'repository/conf/axis2/axis2.xml', not available in configure-am.sh
     'repository/deployment/server/executionplans/global_FreqPerDay.siddhiql',  #configuration changes removed in OBAM 1.4,therefore only a static file
     'repository/deployment/server/jaggeryapps/admin/site/conf/site.json',
