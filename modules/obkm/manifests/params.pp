@@ -14,19 +14,17 @@ class obkm::params {
   	$jdk_name = 'jdk1.8.0_161'
   	$java_home = "${java_dir}/${jdk_name}"
 
+	# Pack Directories
   	$target = "/mnt"
   	$product_dir = "${target}/${profile}"
   	$pack_dir = "${target}/${profile}/packs"
-
-	$wso2_service_name = "wso2${profile}"
-
 	$version = "1.4.0"
   	$pack = "wso2-obkm-${version}"
-
-	# Pack Directories
 	$product_binary = "${pack}.zip"
 	$carbon_home = "${product_dir}/${pack}"
 
+
+	$wso2_service_name = "wso2${profile}"
 	$start_script_template = 'bin/wso2server.sh'
 	$server_script_path = "${product_dir}/${pack}/bin/wso2server.sh"
 	$pid_file_path = "${product_dir}/${pack}/wso2carbon.pid"
@@ -84,6 +82,7 @@ class obkm::params {
 		"repository/conf/datasources/master-datasources.xml",
 		"repository/conf/datasources/open-banking-datasources.xml",
 		"repository/conf/carbon.xml",
+		"repository/conf/axis2/axis2.xml",
 		"repository/conf/registry.xml",
 		"repository/conf/user-mgt.xml",	
 
@@ -97,15 +96,4 @@ class obkm::params {
 		"repository/deployment/server/jaggeryapps/ccportal/configs/conf.json"	
 	]
 
-	#sql files
-	$sqlfile_list = [
-		"${carbon_home}/dbscripts/mysql5.7.sql ${carbon_home}/dbscripts/mysql.sql ",
-		"${carbon_home}/dbscripts/apimgt/mysql5.7.sql ${carbon_home}/dbscripts/apimgt/mysql.sql",
-		"${carbon_home}/dbscripts/consent/mysql-5.7.sql ${carbon_home}/dbscripts/consent/mysql.sql",
-		"${carbon_home}/dbscripts/identity/mysql-5.7.sql ${carbon_home}/dbscripts/identity/mysql.sql",
-		"${carbon_home}/dbscripts/identity/uma/mysql5.7.sql ${carbon_home}/dbscripts/identity/uma/mysql.sql",
-		"${carbon_home}/dbscripts/finance/openbanking.org.uk/mysql-5-7.sql ${carbon_home}/dbscripts/finance/openbanking.org.uk/mysql.sql",
-		"${carbon_home}/dbscripts/finance/berlin-group.org/mysql-5-7.sql ${carbon_home}/dbscripts/finance/berlin-group.org/mysql.sql",
-		"${carbon_home}/dbscripts/finance/STET/mysql-5-7.sql ${carbon_home}/dbscripts/finance/STET/mysql.sql"	
-	]
 }
