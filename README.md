@@ -1,4 +1,4 @@
-<h1>Puppet Modules for WSO2 Open Banking<h1> 
+<h1>Puppet Modules for WSO2 Open Banking</h1> 
 
 This repository contains the Puppet modules for WSO2 Open Banking.
 
