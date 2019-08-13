@@ -28,9 +28,12 @@ Each Puppet module contains the following .pp files.
 	* init.pp: Contains the main script of the module.
 * Custom
 	* custom.pp: Used to add custom configurations to the Puppet module.	
+<<<<<<< HEAD
 
 
 sudo mysql
 
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+=======
+>>>>>>> ea96f5ff83a1ff153f99795c4d7d410f83151f8c
 

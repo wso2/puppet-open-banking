@@ -56,13 +56,13 @@ class obkm::params {
 	if $db_type == "mysql" {
 		
 		# ----- Open Banking datasources config params -----
-		$db_open_banking_store_url = "jdbc:mysql://${db_host}:3306/${db_open_banking_store}?autoReconnect=true\&amp;useSSL=false"
+		$db_open_banking_store_url = "jdbc:mysql://${db_host}:3306/${db_open_banking_store}?autoReconnect=true&amp;useSSL=false"
 
 		# ----- Master-datasources config params -----
-		$db_apimgt_url = "jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true\&amp;useSSL=false"
-		$db_km_config_url = "jdbc:mysql://${db_host}:3306/${db_is_config}?autoReconnect=true\&amp;useSSL=false"
-		$db_gov_url = "jdbc:mysql://${db_host}:3306/${db_gov}?autoReconnect=true\&amp;useSSL=false"
-		$db_user_store_url = "jdbc:mysql://${db_host}:3306/${db_user_store}?autoReconnect=true\&amp;useSSL=false"	
+		$db_apimgt_url = "jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true&amp;useSSL=false"
+		$db_km_config_url = "jdbc:mysql://${db_host}:3306/${db_is_config}?autoReconnect=true&amp;useSSL=false"
+		$db_gov_url = "jdbc:mysql://${db_host}:3306/${db_gov}?autoReconnect=true&amp;useSSL=false"
+		$db_user_store_url = "jdbc:mysql://${db_host}:3306/${db_user_store}?autoReconnect=true&amp;useSSL=false"	
 
 	} else {
 		
