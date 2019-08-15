@@ -1,4 +1,4 @@
-class obkm inherits obkm::params {
+class obkm140 inherits obkm140::params {
 
 	/* From is::common */
 

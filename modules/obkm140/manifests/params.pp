@@ -1,4 +1,4 @@
-class obkm::params {
+class obkm140::params {
 	
 	$packages = ["unzip"]
 
