@@ -124,7 +124,7 @@ class obkm inherits obkm::params {
     		file { "${carbon_home}/${sqlfile}":
       			ensure  => file,
       			mode    => '0644',
-      			content => template("${module_name}/carbon-home/${sqlfile}"),
+      			content => template("${module_name}/carbon-home/${sqlfile}.erb"),
       			notify  => Service["${wso2_service_name}"]
       			#require => Class["is_common"]
     		}
