@@ -51,7 +51,7 @@ class obam140::params {
   $db_pass = "root"
   $db_driver = "com.mysql.jdbc.Driver"
 
-  #master-datasources.xml params
+  #master-datasources.xml params - database names
 
   $db_apimgt = "openbank_apimgtdb"
   $db_apimgt_stat = "openbank_apimgt_statsdb"
