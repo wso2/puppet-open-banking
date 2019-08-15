@@ -111,6 +111,17 @@ class obam140 inherits obam140::params{
     }
   }
 
+  # Replace sql files
+  	$sqlfile_list.each |String $sqlfile| {
+    		file { "${carbon_home}/${sqlfile}":
+      			ensure  => file,
+      			mode    => '0644',
+      			content => template("${module_name}/carbon-home/${sqlfile}.erb"),
+      			notify  => Service["${wso2_service_name}"]
+    		}
+  	}
+
+
   # Copy wso2server.sh to installed directory
   file { "${carbon_home}/${start_script_template}":
     ensure  => file,
@@ -119,7 +130,7 @@ class obam140 inherits obam140::params{
     mode    => '0754',
     content => template("${module_name}/carbon-home/${start_script_template}.erb"),
     notify  => Service["${wso2_service_name}"],
-#    require => Class["apim_common"]           //original 
+#    require => Class["apim_common"]           //original , should require ob common
     require => Exec["unzip-update"],
   }
 

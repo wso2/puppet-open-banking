@@ -35,55 +35,55 @@ class obam140::params {
 
   #from apim
 
-  $start_script_template = 'bin/wso2server.sh'
+  $start_script_template = "bin/wso2server.sh"
 
   # params for carbon.service.erb
 
   $server_script_path ="${product_dir}/${pack}/bin/wso2server.sh"
   $pid_file_path="${product_dir}/${pack}/wso2carbon.pid"
 
-  /* database system related variables */
+  /* DBMS related variables */
   
   #common params to master-datasources.xml and open-banking-datasources.xml
-  $dbms = 'mysql'
-  $db_host = 'localhost'
-  $db_user = 'root'
-  $db_pass = 'root'
-  $db_driver = 'com.mysql.jdbc.Driver'
+  $dbms = "mysql"
+  $db_host = "localhost"
+  $db_user = "root"
+  $db_pass = "root"
+  $db_driver = "com.mysql.jdbc.Driver"
 
   #master-datasources.xml params
 
-  $db_apimgt = 'openbank_apimgtdb'
-  $db_apimgt_stat = 'openbank_apimgt_statsdb'
-  $db_mb_store = 'openbank_mbstoredb'
-  $db_am_config = 'openbank_am_configdb'
-  $db_gov = 'openbank_govdb'
-  $db_user_store = 'openbank_userdb'
+  $db_apimgt = "openbank_apimgtdb"
+  $db_apimgt_stat = "openbank_apimgt_statsdb"
+  $db_mb_store = "openbank_mbstoredb"
+  $db_am_config = "openbank_am_configdb"
+  $db_gov = "openbank_govdb"
+  $db_user_store = "openbank_userdb"
 
   #open-banking-datasources.xml params
-  $db_open_banking_store = 'openbank_openbankingdb'
+  $db_open_banking_store = "openbank_openbankingdb"
 
 
   #apimanager.xml,openbanking.xml,carbon.xml params
 
-  $iam_hostname = 'localhost'   #available in velocity_template.xml as well
-  $analytics_hostname= 'localhost'
-  $apim_hostname= 'localhost'
+  $iam_hostname = "localhost"   #available in velocity_template.xml as well
+  $analytics_hostname= "localhost"
+  $apim_hostname= "localhost"
 
 
   #jaggeryapps/admin/site/conf/site.json params
 
-  $bps_hostname = 'localhost'
+  $bps_hostname = "localhost"
 
-  #jaggeryapps/admin/site/conf/site.json params
-  $spec = 'UK' #UK or Berlin , common to openbanking.xml as well
+  #jaggeryapps/admin/site/conf/site.json params, common to openbanking.xml as well
+  $spec = "UK" #UK,Berlin or STET 
 
 
   
   # Need to configure for databases other than mysql
 
   
-  if ($dbms == 'mysql'){
+  if ($dbms == "mysql"){
 
     $db_apimgt_url = "jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true&amp;useSSL=false"
     $db_apimgt_stat_url= "jdbc:mysql://${db_host}:3306/${db_apimgt_stat}?autoReconnect=true&amp;useSSL=false"
@@ -96,7 +96,7 @@ class obam140::params {
 
   #open-banking-datasources.xml params
 
-  if ($dbms == 'mysql') {
+  if ($dbms == "mysql") {
     $db_open_banking_store_url = "jdbc:mysql://${db_host}:3306/${db_open_banking_store}?autoReconnect=true&amp;useSSL=false"
   }
 
@@ -106,22 +106,30 @@ class obam140::params {
   #template list
 
   $template_list = [
-    'repository/conf/api-manager.xml',
-    'repository/conf/datasources/master-datasources.xml',  
-    'repository/conf/datasources/open-banking-datasources.xml',  
-    'repository/conf/carbon.xml',     
-    '/repository/resources/api_templates/velocity_template.xml',
-    '/repository/conf/finance/open-banking.xml',
-    'repository/conf/registry.xml',   #no changes in config - ob
-    'repository/conf/user-mgt.xml',   #no changes in config - ob
-    #'repository/conf/axis2/axis2.xml', not available in configure-am.sh
-    'repository/deployment/server/executionplans/global_FreqPerDay.siddhiql',  #configuration changes removed in OBAM 1.4,therefore only a static file
-    'repository/deployment/server/jaggeryapps/admin/site/conf/site.json',
-    'repository/deployment/server/jaggeryapps/store/site/conf/site.json',
+    "repository/conf/api-manager.xml",
+    "repository/conf/datasources/master-datasources.xml",  
+    "repository/conf/datasources/open-banking-datasources.xml",  
+    "repository/conf/carbon.xml",     
+    "repository/resources/api_templates/velocity_template.xml",
+    "repository/conf/finance/open-banking.xml", 
+    "repository/conf/registry.xml",   #no changes in config - ob
+    "repository/conf/user-mgt.xml",   #no changes in config - ob
+    #"repository/conf/axis2/axis2.xml", not available in configure-am.sh
+    "repository/deployment/server/executionplans/global_FreqPerDay.siddhiql",  #configuration changes removed in OBAM 1.4,therefore only a static file
+    "repository/deployment/server/jaggeryapps/admin/site/conf/site.json",
+    "repository/deployment/server/jaggeryapps/store/site/conf/site.json",
   ]
 
 
- # TODO :replace_mysql7_file_names_as_mysql() in config.sh 
+
+ #replace_mysql7_file_names_as_mysql() in config.sh 
+
+  $sqlfile_list = [
+    "dbscripts/mysql.sql",
+    "dbscripts/apimgt/mysql.sql",
+  ]
+
+
   
 
 
