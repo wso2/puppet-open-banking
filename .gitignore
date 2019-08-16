@@ -43,5 +43,6 @@ modules/obam140/files/jdk/jdk1.8.0_161.tar.gz
 modules/obam140/files/packs/wso2-obam-1.4.0.zip
 modules/obkm140/files/jdk/jdk1.8.0_161.tar.gz
 modules/obkm140/files/packs/wso2-obkm-1.4.0.zip
+modules/obam140/files
 spec/
 

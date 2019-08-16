@@ -79,7 +79,6 @@ class obkm140 inherits obkm140::params {
     group       => $user_group,
     cwd         => $pack_dir,
     subscribe   => File['wso2-binary'],
-    refreshonly => true,
   }
 
   # Copy the unit file required to deploy the server as a service

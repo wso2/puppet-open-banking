@@ -17,7 +17,6 @@
 
 # Class: obam140::custom
 # This class is reserved to run custom user code before starting the server.
-
 class obam140::custom {
   #resources
 }
