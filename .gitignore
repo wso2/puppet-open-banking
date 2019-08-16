@@ -1,23 +1,47 @@
-# Compiled class file
-*.class
+.git/
+.*.sw[op]
+.metadata
+.yardoc
+.yardwarns
+*.iml
+/.bundle/
+/.idea/
+/.vagrant/
+/coverage/
+/bin/
+/doc/
+/Gemfile.local
+/Gemfile.lock
+/junit/
+/log/
+/pkg/
+/spec/fixtures/manifests/
+/spec/fixtures/modules/
+/tmp/
+/vendor/
+/convert_report.txt
+/update_report.txt
+.DS_Store
+.project
+.envrc
+/inventory.yaml
 
-# Log file
-*.log
+.gitattributes
+.gitlab-ci.yml
+.pdkignore
+.puppet-lint.rc
+.rspec
+.rubocop.yml
+.travis.yml
+.vscode/
+.yardopts
+Gemfile
+Rakefile
+appveyor.yml
+metadata.json
+modules/obam140/files/jdk/jdk1.8.0_161.tar.gz
+modules/obam140/files/packs/wso2-obam-1.4.0.zip
+modules/obkm140/files/jdk/jdk1.8.0_161.tar.gz
+modules/obkm140/files/packs/wso2-obkm-1.4.0.zip
+spec/
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
