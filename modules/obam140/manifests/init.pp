@@ -17,8 +17,8 @@
 
 class obam140 inherits obam140::params{
 
-  # From apim::common
-  package { 'unzip': 
+  # #Install system packages
+  package { $packages: 
     ensure => installed
   }
 
@@ -42,8 +42,8 @@ class obam140 inherits obam140::params{
 
   # Copy JDK to Java distribution path
   file { "jdk-distribution":
-    path => "${java_home}.tar.gz",
-    source => "puppet:///modules/${module_name}/jdk/${jdk_name}.tar.gz", #need to add jdk to the master
+    path   => "${java_home}.tar.gz",
+    source => "puppet:///modules/${module_name}/jdk/${jdk_name}.tar.gz",
     notify => Exec["unpack-jdk"],
   }
 
@@ -74,12 +74,12 @@ class obam140 inherits obam140::params{
 
   # Copy binary to distribution path
    file { "wso2-binary":
-      path    => "${pack_dir}/${product_binary}",
-      owner   => $user,
-      group   => $user_group,
-      mode    => '0644',
-      source  => "puppet:///modules/${module_name}/packs/${product_binary}",
-      require => File["${product_dir}", "${pack_dir}"],
+    path    => "${pack_dir}/${product_binary}",
+    owner   => $user,
+    group   => $user_group,
+    mode    => '0644',
+    source  => "puppet:///modules/${module_name}/packs/${product_binary}",
+    require => File["${product_dir}", "${pack_dir}"],
   #   notify  => [Exec["stop-server"], Exec["unzip-update"]],
     }
 
@@ -108,7 +108,7 @@ class obam140 inherits obam140::params{
   }
 
   # From apim
-  
+
   # Copy configuration changes to the installed directory
   $template_list.each |String $template| {
     file { "${carbon_home}/${template}":
@@ -127,7 +127,7 @@ class obam140 inherits obam140::params{
     mode    => '0754',
     content => template("${module_name}/carbon-home/${start_script_template}.erb"),
     notify  => Service["${wso2_service_name}"],
-#   require => Class["apim_common"]           //original , should require ob common
+#   require => Class["ob_common"]           
     require => Exec["unzip-update"],
   }
 
@@ -136,7 +136,4 @@ class obam140 inherits obam140::params{
     enable => true,
     ensure => running,
   }
-
- 
-
 }

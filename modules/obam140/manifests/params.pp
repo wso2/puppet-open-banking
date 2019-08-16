@@ -17,6 +17,8 @@
 
 class obam140::params {
 
+  $packages = ["unzip"]
+
   # Maximum and minimum memory sizes for JVM
   $jvmxms = '2048m'
   $jvmxmx = '2048m'
