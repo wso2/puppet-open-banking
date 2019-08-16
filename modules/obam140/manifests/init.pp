@@ -1,8 +1,24 @@
+
+#----------------------------------------------------------------------------
+#  Copyright (c) 2019 WSO2, Inc. http://www.wso2.org
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#----------------------------------------------------------------------------
+
 class obam140 inherits obam140::params{
 
-  /* From apim::common */
-
-  package { 'unzip': 
+  # #Install system packages
+  package { $packages: 
     ensure => installed
   }
 
@@ -21,13 +37,13 @@ class obam140 inherits obam140::params{
     home    => "/home/${user}",
     system  => true,
     require => Group["${user_group}"],
-    notify => File["jdk-distribution"],
+    notify  =>  File["jdk-distribution"],
   }
 
   # Copy JDK to Java distribution path
   file { "jdk-distribution":
-    path => "${java_home}.tar.gz",
-    source => "puppet:///modules/${module_name}/jdk/${jdk_name}.tar.gz", #need to add jdk to the master
+    path   => "${java_home}.tar.gz",
+    source => "puppet:///modules/${module_name}/jdk/${jdk_name}.tar.gz",
     notify => Exec["unpack-jdk"],
   }
 
@@ -46,9 +62,7 @@ class obam140 inherits obam140::params{
     require => Exec["unpack-jdk"]
   }
 
-  /*
-  * WSO2 Distribution
-  */
+  # WSO2 Distribution
 
   #Create product folder and pack folder
   file { ["${product_dir}", "${pack_dir}"]:
@@ -58,19 +72,16 @@ class obam140 inherits obam140::params{
     require => [ User["${user}"], Group["${user_group}"] ]
   }
 
-  
-
   # Copy binary to distribution path
    file { "wso2-binary":
-      path    => "${pack_dir}/${product_binary}",
-      owner   => $user,
-      group   => $user_group,
-      mode    => '0644',
-      source  => "puppet:///modules/${module_name}/packs/${product_binary}",
-      require => File["${product_dir}", "${pack_dir}"],
-  #    notify  => [Exec["stop-server"], Exec["unzip-update"]],
+    path    => "${pack_dir}/${product_binary}",
+    owner   => $user,
+    group   => $user_group,
+    mode    => '0644',
+    source  => "puppet:///modules/${module_name}/packs/${product_binary}",
+    require => File["${product_dir}", "${pack_dir}"],
+  #   notify  => [Exec["stop-server"], Exec["unzip-update"]],
     }
-
 
   # Unzip the binary and create setup
   exec { "unzip-update":
@@ -96,10 +107,7 @@ class obam140 inherits obam140::params{
     refreshonly => true,
   }
 
-
-  /* From apim */
-
-  
+  # From apim
 
   # Copy configuration changes to the installed directory
   $template_list.each |String $template| {
@@ -111,17 +119,6 @@ class obam140 inherits obam140::params{
     }
   }
 
-  # Replace sql files
-  $sqlfile_list.each |String $sqlfile| {
-    file { "${carbon_home}/${sqlfile}":
-      ensure  => file,
-      mode    => '0644',
-      content => template("${module_name}/carbon-home/${sqlfile}.erb"),
-      notify  => Service["${wso2_service_name}"]
-    }
-  }
-
-
   # Copy wso2server.sh to installed directory
   file { "${carbon_home}/${start_script_template}":
     ensure  => file,
@@ -130,20 +127,13 @@ class obam140 inherits obam140::params{
     mode    => '0754',
     content => template("${module_name}/carbon-home/${start_script_template}.erb"),
     notify  => Service["${wso2_service_name}"],
-#    require => Class["apim_common"]           //original , should require ob common
+#   require => Class["ob_common"]           
     require => Exec["unzip-update"],
   }
 
-
-
- /* from service.pp */
-
- 
+ # from service.pp
  service { "${wso2_service_name}":
     enable => true,
     ensure => running,
   }
-
- 
-
 }
