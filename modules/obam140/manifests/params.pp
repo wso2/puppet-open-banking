@@ -33,8 +33,6 @@ class obam140::params {
   $java_symlink = "${java_dir}/java"
   $java_home = "${java_dir}/${jdk_name}"
 
-
-
   $wso2_service_name = "wso2${profile}"
   $version = '1.4.0'
   $pack = "wso2-obam-${version}"
@@ -46,7 +44,7 @@ class obam140::params {
   $carbon_home = "${product_dir}/${pack}"
   $product_binary = "${pack}.zip"
 
-  #from apim
+  # from apim
 
   $start_script_template = 'bin/wso2server.sh'
 
@@ -55,7 +53,7 @@ class obam140::params {
   $server_script_path ="${product_dir}/${pack}/bin/wso2server.sh"
   $pid_file_path="${product_dir}/${pack}/wso2carbon.pid"
 
-  #Hostname changes in apimanager.xml,openbanking.xml,carbon.xml and velocity_template.xml params
+  # Hostname changes in apimanager.xml,openbanking.xml,carbon.xml and velocity_template.xml params
   $iam_hostname = 'localhost'
   $analytics_hostname= 'localhost'
   $apim_hostname= 'localhost'
@@ -63,14 +61,14 @@ class obam140::params {
 
   # DBMS related variables
 
-  #master-datasources.xml and open-banking-datasources.xml params
+  # master-datasources.xml and open-banking-datasources.xml params
   $dbms = 'mysql'
   $db_host = 'localhost'
   $db_user = 'root'
   $db_pass = 'root'
   $db_driver = 'com.mysql.jdbc.Driver'
 
-  #master-datasources.xml params - database names
+  # master-datasources.xml params - database names
   $db_apimgt = 'openbank_apimgtdb'
   $db_apimgt_stat = 'openbank_apimgt_statsdb'
   $db_mb_store = 'openbank_mbstoredb'
@@ -78,21 +76,16 @@ class obam140::params {
   $db_gov = 'openbank_govdb'
   $db_user_store = 'openbank_userdb'
 
-  #open-banking-datasources.xml params
+  # open-banking-datasources.xml params
   $db_open_banking_store = 'openbank_openbankingdb'
 
-
-
-
-  #jaggeryapps/admin/site/conf/site.json params
+  # jaggeryapps/admin/site/conf/site.json params
   $work_flow_server_url = "${bps_hostname}:9445/services/"
 
-
-  #jaggeryapps/admin/site/conf/site.json,openbaking.xml params
+  # jaggeryapps/admin/site/conf/site.json,openbaking.xml params
   $spec = 'UK' #UK,Berlin or STET 
 
-
-  #template list
+  # template list
   $template_list = [
     'repository/conf/api-manager.xml',
     'repository/conf/datasources/master-datasources.xml',
@@ -100,14 +93,13 @@ class obam140::params {
     'repository/conf/carbon.xml',
     'repository/resources/api_templates/velocity_template.xml',
     'repository/conf/finance/open-banking.xml',
-    #"repository/conf/axis2/axis2.xml", not used yet
+  # 'repository/conf/axis2/axis2.xml', not used yet
     'repository/deployment/server/executionplans/global_FreqPerDay.siddhiql',
     'repository/deployment/server/jaggeryapps/admin/site/conf/site.json',
     'repository/deployment/server/jaggeryapps/store/site/conf/site.json',
   ]
 
-
-  #master-datasources.xml params
+  # master-datasources.xml params
     $db_apimgt_url = "jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true&amp;useSSL=false"
     $db_apimgt_username = 'root'
     $db_apimgt_password =  'root'
@@ -144,13 +136,12 @@ class obam140::params {
     $db_user_store_validation_query ='SELECT 1'
     $db_user_store_driver = 'com.mysql.jdbc.Driver'
 
-    #open-banking-datasources.xml params
+  # open-banking-datasources.xml params
     $db_open_banking_store_url = "jdbc:mysql://${db_host}:3306/${db_open_banking_store}?autoReconnect=true&amp;useSSL=false"
     $db_open_banking_store_username ='root'
     $db_open_banking_store_password = 'root'
     $db_open_banking_store_validation_query ='SELECT 1'
     $db_open_banking_store_driver = 'com.mysql.jdbc.Driver'
-
 
   # If dbms =mysql use following URLs
   # 

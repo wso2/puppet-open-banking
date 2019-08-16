@@ -17,8 +17,7 @@
 
 class obam140 inherits obam140::params{
 
-  /* From apim::common */
-
+  # From apim::common
   package { 'unzip': 
     ensure => installed
   }
@@ -38,7 +37,7 @@ class obam140 inherits obam140::params{
     home    => "/home/${user}",
     system  => true,
     require => Group["${user_group}"],
-    notify =>  File["jdk-distribution"],
+    notify  =>  File["jdk-distribution"],
   }
 
   # Copy JDK to Java distribution path
@@ -63,9 +62,7 @@ class obam140 inherits obam140::params{
     require => Exec["unpack-jdk"]
   }
 
-  /*
-  * WSO2 Distribution
-  */
+  # WSO2 Distribution
 
   #Create product folder and pack folder
   file { ["${product_dir}", "${pack_dir}"]:
@@ -75,8 +72,6 @@ class obam140 inherits obam140::params{
     require => [ User["${user}"], Group["${user_group}"] ]
   }
 
-  
-
   # Copy binary to distribution path
    file { "wso2-binary":
       path    => "${pack_dir}/${product_binary}",
@@ -85,9 +80,8 @@ class obam140 inherits obam140::params{
       mode    => '0644',
       source  => "puppet:///modules/${module_name}/packs/${product_binary}",
       require => File["${product_dir}", "${pack_dir}"],
-  #    notify  => [Exec["stop-server"], Exec["unzip-update"]],
+  #   notify  => [Exec["stop-server"], Exec["unzip-update"]],
     }
-
 
   # Unzip the binary and create setup
   exec { "unzip-update":
@@ -113,11 +107,8 @@ class obam140 inherits obam140::params{
     refreshonly => true,
   }
 
-
-  /* From apim */
-
+  # From apim
   
-
   # Copy configuration changes to the installed directory
   $template_list.each |String $template| {
     file { "${carbon_home}/${template}":
@@ -128,7 +119,6 @@ class obam140 inherits obam140::params{
     }
   }
 
-
   # Copy wso2server.sh to installed directory
   file { "${carbon_home}/${start_script_template}":
     ensure  => file,
@@ -137,15 +127,11 @@ class obam140 inherits obam140::params{
     mode    => '0754',
     content => template("${module_name}/carbon-home/${start_script_template}.erb"),
     notify  => Service["${wso2_service_name}"],
-#    require => Class["apim_common"]           //original , should require ob common
+#   require => Class["apim_common"]           //original , should require ob common
     require => Exec["unzip-update"],
   }
 
-
-
- /* from service.pp */
-
- 
+ # from service.pp
  service { "${wso2_service_name}":
     enable => true,
     ensure => running,
