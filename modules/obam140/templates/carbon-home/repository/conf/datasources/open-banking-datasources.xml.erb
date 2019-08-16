@@ -28,12 +28,13 @@
                 <configuration>
                     <!--<url>jdbc:mysql://192.168.23.45:3306/openbank_openbanking_db?autoReconnect=true&useSSL=false</url>-->
                     <url><%= @db_open_banking_store_url %></url>
-                    <password><%= @db_pass %></password>
-                    <driverClassName><%= @db_driver %></driverClassName>
+                    <username><%= @db_open_banking_store_username %></username>
+                    <password><%= @db_open_banking_store_password %></password>
+                    <driverClassName><%= @db_open_banking_store_driver %></driverClassName>
                     <maxActive>150</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
-                    <validationQuery>SELECT 1</validationQuery>
+                    <validationQuery><%= @db_open_banking_store_validation_query %></validationQuery>
                     <!--Use below for oracle-->
                     <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
                     <validationInterval>30000</validationInterval>

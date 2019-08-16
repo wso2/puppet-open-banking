@@ -10,7 +10,7 @@ class obkm140::params {
 
 	# JDK Distributions
   	$java_dir = "/opt"
-	$java_symlink = "${java_dir}/java"
+		$java_symlink = "${java_dir}/java"
   	$jdk_name = 'jdk1.8.0_161'
   	$java_home = "${java_dir}/${jdk_name}"
 
@@ -18,10 +18,10 @@ class obkm140::params {
   	$target = "/mnt"
   	$product_dir = "${target}/${profile}"
   	$pack_dir = "${target}/${profile}/packs"
-	$version = "1.4.0"
+		$version = "1.4.0"
   	$pack = "wso2-obkm-${version}"
-	$product_binary = "${pack}.zip"
-	$carbon_home = "${product_dir}/${pack}"
+		$product_binary = "${pack}.zip"
+		$carbon_home = "${product_dir}/${pack}"
 
 
 	$wso2_service_name = "wso2${profile}"
