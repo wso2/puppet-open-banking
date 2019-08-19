@@ -19,19 +19,19 @@ class obkm140::params {
 
   $packages = ['unzip']
 
-  # User Details
+  # User details
   $user = 'wso2carbon'
   $user_group = 'wso2'
   $user_id = 802
   $user_group_id = 802
 
-  # JDK Distributions
+  # JDK distributions
   $java_dir = '/opt'
   $java_symlink = "${java_dir}/java"
   $jdk_name = 'jdk1.8.0_161'
   $java_home = "${java_dir}/${jdk_name}"
 
-  # Pack Directories
+  # Pack directories
   $target = '/mnt'
   $product_dir = "${target}/${profile}"
   $pack_dir = "${target}/${profile}/packs"
@@ -45,7 +45,7 @@ class obkm140::params {
   $server_script_path = "${product_dir}/${pack}/bin/wso2server.sh"
   $pid_file_path = "${product_dir}/${pack}/wso2carbon.pid"
 
-  # hostname configurations
+  # Hostname configurations
   $iam_hostname = 'localhost'
   $apim_hostname = 'localhost'
   $analytics_hostname = 'localhost'
@@ -53,8 +53,7 @@ class obkm140::params {
   # jaggeryapps/admin/site/conf/site.json and openbanking.xml params
   $spec = 'UK'
 
-  # H2
-  # ----- datasources config params -----
+  # ----- Datasources config params -----
   # ----- Master-datasources config params -----
   $db_apimgt_url = 'jdbc:h2:repository/database/WSO2AM_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_apimgt_username = 'wso2carbon'
@@ -88,24 +87,24 @@ class obkm140::params {
   $db_open_banking_store_driver = 'org.h2.Driver'
 
   $template_list = [
-    # configure_datasources
+    # Configure_datasources
     'repository/conf/datasources/master-datasources.xml',
     'repository/conf/datasources/open-banking-datasources.xml',
 
-    # copy xml files
+    # Copy xml files
     'repository/conf/carbon.xml',
     'repository/conf/axis2/axis2.xml',
     'repository/conf/registry.xml',
     'repository/conf/user-mgt.xml',
     'repository/conf/tomcat/catalina-server.xml',
 
-    # change_hostname
+    # Change_hostname
     'repository/conf/identity/identity.xml',
     'repository/conf/identity/application-authentication.xml',
     'repository/conf/finance/open-banking.xml',
     'repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json',
 
-    # configure speccarbon_homecarbon_home
+    # Configure speccarbon_homecarbon_home
     'repository/deployment/server/jaggeryapps/ccportal/configs/conf.json'
   ]
 }
