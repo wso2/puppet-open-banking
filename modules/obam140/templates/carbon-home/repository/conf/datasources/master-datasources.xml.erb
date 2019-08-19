@@ -1,0 +1,216 @@
+<datasources-configuration xmlns:svns="http://org.wso2.securevault/configuration">
+
+    <providers>
+        <provider>org.wso2.carbon.ndatasource.rdbms.RDBMSDataSourceReader</provider>
+    </providers>
+
+    <datasources>
+
+        <datasource>
+            <name>WSO2_CARBON_DB</name>
+            <description>The datasource used for registry and user manager</description>
+            <jndiConfig>
+                <name>jdbc/WSO2CarbonDB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <url>jdbc:h2:repository/database/WSO2CARBON_DB;DB_CLOSE_ON_EXIT=FALSE</url>
+                    <username>wso2carbon</username>
+                    <password>wso2carbon</password>
+                    <driverClassName>org.h2.Driver</driverClassName>
+                    <maxActive>50</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery>SELECT 1</validationQuery>
+                    <validationInterval>30000</validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+
+        <datasource>
+            <name>WSO2AM_DB</name>
+            <description>The datasource used for API Manager database</description>
+            <jndiConfig>
+                <name>jdbc/WSO2AM_DB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <!--<url>jdbc:mysql://mysql_host:3306/openbank_apimgtdb?autoReconnect=true&amp;useSSL=false</url>-->
+                    <url><%= @db_apimgt_url %></url>
+                    <username><%= @db_apimgt_username %></username>
+                    <password><%= @db_apimgt_password %></password>
+                    <driverClassName><%= @db_apimgt_driver %></driverClassName>
+                    <maxActive>150</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery><%= @db_apimgt_validation_query%></validationQuery>
+                    <!--Use below for oracle-->
+                    <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
+                    <validationInterval>30000</validationInterval>
+                    <defaultAutoCommit>false</defaultAutoCommit>
+           	    </configuration>
+            </definition>
+        </datasource>
+
+        <datasource>
+            <name>WSO2AM_STATS_DB</name>
+            <description>The datasource used for getting statistics to API Manager</description>
+            <jndiConfig>
+                <name>jdbc/WSO2AM_STATS_DB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+		            <!--<url>jdbc:mysql://mysql_host:3306/openbank_apimgt_statsdb?autoReconnect=true&amp;useSSL=false</url>-->
+		            <url><%= @db_apimgt_stat_url %></url>
+              	    <username><%= @db_apimgt_stat_username %></username>
+              	    <password><%= @db_apimgt_stat_password %></password>
+             	    <driverClassName><%= @db_apimgt_stat_driver %></driverClassName>
+                    <maxActive>150</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery><%= @db_apimgt_validation_query%></validationQuery>
+                    <!--Use below for oracle-->
+                    <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
+                    <validationInterval>30000</validationInterval>
+                    <defaultAutoCommit>false</defaultAutoCommit>
+                </configuration>
+            </definition>
+        </datasource>
+
+        <datasource>
+            <name>WSO2_MB_STORE_DB</name>
+            <description>The datasource used for message broker database</description>
+            <jndiConfig>
+                <name>WSO2MBStoreDB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+                    <!--<url>jdbc:mysql://mysql_host:3306/openbank_mbstoredb?autoReconnect=true&amp;useSSL=false</url>-->
+                    <url><%= @db_mb_store_url %></url>
+                    <username><%= @db_mb_store_username %></username>
+                    <password><%= @db_mb_store_password %></password>
+                    <driverClassName><%= @db_mb_store_driver %></driverClassName>
+                    <maxActive>150</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery><%= @db_mb_store_validation_query%></validationQuery>
+                    <!--Use below for oracle-->
+                    <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
+                    <validationInterval>30000</validationInterval>
+                    <defaultAutoCommit>false</defaultAutoCommit>
+           	    </configuration>
+            </definition>
+        </datasource>
+
+	    <datasource>
+         	<name>WSO2UM_DB</name>
+         	<description>The datasource used by user manager</description>
+         	<jndiConfig>
+           	    <name>jdbc/WSO2UM_DB</name>
+         	</jndiConfig>
+         	<definition type="RDBMS">
+           	    <configuration>
+                    <!--<url>jdbc:mysql://mysql_host:3306/openbank_userdb?autoReconnect=true&amp;useSSL=false</url>-->
+                    <url><%= @db_user_store_url %></url>
+                    <username><%= @db_user_store_username %></username>
+                    <password><%= @db_user_store_password %></password>
+                    <driverClassName><%= @db_user_store_driver %></driverClassName>
+                    <maxActive>150</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery><%= @db_user_store_validation_query%></validationQuery>
+                    <!--Use below for oracle-->
+                    <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
+                    <validationInterval>30000</validationInterval>
+                    <defaultAutoCommit>false</defaultAutoCommit>
+           	    </configuration>
+         	</definition>
+    	</datasource>
+
+        <datasource>
+	        <name>WSO2CONFIG_DB</name>
+         	<description>The datasource used by the registry</description>
+         	<jndiConfig>
+           	    <name>jdbc/WSO2Config_DB</name>
+         	</jndiConfig>
+         	<definition type="RDBMS">
+           	    <configuration>
+                    <!--<url>jdbc:mysql://mysql_host:3306/openbank_am_configdb?autoReconnect=true&amp;useSSL=false</url>-->
+                    <url><%= @db_am_config_url %></url>
+                    <username><%= @db_am_config_username %></username>
+                    <password><%= @db_am_config_password %></password>
+                    <driverClassName><%= @db_am_config_driver %></driverClassName>
+                    <maxActive>150</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery><%= @db_am_config_validation_query%></validationQuery>
+                    <!--Use below for oracle-->
+                    <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
+                    <validationInterval>30000</validationInterval>
+                    <defaultAutoCommit>false</defaultAutoCommit>
+           	    </configuration>
+         	</definition>
+    	</datasource>
+    	<datasource>
+         	<name>WSO2REG_DB</name>
+         	<description>The datasource used by the registry</description>
+         	<jndiConfig>
+           	    <name>jdbc/WSO2REG_DB</name>
+         	</jndiConfig>
+         	<definition type="RDBMS">
+           	    <configuration>
+                    <!--<url>jdbc:mysql://mysql_host:3306/openbank_govdb?autoReconnect=true&amp;useSSL=false</url>-->
+                    <url><%= @db_gov_url %></url>
+                    <username><%= @db_gov_username %></username>
+                    <password><%= @db_gov_password %></password>
+                    <driverClassName><%= @db_gov_driver %></driverClassName>
+                    <maxActive>150</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery><%= @db_gov_validation_query%></validationQuery>
+                    <!--Use below for oracle-->
+                    <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
+                    <validationInterval>30000</validationInterval>
+                    <defaultAutoCommit>false</defaultAutoCommit>
+           	    </configuration>
+         	</definition>
+    	</datasource>
+
+        <!-- For an explanation of the properties, see: http://people.apache.org/~fhanik/jdbc-pool/jdbc-pool.html -->
+        <!--datasource>
+            <name>SAMPLE_DATA_SOURCE</name>
+            <jndiConfig>
+                <name></name>
+                <properties>
+                    <property name="java.naming.factory.initial"></property>
+                    <property name="java.naming.provider.url"></property>
+                </properties>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+
+                    <defaultAutoCommit></defaultAutoCommit>
+                    <defaultReadOnly></defaultReadOnly>
+                    <defaultTransactionIsolation>NONE|READ_COMMITTED|READ_UNCOMMITTED|REPEATABLE_READ|SERIALIZABLE</defaultTransactionIsolation>
+                    <defaultCatalog></defaultCatalog>
+                    <username></username>
+                    <password svns:secretAlias="WSO2.DB.Password"></password>
+                    <maxActive></maxActive>
+                    <maxIdle></maxIdle>
+                    <initialSize></initialSize>
+                    <maxWait></maxWait>
+
+                    <dataSourceClassName>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</dataSourceClassName>
+                    <dataSourceProps>
+                        <property name="url">jdbc:mysql://localhost:3306/Test1</property>
+                        <property name="user">root</property>
+                        <property name="password">123</property>
+                    </dataSourceProps>
+
+                </configuration>
+            </definition>
+        </datasource-->
+
+    </datasources>
+
+</datasources-configuration>
