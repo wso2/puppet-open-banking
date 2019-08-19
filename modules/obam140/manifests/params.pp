@@ -51,7 +51,6 @@ class obam140::params {
   $start_script_template = 'bin/wso2server.sh'
 
   # carbon.service params
-
   $server_script_path ="${product_dir}/${pack}/bin/wso2server.sh"
   $pid_file_path="${product_dir}/${pack}/wso2carbon.pid"
 
@@ -110,7 +109,6 @@ class obam140::params {
     $db_apimgt_validation_query = 'SELECT 1'
     $db_apimgt_driver = 'org.h2.Driver'
 
-
     $db_mb_store_url = "jdbc:h2:repository/database/WSO2MB_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000"
     $db_mb_store_username ='wso2carbon'
     $db_mb_store_password = 'wso2carbon'
@@ -147,7 +145,6 @@ class obam140::params {
     $db_open_banking_store_password = 'wso2carbon'
     $db_open_banking_store_validation_query ='SELECT 1'
     $db_open_banking_store_driver = 'org.h2.Driver'
-
 
   /*
   # MySQL parameters for testing 
