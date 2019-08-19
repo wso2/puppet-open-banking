@@ -100,36 +100,6 @@ class obkm140::params {
   $db_open_banking_store_validation_query ='SELECT 1'
   $db_open_banking_store_driver = 'org.h2.Driver'
 
-  #MYSQL
-  # ----- datasources config params -----
-  # ----- Master-datasources config params -----
-  #$db_apimgt_url = "jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true&amp;useSSL=false"
-  #$db_apimgt_username = 'root'
-  #$db_apimgt_password =  'root'
-  #$db_apimgt_validation_query = 'SELECT 1'
-  #$db_apimgt_driver = 'com.mysql.jdbc.Driver'
-
-  #$db_gov_url = "jdbc:mysql://${db_host}:3306/${db_gov}?autoReconnect=true&amp;useSSL=false"
-  #$db_gov_username ='root'
-  #$db_gov_password = 'root'
-  #$db_gov_validation_query ='SELECT 1'
-  #$db_gov_driver = 'com.mysql.jdbc.Driver'
-
-  #$db_km_config_url = "jdbc:mysql://${db_host}:3306/${db_is_config}?autoReconnect=true&amp;useSSL=false"
-  #$db_km_config_username ='root'
-  #$db_km_config_password = 'root'
-  #$db_km_config_validation_query ='SELECT 1'
-  #$db_km_config_driver = 'com.mysql.jdbc.Driver'
-
-  #$db_user_store_url = "jdbc:mysql://${db_host}:3306/${db_user_store}?autoReconnect=true&amp;useSSL=false"
-  #$db_user_store_username ='root'
-  #$db_user_store_password = 'root'
-  #$db_user_store_validation_query ='SELECT 1'
-  #$db_user_store_driver = 'com.mysql.jdbc.Driver'
-
-  # ----- Open Banking datasources config params -----
-  #$db_open_banking_store_url = "jdbc:mysql://${db_host}:3306/${db_open_banking_store}?autoReconnect=true&amp;useSSL=false"
-
   $template_list = [
     #configure_datasources
     'repository/conf/datasources/master-datasources.xml',
@@ -138,6 +108,7 @@ class obkm140::params {
     'repository/conf/axis2/axis2.xml',
     'repository/conf/registry.xml',
     'repository/conf/user-mgt.xml',
+    'repository/conf/tomcat/catalina-server.xml',
 
     #change_dns
     'repository/conf/identity/identity.xml',
@@ -147,16 +118,5 @@ class obkm140::params {
 
     #configure speccarbon_homecarbon_home
     'repository/deployment/server/jaggeryapps/ccportal/configs/conf.json'
-  ]
-
-  $sqlfile_list = [
-    'dbscripts/mysql.sql',
-    'dbscripts/apimgt/mysql.sql',
-    'dbscripts/consent/mysql.sql',
-    'dbscripts/identity/mysql.sql',
-    'dbscripts/identity/uma/mysql.sql',
-    'dbscripts/finance/openbanking.org.uk/mysql.sql',
-    'dbscripts/finance/berlin-group.org/mysql.sql',
-    'dbscripts/finance/STET/mysql.sql'
   ]
 }
