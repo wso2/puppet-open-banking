@@ -1,3 +1,20 @@
+
+#----------------------------------------------------------------------------
+#  Copyright (c) 2019 WSO2, Inc. http://www.wso2.org
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#----------------------------------------------------------------------------
+
 class obkm140::params {
 
   $packages = ['unzip']
@@ -49,30 +66,69 @@ class obkm140::params {
   #jaggeryapps/admin/site/conf/site.json and openbanking.xml params
   $spec = 'UK'
 
+  #H2
   # ----- datasources config params -----
+  # ----- Master-datasources config params -----
+  $db_apimgt_url = 'jdbc:h2:repository/database/WSO2AM_DB;DB_CLOSE_ON_EXIT=FALSE'
+  $db_apimgt_username = 'wso2carbon'
+  $db_apimgt_password =  'wso2carbon'
+  $db_apimgt_validation_query = 'SELECT 1'
+  $db_apimgt_driver = 'org.h2.Driver'
 
-  if $db_type == 'mysql' {
+  $db_gov_url = 'jdbc:h2:repository/database/WSO2REG_DB;DB_CLOSE_ON_EXIT=FALSE'
+  $db_gov_username ='wso2carbon'
+  $db_gov_password = 'wso2carbon'
+  $db_gov_validation_query ='SELECT 1'
+  $db_gov_driver = 'org.h2.Driver'
 
-    # ----- Open Banking datasources config params -----
-    $db_open_banking_store_url = "jdbc:mysql://${db_host}:3306/${db_open_banking_store}?autoReconnect=true&amp;useSSL=false"
+  $db_km_config_url = 'jdbc:h2:repository/database/WSO2Config_DB;DB_CLOSE_ON_EXIT=FALSE'
+  $db_km_config_username ='wso2carbon'
+  $db_km_config_password = 'wso2carbon'
+  $db_km_config_validation_query ='SELECT 1'
+  $db_km_config_driver = 'org.h2.Driver'
 
-    # ----- Master-datasources config params -----
-    $db_apimgt_url = "jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true&amp;useSSL=false"
-    $db_km_config_url = "jdbc:mysql://${db_host}:3306/${db_is_config}?autoReconnect=true&amp;useSSL=false"
-    $db_gov_url = "jdbc:mysql://${db_host}:3306/${db_gov}?autoReconnect=true&amp;useSSL=false"
-    $db_user_store_url = "jdbc:mysql://${db_host}:3306/${db_user_store}?autoReconnect=true&amp;useSSL=false"
+  $db_user_store_url = 'jdbc:h2:repository/database/WSO2UM_DB;DB_CLOSE_ON_EXIT=FALSE'
+  $db_user_store_username ='wso2carbon'
+  $db_user_store_password = 'wso2carbon'
+  $db_user_store_validation_query ='SELECT 1'
+  $db_user_store_driver = 'org.h2.Driver'
 
-  } else {
+  #----- Open Banking datasources config params -----
+  $db_open_banking_store_url = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_DB;DB_CLOSE_ON_EXIT=FALSE'
+  $db_open_banking_store_username ='wso2carbon'
+  $db_open_banking_store_password = 'wso2carbon'
+  $db_open_banking_store_validation_query ='SELECT 1'
+  $db_open_banking_store_driver = 'org.h2.Driver'
 
-    # ----- Open Banking datasources config params -----
-    $db_open_banking_store_url = "jdbc:sqlserver://${db_host}:1433;databaseName=${db_open_banking_store};encrypt=false"
+  #MYSQL
+  # ----- datasources config params -----
+  # ----- Master-datasources config params -----
+  #$db_apimgt_url = "jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true&amp;useSSL=false"
+  #$db_apimgt_username = 'root'
+  #$db_apimgt_password =  'root'
+  #$db_apimgt_validation_query = 'SELECT 1'
+  #$db_apimgt_driver = 'com.mysql.jdbc.Driver'
 
-    # ----- Master-datasources config params -----
-    $db_apimgt_url = "jdbc:sqlserver://${db_host}:1433;databaseName=${db_apimgt};encrypt=false"
-    $db_km_config_url = "jdbc:sqlserver://${db_host}:1433;databaseName=${db_is_config};encrypt=false"
-    $db_gov_url = "jdbc:sqlserver://${db_host}:1433;databaseName=${db_gov};encrypt=false"
-    $db_user_store_url = "jdbc:sqlserver://${db_host}:1433;databaseName=${db_user_store};encrypt=false"
-  }
+  #$db_gov_url = "jdbc:mysql://${db_host}:3306/${db_gov}?autoReconnect=true&amp;useSSL=false"
+  #$db_gov_username ='root'
+  #$db_gov_password = 'root'
+  #$db_gov_validation_query ='SELECT 1'
+  #$db_gov_driver = 'com.mysql.jdbc.Driver'
+
+  #$db_km_config_url = "jdbc:mysql://${db_host}:3306/${db_is_config}?autoReconnect=true&amp;useSSL=false"
+  #$db_km_config_username ='root'
+  #$db_km_config_password = 'root'
+  #$db_km_config_validation_query ='SELECT 1'
+  #$db_km_config_driver = 'com.mysql.jdbc.Driver'
+
+  #$db_user_store_url = "jdbc:mysql://${db_host}:3306/${db_user_store}?autoReconnect=true&amp;useSSL=false"
+  #$db_user_store_username ='root'
+  #$db_user_store_password = 'root'
+  #$db_user_store_validation_query ='SELECT 1'
+  #$db_user_store_driver = 'com.mysql.jdbc.Driver'
+
+  # ----- Open Banking datasources config params -----
+  #$db_open_banking_store_url = "jdbc:mysql://${db_host}:3306/${db_open_banking_store}?autoReconnect=true&amp;useSSL=false"
 
   $template_list = [
     #configure_datasources

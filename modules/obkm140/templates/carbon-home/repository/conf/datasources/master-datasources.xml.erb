@@ -37,13 +37,13 @@
                 <configuration>
                     <!--<url>jdbc:mysql://mysql_host:3306/openbank_apimgtdb?autoReconnect=true&amp;useSSL=false</url>-->
                     <url><%= @db_apimgt_url %></url>
-                    <username><%= @db_user %></username>
-                    <password><%= @db_pass %></password>
-                    <driverClassName><%= @db_driver %></driverClassName>
+                    <username><%= @db_apimgt_username %></username>
+                    <password><%= @db_apimgt_password %></password>
+                    <driverClassName><%= @db_apimgt_driver %></driverClassName>
                     <maxActive>150</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
-                    <validationQuery>SELECT 1</validationQuery>
+                    <validationQuery><%= @db_apimgt_validation_query %></validationQuery>
                     <!--Use below for oracle-->
                     <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
                     <validationInterval>30000</validationInterval>
@@ -62,13 +62,13 @@
                 <configuration>
                     <!--<url>jdbc:mysql://mysql_host:3306/openbank_iskm_configdb?autoReconnect=true&amp;useSSL=false</url>-->
                     <url><%= @db_km_config_url %></url>
-                    <username><%= @db_user %></username>
-                    <password><%= @db_pass %></password>
-                    <driverClassName><%= @db_driver %></driverClassName>
+                    <username><%= @db_km_config_username %></username>
+                    <password><%= @db_km_config_password %></password>
+                    <driverClassName><%= @db_km_config_driver %></driverClassName>
                     <maxActive>150</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
-                    <validationQuery>SELECT 1</validationQuery>
+                    <validationQuery><%= @db_km_config_validation_query %></validationQuery>
                     <!--Use below for oracle-->
                     <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
                     <validationInterval>30000</validationInterval>
@@ -87,13 +87,13 @@
                 <configuration>
                     <!--<url>jdbc:mysql://mysql_host:3306/openbank_govdb?autoReconnect=true&amp;useSSL=false</url>-->
                     <url><%= @db_gov_url %></url>
-                    <username><%= @db_user %></username>
-                    <password><%= @db_pass %></password>
-                    <driverClassName><%= @db_driver %></driverClassName>
+                    <username><%= @db_gov_username %></username>
+                    <password><%= @db_gov_password %></password>
+                    <driverClassName><%= @db_gov_driver %></driverClassName>
                     <maxActive>150</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
-                    <validationQuery>SELECT 1</validationQuery>
+                    <validationQuery><%= @db_gov_validation_query %></validationQuery>
                     <!--Use below for oracle-->
                     <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
                     <validationInterval>30000</validationInterval>
@@ -112,13 +112,13 @@
                 <configuration>
                     <!--<url>jdbc:mysql://mysql_host:3306/openbank_userdb?autoReconnect=true&amp;useSSL=false</url>-->
                     <url><%= @db_user_store_url %></url>
-                    <username><%= @db_user %></username>
-                    <password><%= @db_pass %></password>
-                    <driverClassName><%= @db_driver %></driverClassName>
+                    <username><%= @db_user_store_username %></username>
+                    <password><%= @db_user_store_password %></password>
+                    <driverClassName><%= @db_drdb_user_store_driveriver %></driverClassName>
                     <maxActive>150</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
-                    <validationQuery>SELECT 1</validationQuery>
+                    <validationQuery><%= @db_user_store_validation_query %></validationQuery>
                     <!--Use below for oracle-->
                     <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
                     <validationInterval>30000</validationInterval>
