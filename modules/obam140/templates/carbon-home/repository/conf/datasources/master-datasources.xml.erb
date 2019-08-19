@@ -48,7 +48,6 @@
             </jndiConfig>
             <definition type="RDBMS">
                 <configuration>
-                    <!--<url>jdbc:mysql://mysql_host:3306/openbank_apimgtdb?autoReconnect=true&amp;useSSL=false</url>-->
                     <url><%= @db_apimgt_url %></url>
                     <username><%= @db_apimgt_username %></username>
                     <password><%= @db_apimgt_password %></password>
@@ -56,7 +55,7 @@
                     <maxActive>150</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
-                    <validationQuery><%= @db_apimgt_validation_query%></validationQuery>
+                    <validationQuery><%= @db_apimgt_validation_query %></validationQuery>
                     <!--Use below for oracle-->
                     <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
                     <validationInterval>30000</validationInterval>
@@ -73,7 +72,6 @@
             </jndiConfig>
             <definition type="RDBMS">
                 <configuration>
-		            <!--<url>jdbc:mysql://mysql_host:3306/openbank_apimgt_statsdb?autoReconnect=true&amp;useSSL=false</url>-->
 		            <url><%= @db_apimgt_stat_url %></url>
               	    <username><%= @db_apimgt_stat_username %></username>
               	    <password><%= @db_apimgt_stat_password %></password>
@@ -81,9 +79,7 @@
                     <maxActive>150</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
-                    <validationQuery><%= @db_apimgt_validation_query%></validationQuery>
-                    <!--Use below for oracle-->
-                    <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
+                    <validationQuery><%= @db_apimgt_validation_query %></validationQuery>
                     <validationInterval>30000</validationInterval>
                     <defaultAutoCommit>false</defaultAutoCommit>
                 </configuration>
@@ -98,7 +94,6 @@
             </jndiConfig>
             <definition type="RDBMS">
                 <configuration>
-                    <!--<url>jdbc:mysql://mysql_host:3306/openbank_mbstoredb?autoReconnect=true&amp;useSSL=false</url>-->
                     <url><%= @db_mb_store_url %></url>
                     <username><%= @db_mb_store_username %></username>
                     <password><%= @db_mb_store_password %></password>
@@ -106,9 +101,7 @@
                     <maxActive>150</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
-                    <validationQuery><%= @db_mb_store_validation_query%></validationQuery>
-                    <!--Use below for oracle-->
-                    <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
+                    <validationQuery><%= @db_mb_store_validation_query %></validationQuery>
                     <validationInterval>30000</validationInterval>
                     <defaultAutoCommit>false</defaultAutoCommit>
            	    </configuration>
@@ -123,7 +116,6 @@
          	</jndiConfig>
          	<definition type="RDBMS">
            	    <configuration>
-                    <!--<url>jdbc:mysql://mysql_host:3306/openbank_userdb?autoReconnect=true&amp;useSSL=false</url>-->
                     <url><%= @db_user_store_url %></url>
                     <username><%= @db_user_store_username %></username>
                     <password><%= @db_user_store_password %></password>
@@ -131,9 +123,7 @@
                     <maxActive>150</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
-                    <validationQuery><%= @db_user_store_validation_query%></validationQuery>
-                    <!--Use below for oracle-->
-                    <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
+                    <validationQuery><%= @db_user_store_validation_query %></validationQuery>
                     <validationInterval>30000</validationInterval>
                     <defaultAutoCommit>false</defaultAutoCommit>
            	    </configuration>
@@ -148,17 +138,14 @@
          	</jndiConfig>
          	<definition type="RDBMS">
            	    <configuration>
-                    <!--<url>jdbc:mysql://mysql_host:3306/openbank_am_configdb?autoReconnect=true&amp;useSSL=false</url>-->
-                    <url><%= @db_am_config_url %></url>
+                     <url><%= @db_am_config_url %></url>
                     <username><%= @db_am_config_username %></username>
                     <password><%= @db_am_config_password %></password>
                     <driverClassName><%= @db_am_config_driver %></driverClassName>
                     <maxActive>150</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
-                    <validationQuery><%= @db_am_config_validation_query%></validationQuery>
-                    <!--Use below for oracle-->
-                    <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
+                    <validationQuery><%= @db_am_config_validation_query %></validationQuery>
                     <validationInterval>30000</validationInterval>
                     <defaultAutoCommit>false</defaultAutoCommit>
            	    </configuration>
@@ -172,7 +159,6 @@
          	</jndiConfig>
          	<definition type="RDBMS">
            	    <configuration>
-                    <!--<url>jdbc:mysql://mysql_host:3306/openbank_govdb?autoReconnect=true&amp;useSSL=false</url>-->
                     <url><%= @db_gov_url %></url>
                     <username><%= @db_gov_username %></username>
                     <password><%= @db_gov_password %></password>
@@ -180,50 +166,12 @@
                     <maxActive>150</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
-                    <validationQuery><%= @db_gov_validation_query%></validationQuery>
-                    <!--Use below for oracle-->
-                    <!--<validationQuery>SELECT 1 FROM DUAL</validationQuery>-->
+                    <validationQuery><%= @db_gov_validation_query %></validationQuery>
                     <validationInterval>30000</validationInterval>
                     <defaultAutoCommit>false</defaultAutoCommit>
            	    </configuration>
          	</definition>
     	</datasource>
-
-        <!-- For an explanation of the properties, see: http://people.apache.org/~fhanik/jdbc-pool/jdbc-pool.html -->
-        <!--datasource>
-            <name>SAMPLE_DATA_SOURCE</name>
-            <jndiConfig>
-                <name></name>
-                <properties>
-                    <property name="java.naming.factory.initial"></property>
-                    <property name="java.naming.provider.url"></property>
-                </properties>
-            </jndiConfig>
-            <definition type="RDBMS">
-                <configuration>
-
-                    <defaultAutoCommit></defaultAutoCommit>
-                    <defaultReadOnly></defaultReadOnly>
-                    <defaultTransactionIsolation>NONE|READ_COMMITTED|READ_UNCOMMITTED|REPEATABLE_READ|SERIALIZABLE</defaultTransactionIsolation>
-                    <defaultCatalog></defaultCatalog>
-                    <username></username>
-                    <password svns:secretAlias="WSO2.DB.Password"></password>
-                    <maxActive></maxActive>
-                    <maxIdle></maxIdle>
-                    <initialSize></initialSize>
-                    <maxWait></maxWait>
-
-                    <dataSourceClassName>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</dataSourceClassName>
-                    <dataSourceProps>
-                        <property name="url">jdbc:mysql://localhost:3306/Test1</property>
-                        <property name="user">root</property>
-                        <property name="password">123</property>
-                    </dataSourceProps>
-
-                </configuration>
-            </definition>
-        </datasource-->
-
     </datasources>
 
 </datasources-configuration>

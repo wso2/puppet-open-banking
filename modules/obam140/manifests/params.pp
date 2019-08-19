@@ -59,7 +59,7 @@ class obam140::params {
   $bps_hostname       = 'localhost'
 
   # jaggeryapps/admin/site/conf/site.json params
-  $work_flow_server_url = "${bps_hostname}:9445/services/"
+  $work_flow_server_url = "https://${bps_hostname}:9445/services/"
 
   # jaggeryapps/admin/site/conf/site.json,openbaking.xml params
   $spec = 'UK' #UK,Berlin or STET 
