@@ -87,24 +87,17 @@ class obkm140::params {
   $db_open_banking_store_driver = 'org.h2.Driver'
 
   $template_list = [
-    # Configure_datasources
     'repository/conf/datasources/master-datasources.xml',
     'repository/conf/datasources/open-banking-datasources.xml',
-
-    # Copy xml files
     'repository/conf/carbon.xml',
     'repository/conf/axis2/axis2.xml',
     'repository/conf/registry.xml',
     'repository/conf/user-mgt.xml',
     'repository/conf/tomcat/catalina-server.xml',
-
-    # Change_hostname
     'repository/conf/identity/identity.xml',
     'repository/conf/identity/application-authentication.xml',
     'repository/conf/finance/open-banking.xml',
     'repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json',
-
-    # Configure speccarbon_homecarbon_home
     'repository/deployment/server/jaggeryapps/ccportal/configs/conf.json'
   ]
 }

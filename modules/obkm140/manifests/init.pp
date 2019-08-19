@@ -16,8 +16,6 @@
 
 class obkm140 inherits obkm140::params {
 
-  # From is::common
-
   # Install system packages
   package { $packages:
     ensure => installed
@@ -41,7 +39,7 @@ class obkm140 inherits obkm140::params {
     notify  => File['jdk-distribution']
   }
 
-  # * Java distribution
+  # Java distribution
 
   # Copy JDK to Java distribution path
   file { 'jdk-distribution':
