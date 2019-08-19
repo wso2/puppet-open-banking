@@ -134,6 +134,6 @@ class obam140 inherits obam140::params{
  # from service.pp
  service { "${wso2_service_name}":
     enable => true,
-    ensure => stopped,
+    ensure => running,
   }
 }
