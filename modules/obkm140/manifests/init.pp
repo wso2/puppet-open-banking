@@ -65,7 +65,7 @@ class obkm140 inherits obkm140::params {
     require => Exec['unpack-jdk']
   }
 
-  # WSO2 Distribution
+  # WSO2 distribution
 
   # Create product folder and pack folder
   file { [$product_dir, $pack_dir]:
