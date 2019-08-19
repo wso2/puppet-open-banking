@@ -45,19 +45,6 @@ class obkm140::params {
   $server_script_path = "${product_dir}/${pack}/bin/wso2server.sh"
   $pid_file_path = "${product_dir}/${pack}/wso2carbon.pid"
 
-  # Configure databases related properties
-  $db_type = 'mysql'
-  $db_host = 'localhost'
-  $db_user = 'root'
-  $db_pass = 'root'
-  $db_driver = 'com.mysql.jdbc.Driver'
-
-  $db_apimgt = 'openbank_apimgtdb'
-  $db_is_config = 'openbank_iskm_configdb'
-  $db_gov = 'openbank_govdb'
-  $db_user_store = 'openbank_userdb'
-  $db_open_banking_store = 'openbank_openbankingdb'
-
   # hostname configurations
   $iam_hostname = 'localhost'
   $apim_hostname = 'localhost'
