@@ -231,7 +231,7 @@
     <APIKeyValidator>
         <!-- Server URL of the API key manager -->
         <!--Required in OB-->
-        <ServerURL>https://<%= @iam_hostname%>:9446${carbon.context}services/</ServerURL>
+        <ServerURL>https://<%= @iam_hostname %>:9446${carbon.context}services/</ServerURL>
 
         <!-- Admin username for API key manager. -->
         <Username>${admin.username}</Username>
@@ -270,7 +270,7 @@
         <!--KeyManagerClientImpl>org.wso2.carbon.apimgt.impl.AMDefaultKeyManagerImpl</KeyManagerClientImpl-->
         <KeyManagerClientImpl>com.wso2.finance.open.banking.sca.keymanager.SCABasedKeyManagerClient</KeyManagerClientImpl>
         <Configuration>
-            <ServerURL>https://<%= @iam_hostname%>:9446${carbon.context}services/</ServerURL>
+            <ServerURL>https://<%= @iam_hostname %>:9446${carbon.context}services/</ServerURL>
             <Username>${admin.username}</Username>
             <Password>${admin.password}</Password>
             <TokenURL>https://<%= @apim_hostname %>:${https.nio.port}/token</TokenURL>
