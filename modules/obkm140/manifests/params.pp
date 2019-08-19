@@ -19,7 +19,7 @@ class obkm140::params {
 
   $packages = ['unzip']
 
-  #User Details
+  # User Details
   $user = 'wso2carbon'
   $user_group = 'wso2'
   $user_id = 802
@@ -58,15 +58,15 @@ class obkm140::params {
   $db_user_store = 'openbank_userdb'
   $db_open_banking_store = 'openbank_openbankingdb'
 
-  #hostname configurations
+  # hostname configurations
   $iam_hostname = 'localhost'
   $apim_hostname = 'localhost'
   $analytics_hostname = 'localhost'
 
-  #jaggeryapps/admin/site/conf/site.json and openbanking.xml params
+  # jaggeryapps/admin/site/conf/site.json and openbanking.xml params
   $spec = 'UK'
 
-  #H2
+  # H2
   # ----- datasources config params -----
   # ----- Master-datasources config params -----
   $db_apimgt_url = 'jdbc:h2:repository/database/WSO2AM_DB;DB_CLOSE_ON_EXIT=FALSE'
@@ -93,70 +93,32 @@ class obkm140::params {
   $db_user_store_validation_query ='SELECT 1'
   $db_user_store_driver = 'org.h2.Driver'
 
-  #----- Open Banking datasources config params -----
+  # ----- Open Banking datasources config params -----
   $db_open_banking_store_url = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_open_banking_store_username ='wso2carbon'
   $db_open_banking_store_password = 'wso2carbon'
   $db_open_banking_store_validation_query ='SELECT 1'
   $db_open_banking_store_driver = 'org.h2.Driver'
 
-  #MYSQL
-  # ----- datasources config params -----
-  # ----- Master-datasources config params -----
-  #$db_apimgt_url = "jdbc:mysql://${db_host}:3306/${db_apimgt}?autoReconnect=true&amp;useSSL=false"
-  #$db_apimgt_username = 'root'
-  #$db_apimgt_password =  'root'
-  #$db_apimgt_validation_query = 'SELECT 1'
-  #$db_apimgt_driver = 'com.mysql.jdbc.Driver'
-
-  #$db_gov_url = "jdbc:mysql://${db_host}:3306/${db_gov}?autoReconnect=true&amp;useSSL=false"
-  #$db_gov_username ='root'
-  #$db_gov_password = 'root'
-  #$db_gov_validation_query ='SELECT 1'
-  #$db_gov_driver = 'com.mysql.jdbc.Driver'
-
-  #$db_km_config_url = "jdbc:mysql://${db_host}:3306/${db_is_config}?autoReconnect=true&amp;useSSL=false"
-  #$db_km_config_username ='root'
-  #$db_km_config_password = 'root'
-  #$db_km_config_validation_query ='SELECT 1'
-  #$db_km_config_driver = 'com.mysql.jdbc.Driver'
-
-  #$db_user_store_url = "jdbc:mysql://${db_host}:3306/${db_user_store}?autoReconnect=true&amp;useSSL=false"
-  #$db_user_store_username ='root'
-  #$db_user_store_password = 'root'
-  #$db_user_store_validation_query ='SELECT 1'
-  #$db_user_store_driver = 'com.mysql.jdbc.Driver'
-
-  # ----- Open Banking datasources config params -----
-  #$db_open_banking_store_url = "jdbc:mysql://${db_host}:3306/${db_open_banking_store}?autoReconnect=true&amp;useSSL=false"
-
   $template_list = [
-    #configure_datasources
+    # configure_datasources
     'repository/conf/datasources/master-datasources.xml',
     'repository/conf/datasources/open-banking-datasources.xml',
+
+    # copy xml files
     'repository/conf/carbon.xml',
     'repository/conf/axis2/axis2.xml',
     'repository/conf/registry.xml',
     'repository/conf/user-mgt.xml',
+    'repository/conf/tomcat/catalina-server.xml',
 
-    #change_dns
+    # change_hostname
     'repository/conf/identity/identity.xml',
     'repository/conf/identity/application-authentication.xml',
     'repository/conf/finance/open-banking.xml',
     'repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json',
 
-    #configure speccarbon_homecarbon_home
+    # configure speccarbon_homecarbon_home
     'repository/deployment/server/jaggeryapps/ccportal/configs/conf.json'
-  ]
-
-  $sqlfile_list = [
-    'dbscripts/mysql.sql',
-    'dbscripts/apimgt/mysql.sql',
-    'dbscripts/consent/mysql.sql',
-    'dbscripts/identity/mysql.sql',
-    'dbscripts/identity/uma/mysql.sql',
-    'dbscripts/finance/openbanking.org.uk/mysql.sql',
-    'dbscripts/finance/berlin-group.org/mysql.sql',
-    'dbscripts/finance/STET/mysql.sql'
   ]
 }
