@@ -16,8 +16,6 @@
 
 class obkm140 inherits obkm140::params {
 
-  # From is::common
-
   # Install system packages
   package { $packages:
     ensure => installed
@@ -41,7 +39,7 @@ class obkm140 inherits obkm140::params {
     notify  => File['jdk-distribution']
   }
 
-  # * Java Distribution
+  # Java distribution
 
   # Copy JDK to Java distribution path
   file { 'jdk-distribution':
@@ -69,7 +67,7 @@ class obkm140 inherits obkm140::params {
 
   # WSO2 Distribution
 
-  #Create product folder and pack folder
+  # Create product folder and pack folder
   file { [$product_dir, $pack_dir]:
     ensure  => directory,
     owner   => $user,
@@ -135,8 +133,6 @@ class obkm140 inherits obkm140::params {
     notify  => Service[$wso2_service_name],
     require => Exec['unzip-update']
   }
-
-  # from service.pp
 
   service { $wso2_service_name:
     ensure => running,
