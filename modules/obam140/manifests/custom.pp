@@ -1,4 +1,3 @@
-
 #----------------------------------------------------------------------------
 #  Copyright (c) 2019 WSO2, Inc. http://www.wso2.org
 #
@@ -19,3 +18,4 @@
 # This class is reserved to run custom user code before starting the server.
 class obam140::custom {
   # If you have any custom scripts to run, please add them here
+}
