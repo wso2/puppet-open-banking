@@ -14,9 +14,13 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-class obkm140::params {
+class obkm::params {
 
   $packages = ['unzip']
+
+  # Maximum and minimum memory sizes for JVM
+  $jvmxms = '2048m'
+  $jvmxmx = '2048m'
 
   # User details
   $user           = 'wso2carbon'

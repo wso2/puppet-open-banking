@@ -14,10 +14,10 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-class obkm140 inherits obkm140::params {
+class obam inherits obam::params{
 
   # Install system packages
-  package { $packages:
+  package { $packages: 
     ensure => installed
   }
 
@@ -35,65 +35,59 @@ class obkm140 inherits obkm140::params {
     gid     => $user_group_id,
     home    => "/home/${user}",
     system  => true,
-    require => Group[$user_group],
-    notify  => File['jdk-distribution']
+    require => Group["${user_group}"],
+    notify  =>  File["jdk-distribution"],
   }
 
-  # Java distribution
-
   # Copy JDK to Java distribution path
-  file { 'jdk-distribution':
+  file { "jdk-distribution":
     path   => "${java_home}.tar.gz",
     source => "puppet:///modules/${module_name}/jdk/${jdk_name}.tar.gz",
-    notify => Exec['unpack-jdk']
+    notify => Exec["unpack-jdk"],
   }
 
   # Unzip distribution
-  exec { 'unpack-jdk':
-    command     => "tar -zf ${java_home}.tar.gz",
-    path        => '/bin/',
-    cwd         => $java_dir,
-    onlyif      => "/usr/bin/test ! -d ${java_home}",
-    subscribe   => File['jdk-distribution'],
-    refreshonly => true
+  exec { "unpack-jdk":
+    command => "tar -zxvf ${java_home}.tar.gz",
+    path    => "/bin/",
+    cwd     => "${java_dir}",
+    onlyif  => "/usr/bin/test ! -d ${java_home}",
   }
 
   # Create symlink to Java binary
-  file { $java_symlink:
-    ensure  => 'link',
-    target  => $java_home,
-    require => Exec['unpack-jdk']
+  file { "${java_symlink}":
+    ensure  => "link",
+    target  => "${java_home}",
+    require => Exec["unpack-jdk"]
   }
 
   # WSO2 distribution
 
   # Create product folder and pack folder
-  file { [$product_dir, $pack_dir]:
+  file { ["${product_dir}", "${pack_dir}"]:
     ensure  => directory,
     owner   => $user,
     group   => $user_group,
-    require => [ User[$user], Group[$user_group] ]
+    require => [ User["${user}"], Group["${user_group}"] ]
   }
 
   # Copy binary to distribution path
-  file { 'wso2-binary':
+   file { "wso2-binary":
     path    => "${pack_dir}/${product_binary}",
     owner   => $user,
     group   => $user_group,
     mode    => '0644',
     source  => "puppet:///modules/${module_name}/packs/${product_binary}",
-    require => File[$product_dir, $pack_dir]
-  }
+    require => File["${product_dir}", "${pack_dir}"],
+    }
 
   # Unzip the binary and create setup
-  exec { 'unzip-update':
-    command     => "unzip ${product_binary} -d ${product_dir}",
-    path        => '/usr/bin/',
-    user        => $user,
-    group       => $user_group,
-    cwd         => $pack_dir,
-    subscribe   => File['wso2-binary'],
-    refreshonly => true,
+  exec { "unzip-update":
+    command => "unzip -o ${product_binary} -d ${product_dir}",
+    path    => "/usr/bin/",
+    user    => $user,
+    group   => $user_group,                         
+    cwd     => "${pack_dir}",
   }
 
   # Copy the unit file required to deploy the server as a service
@@ -106,12 +100,10 @@ class obkm140 inherits obkm140::params {
   }
 
   exec { 'systemctl daemon-reload':
-    path        =>  '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
+    path        => '/bin/:/sbin/:/usr/bin/:/usr/sbin/',
     subscribe   => File["/etc/systemd/system/${wso2_service_name}.service"],
     refreshonly => true,
   }
-
-  # Configuration changes
 
   # Copy configuration changes to the installed directory
   $template_list.each |String $template| {
@@ -119,23 +111,23 @@ class obkm140 inherits obkm140::params {
       ensure  => file,
       mode    => '0644',
       content => template("${module_name}/carbon-home/${template}.erb"),
-      notify  => Service[$wso2_service_name]
+      notify  => Service["${wso2_service_name}"],
     }
   }
 
   # Copy wso2server.sh to installed directory
   file { "${carbon_home}/${start_script_template}":
     ensure  => file,
-    owner   => $user,
+    owner   => $user,                                      
     group   => $user_group,
     mode    => '0754',
     content => template("${module_name}/carbon-home/${start_script_template}.erb"),
-    notify  => Service[$wso2_service_name],
-    require => Exec['unzip-update']
+    notify  => Service["${wso2_service_name}"],        
+    require => Exec["unzip-update"],
   }
 
-  service { $wso2_service_name:
-    ensure => running,
+ service { "${wso2_service_name}":
     enable => true,
+    ensure => running,
   }
 }

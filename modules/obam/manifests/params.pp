@@ -14,7 +14,7 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-class obam140::params {
+class obam::params {
 
   $packages = ['unzip']
 
