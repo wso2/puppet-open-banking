@@ -14,8 +14,8 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-# Class: obam140::custom
+# Class: obam::custom
 # This class is reserved to run custom user code before starting the server.
-class obkm140::custom {
+class obam::custom {
   # If you have any custom scripts to run, please add them here
 }

@@ -51,14 +51,14 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 	
 5. Run the following profile on the Puppet agent.
 
-	i. Open Banking Key Manager profile:
+	i. Run Open Banking Key Manager profile:
 	
-		export FACTER_profile=obkm140
+		export FACTER_profile=obkm
 		puppet agent -vt
 
-	ii.Open Banking Key Manager profile:
+	ii.Run Open Banking API Manager profile:
 	
-		export FACTER_profile=obam140
+		export FACTER_profile=obam
 		puppet agent -vt
 
 ## Manifests in a module
