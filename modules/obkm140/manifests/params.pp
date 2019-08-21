@@ -76,32 +76,32 @@ class obkm140::params {
   # master-datasource.xml params
   $db_apimgt_url                  = 'jdbc:h2:repository/database/WSO2AM_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_apimgt_username             = 'wso2carbon'
-  $db_apimgt_password             =  'wso2carbon'
+  $db_apimgt_password             = 'wso2carbon'
   $db_apimgt_validation_query     = 'SELECT 1'
   $db_apimgt_driver               = 'org.h2.Driver'
 
   $db_gov_url                     = 'jdbc:h2:repository/database/WSO2REG_DB;DB_CLOSE_ON_EXIT=FALSE'
-  $db_gov_username                ='wso2carbon'
+  $db_gov_username                = 'wso2carbon'
   $db_gov_password                = 'wso2carbon'
-  $db_gov_validation_query        ='SELECT 1'
+  $db_gov_validation_query        = 'SELECT 1'
   $db_gov_driver                  = 'org.h2.Driver'
 
   $db_km_config_url               = 'jdbc:h2:repository/database/WSO2Config_DB;DB_CLOSE_ON_EXIT=FALSE'
-  $db_km_config_username          ='wso2carbon'
+  $db_km_config_username          = 'wso2carbon'
   $db_km_config_password          = 'wso2carbon'
-  $db_km_config_validation_query  ='SELECT 1'
+  $db_km_config_validation_query  = 'SELECT 1'
   $db_km_config_driver            = 'org.h2.Driver'
 
   $db_user_store_url              = 'jdbc:h2:repository/database/WSO2UM_DB;DB_CLOSE_ON_EXIT=FALSE'
-  $db_user_store_username         ='wso2carbon'
+  $db_user_store_username         = 'wso2carbon'
   $db_user_store_password         = 'wso2carbon'
-  $db_user_store_validation_query ='SELECT 1'
+  $db_user_store_validation_query = 'SELECT 1'
   $db_user_store_driver           = 'org.h2.Driver'
 
   # open-banking-datasource.xml params
   $db_open_banking_store_url              = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_DB;DB_CLOSE_ON_EXIT=FALSE'
-  $db_open_banking_store_username         ='wso2carbon'
+  $db_open_banking_store_username         = 'wso2carbon'
   $db_open_banking_store_password         = 'wso2carbon'
-  $db_open_banking_store_validation_query ='SELECT 1'
+  $db_open_banking_store_validation_query = 'SELECT 1'
   $db_open_banking_store_driver           = 'org.h2.Driver'
 }

@@ -1,23 +1,32 @@
-# Compiled class file
-*.class
+# Eclipse Project Files
+.project
+.classpath
+.settings/
+.metadata
 
-# Log file
-*.log
+# IntelliJ IDEA Project Files
+.idea/
+*.iml
+*.ipr
+*.iws
+*.swp
 
-# BlueJ files
-*.ctxt
+#Backup files
+*~
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
+# puppet-modules
 *.zip
-*.tar.gz
-*.rar
+*.gz
+*.tar
+*.jar
+*.deb
+*.rpm
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# Files location
+modules/is/files/*
+!modules/is/files/.gitkeep
+
+target/
+
+# puppet packages
+pkg/
