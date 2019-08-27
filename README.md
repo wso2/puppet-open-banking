@@ -4,7 +4,7 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
 ## Quick Start Guide
 
-1. Download a wso2obkm-1.4.0.zip and wso2obam-1.4.0.zip packs and copy them to the `<puppet_environment>/modules/ob_common/files/packs` directory in the **Puppetmaster**.
+1. Download the wso2obkm-1.4.0.zip and wso2obam-1.4.0.zip packs and copy them to the `<puppet_environment>/modules/ob_common/files/packs` directory in the **Puppetmaster**.
 
 2. Set up the JDK distribution as follows:
 
