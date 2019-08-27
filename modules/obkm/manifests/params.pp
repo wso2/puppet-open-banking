@@ -37,4 +37,10 @@ class obkm::params inherits ob_common::params {
     'repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json',
     'repository/deployment/server/jaggeryapps/ccportal/configs/conf.json'
   ]
+
+  # Define file list
+  $file_list = []
+
+  # Define remove file list
+  $file_removelist = []
 }

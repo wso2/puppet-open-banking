@@ -39,4 +39,10 @@ class obam::params inherits ob_common::params{
     'repository/deployment/server/jaggeryapps/admin/site/conf/site.json',
     'repository/deployment/server/jaggeryapps/store/site/conf/site.json',
   ]
+
+  # Define file list
+  $file_list = []
+
+  # Define remove file list
+  $file_removelist = []
 }
