@@ -4,71 +4,63 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
 ## Quick Start Guide
 
-1. Download the wso2obkm-1.4.0.zip and wso2obam-1.4.0.zip packs and copy them to the `<puppet_environment>/modules/ob_common/files/packs` directory in the **Puppetmaster**.
+1. Download the following zip files:<br>
+
+    * wso2obkm-1.4.0.zip <br>
+    * wso2obam-1.4.0.zip <br>
+
+    Copy them to the `<puppet_environment>/modules/ob_common/files/packs` directory in the **Puppetmaster**.
 
 2. Set up the JDK distribution as follows:
 
-	i. Download Java SE Development Kit 8u161 for Linux x64 from [here](https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) and copy the archive into the `<puppet_environment>/modules/ob_common/files/jdk` directory.<br>
-	ii. Reassign the *$jdk_name* variable in `<puppet_environment>/modules/ob_common/manifests/params.pp` to the name of the downloaded JDK distribution.
+    The Puppet modules for WSO2 Open Banking use Oracle JDK 8 as the JDK distribution. However, you can use any [supported JDK distribution](https://docs.wso2.com/display/compatibility/Tested+Operating+Systems+and+JDKs).
 
-3. Install the database and create the following databases.
+    a. Download Java SE Development Kit 8u161 for Linux x64 from [here](https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) and copy the archive into the `<puppet_environment>/modules/ob_common/files/jdk` directory.<br>
+    b. Reassign the *$jdk_name* variable in `<puppet_environment>/modules/ob_common/manifests/params.pp` to the name of the downloaded JDK distribution.
 
-	openbank_am_configdb  
+3. Set up the databases by following the [Configuring Databases](https://docs.wso2.com/display/OB140/Configuring+Databases) documentation.
 
-	openbank_apimgt_statsdb
+4. Run the following profiles on the **Puppet agent**, by executing the following commands.
 
-	openbank_apimgtdb
+    a. To run the ```Open Banking Key Manager profile```:
 
-	openbank_openbankingdb
+        export FACTER_profile=obkm
+        puppet agent -vt
 
-	openbank_govdb
+    b. To run the ```Open Banking API Manager profile```:
 
-	openbank_iskm_configdb       
+        export FACTER_profile=obam
+        puppet agent -vt
 
-	openbank_mbstoredb
+5. To use a custom Java KeyStore (JKS) file in Open Banking Key Manager and Open Banking API Manager, follow the steps below:
 
-	openbank_userdb
+	a. Create a custom JKS by following the steps in the [Creating New Keystores](https://docs.wso2.com/display/ADMIN44x/Creating+New+Keystores#CreatingNewKeystores-ca_certificateAddingCA-signedcertificatestokeystores) documentation.
 
-4. Execute the following scripts against the given database to create the database schema:
+    b. Create the following directories in the **Puppetmaster**:
 
+		 <puppet_environment>/modules/obam/files/repository/resources/security
+		 <puppet_environment>/modules/obkm/files/repository/resources/security
 
-		openbank_am_configdb	:	<WSO2_OB_APIM_HOME>/dbscripts/mysql.sql
+	c. Copy the custom JKS file into both directories. <br>
 
-		openbank_apimgtdb   	:	<WSO2_OB_KM_HOME>/dbscripts/apimgt/mysql.sql
+	d. Update the *$file_list* variable in the files below, with the custom JKS file path ```(repository/resources/security/custom_jks.jks)```. <br> 
 
-		openbank_openbankingdb	:	<WSO2_OB_KM_HOME>/dbscripts/finance/openbanking.org.uk/mysql.sql
-				                <WSO2_OB_KM_HOME>/dbscripts/finance/event-notification/mysql-5-7.sql
-					        <WSO2_OB_APIM_HOME>/dbscripts/finance/dynamic-client-registration/migration-3.1_to_3.2/mysql.sql
+		 <puppet_environment>/modules/obam/manifests/params.pp
 
-		openbank_govdb	    	:	<WSO2_OB_KM_HOME>/dbscripts/mysql.sql
+            $file_list = ['repository/resources/security/custom_jks.jks',] 
 
-		openbank_iskm_configdb :	<WSO2_OB_KM_HOME>/dbscripts/mysql.sql
+		 <puppet_environment>/modules/obkm/manifests/params.pp
 
-		openbank_mbstoredb 	:	<WSO2_OB_APIM_HOME>/dbscripts/mb-store/mysql-mb.sql
-
-		openbank_userdb	:	<WSO2_OB_KM_HOME>/dbscripts/mysql.sql
-
-	
-5. Run the following profile on the Puppet agent.
-
-	i. Run Open Banking Key Manager profile:
-	
-		export FACTER_profile=obkm
-		puppet agent -vt
-
-	ii.Run Open Banking API Manager profile:
-	
-		export FACTER_profile=obam
-		puppet agent -vt
+            $file_list = ['repository/resources/security/custom_jks.jks',] 
 
 ## Manifests in a module
 
-The run stages for Puppet are described in `<puppet_environment>/manifests/site.pp`, and they are of the order Main -> Custom.
+The run stages for Puppet are described in `<puppet_environment>/manifests/site.pp`, and they follow the given order Main -> Custom.
 
-Each Puppet module contains the following .pp files.
+Each Puppet module contains the following ```.pp``` files.
 
 * Main
-	* params.pp: Contains all the parameters necessary for the main configuration and template
-	* init.pp: Contains the main script of the module.
+    * params.pp: Contains all the parameters required for main configuration and template.
+    * init.pp: Contains the main script of the module.
 * Custom
-	* custom.pp: Used to add custom configurations to the Puppet module.	
+    * custom.pp: To add custom configurations to the Puppet module.
