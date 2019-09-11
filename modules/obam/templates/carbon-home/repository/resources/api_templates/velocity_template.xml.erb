@@ -251,7 +251,7 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
 ## add UK-specific consent-enforcement-handler
 <handler class="com.wso2.finance.open.banking.uk.consent.enforcement.ConsentEnforcementHandler">
     #if($!apiVersion == "v3.0" || $!apiVersion == "v3.1" || $!apiVersion == "v3.1.1")
-    <property name="accountValidationUrl" value="https://<%= @iam_hostname %>%:9446/consent/uk300/accounts-validation"/>
+    <property name="accountValidationUrl" value="https://<%= @iam_hostname %>:9446/consent/uk300/accounts-validation"/>
     <property name="paymentConsumtionUpdateUrl"
               value="https://<%= @iam_hostname %>:9446/consent/uk300/payments/{PaymentType}/{ConsentId}/status/{Status}"/>
     <property name="paymentSubmissionValidationUrl"
