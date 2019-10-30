@@ -6,8 +6,8 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
 1. Download the following zip files:<br>
 
-    * wso2obkm-1.4.0.zip <br>
-    * wso2obam-1.4.0.zip <br>
+    * wso2-obkm-1.4.0.zip <br>
+    * wso2-obam-1.4.0.zip <br>
 
     Copy them to the `<puppet_environment>/modules/ob_common/files/packs` directory in the **Puppetmaster**.
 
@@ -15,10 +15,15 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
     The Puppet modules for WSO2 Open Banking use Oracle JDK 8 as the JDK distribution. However, you can use any [supported JDK distribution](https://docs.wso2.com/display/compatibility/Tested+Operating+Systems+and+JDKs).
 
-    a. Download Java SE Development Kit 8u161 for Linux x64 from [here](https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) and copy the archive into the `<puppet_environment>/modules/ob_common/files/jdk` directory.<br>
+    a. Download Java SE Development Kit 8u161 for Linux x64 from [here](https://www.oracle
+    .com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) and copy the archive into the 
+    `<puppet_environment>/modules/ob_common/files/jdk` directory.<br> (please make sure that the name of the archive 
+    matches with the name of the extracted folder Ex: jdk1.8.0_161) <br>
     b. Reassign the *$jdk_name* variable in `<puppet_environment>/modules/ob_common/manifests/params.pp` to the name of the downloaded JDK distribution.
 
-3. Set up the databases by following the [Configuring Databases](https://docs.wso2.com/display/OB140/Configuring+Databases) documentation.
+3. Set up the databases by following the [Configuring Databases](https://docs.wso2
+.com/display/OB140/Configuring+Databases) documentation. The database scripts can be found in 
+puppet-ob/modules/ob_common/resources
 
 4. Run the following profiles on the **Puppet agent**, by executing the following commands.
 
