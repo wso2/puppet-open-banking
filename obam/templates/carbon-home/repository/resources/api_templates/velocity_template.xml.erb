@@ -251,6 +251,19 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
 
 #if($apiObj.additionalProperties.get("ob-spec") == "uk")
 
+## add MTLS client token validation handler along with MTLS cert validation handler to ensures MTLS security
+#*
+<handler class="com.wso2.finance.open.banking.mtls.validator.handler.MTLSValidationHandler"/>
+<handler class="com.wso2.finance.open.banking.mtls.validator.handler.MTLSClientTokenValidationHandler"/>
+*#
+
+##add request validation handler
+##Request validator should come before Signature validator.
+#if($!apiVersion == "v3.0" || $!apiVersion == "v3.1" || $!apiVersion == "v3.1.1" || $!apiVersion == "v2.0")
+
+<handler class="com.wso2.finance.open.banking.gateway.api.schema.validation.RequestSchemaValidationHandler"/>
+#endf
+
 ## add UK-specific consent-enforcement-handler
 #if($!apiVersion == "v3.0" || $!apiVersion == "v3.1")
 <handler class="com.wso2.finance.open.banking.gateway.jws.UKJwsSignatureHandler"/>
