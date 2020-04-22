@@ -60,7 +60,9 @@ class obam::params {
     'repository/deployment/server/jaggeryapps/store/site/conf/site.json',
     'repository/conf/axis2/axis2.xml',
     'repository/deployment/server/synapse-configs/default/api/_AuthorizeAPI_.xml',
-    'repository/deployment/server/synapse-configs/default/api/_TokenAPI_.xml'
+    'repository/deployment/server/synapse-configs/default/api/_TokenAPI_.xml',
+    'repository/resources/lifecycles/APILifeCycle.xml',
+    'repository/deployment/server/synapse-configs/default/sequences/_auth_failure_handler_.xml',
   ]
 
   # Configuration Params

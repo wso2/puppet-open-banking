@@ -1,0 +1,11 @@
+<sequence name="_auth_failure_handler_" xmlns="http://ws.apache.org/ns/synapse">
+	<property name="error_message_type" value="application/xml"/>
+	<class name="com.wso2.finance.open.banking.gateway.uk.monitoring.handlers.OBAuthorizationFailureHandler"/>
+    <sequence key="_cors_request_handler_"/>
+	<filter source="get-property('REST_API_CONTEXT')" regex=".*\/(pisp|aisp|cbpii).*">
+	        <then>
+	            <class name="com.wso2.finance.open.banking.gateway.uk.AuthFailureResponseCreationMediator"/>
+	            <respond/>
+	        </then>
+	</filter>
+</sequence>
