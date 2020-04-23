@@ -262,7 +262,7 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
 #if($!apiVersion == "v3.0" || $!apiVersion == "v3.1" || $!apiVersion == "v3.1.1" || $!apiVersion == "v2.0")
 
 <handler class="com.wso2.finance.open.banking.gateway.api.schema.validation.RequestSchemaValidationHandler"/>
-#endf
+#end
 
 ## add UK-specific consent-enforcement-handler
 #if($!apiVersion == "v3.0" || $!apiVersion == "v3.1")
