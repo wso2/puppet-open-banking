@@ -33,7 +33,7 @@
         <NotificationExpiryTime>180</NotificationExpiryTime>
         <NotificationAPIUrl>https://<%= @apim_hostname %>:8243/open-banking/v3.1/event-notification</NotificationAPIUrl>
     </EventNotifications>
-
+    <LogConsentInformation>false</LogConsentInformation>
     <MultiAuthorization>
         <DaysToExpireRequest>3</DaysToExpireRequest>
     </MultiAuthorization>
@@ -135,6 +135,9 @@
         <DuplicateCheck>
             <TimeIntervalInMinutes>60</TimeIntervalInMinutes>
         </DuplicateCheck>
+        <!--Enable IBAN validation for single accounts -->
+        <EnableIBANBasedSingleAccountRetrievalValidation>false</EnableIBANBasedSingleAccountRetrievalValidation>
+        <!--Enable IBAN validation for bulk accounts -->
         <EnableIBANBasedAccountRetrievalValidation>true</EnableIBANBasedAccountRetrievalValidation>
         <Host><%= @apim_hostname %></Host>
         <Port>8243</Port>
@@ -315,6 +318,9 @@
 
         <!--Configure whether need to validate debtor account when sent in initiation payload for UK payments-->
         <ValidateDebtorAccount>true</ValidateDebtorAccount>
+
+        <!-- Validate AccountID with consented accountID in account retrieval -->
+        <ValidateAccountIdOnRetrieval>false</ValidateAccountIdOnRetrieval>
     </UK>
 
     <STET>
@@ -391,8 +397,14 @@
         <module ref="mtlscertvalidator"/>
         -->
 
+        <!-- Enable sending client cert as a transport header when the TLS is terminated before reaching Gateway-->
+        <ClientTransportCertAsHeaderEnabled>true</ClientTransportCertAsHeaderEnabled>
+
+        <!-- Validate the issuer of the certificate when the client cert is received as a transport header -->
+        <TransportCertIssuerValidationEnabled>true</TransportCertIssuerValidationEnabled>
+
         <!--Set the value of the transport certificate header sent in the request if MTLS is terminated before the
-        gateway default value is ssl.client.auth.cert.X509-->
+        gateway. Default value is ssl.client.auth.cert.X509-->
         <TransportCertificateHeader>ssl.client.auth.cert.X509</TransportCertificateHeader>
 
         <!-- Expiry time for the cache (in seconds) for storing the validation result of the certificates-->
@@ -400,6 +412,30 @@
 
         <!-- Enable certificate OCSP and CRL validation -->
         <CertificateRevocationValidationEnabled>true</CertificateRevocationValidationEnabled>
+
+        <!--Manager class implementation responsible for verifying certificate revocation status-->
+        <RevocationValidationManagerImplClass>com.wso2.finance.open.banking.mtlscert.validator.service.CertRevocationValidationManagerImpl</RevocationValidationManagerImplClass>
+
+        <!-- Retry count for validating certificate OCSP and CRL revocation status -->
+        <CertificateRevocationValidationRetryCount>3</CertificateRevocationValidationRetryCount>
+
+        <!-- List of issuer DNs whose issued certificates needs to be skipped from certificate revocation
+        validation.
+        e.g. <IssuerDN>CN=Test Pre-Production Issuing CA, O=Test, C=GB</IssuerDN>
+        -->
+        <RevocationValidationExcludedIssuers>
+            <IssuerDN></IssuerDN>
+        </RevocationValidationExcludedIssuers>
+
+        <!-- Proxy server configuration to do TPP certificate revocation checks -->
+        <CertificateRevocationProxy>
+            <Enabled>false</Enabled>
+            <ProxyHost>PROXY_HOSTNAME</ProxyHost>
+            <ProxyPort>8080</ProxyPort>
+        </CertificateRevocationProxy>
+
+        <!--Truststore dynamic loading interval (in seconds). Default value has been set to 86400 seconds-->
+        <TrustStoreDynamicLoadingInterval>86400</TrustStoreDynamicLoadingInterval>
     </CertificateManagement>
     <SCA>
         <IdpName>SMSAuthentication</IdpName>
@@ -446,6 +482,8 @@
             <TotalAmountLimitOfTransactionsWithoutSCA>100</TotalAmountLimitOfTransactionsWithoutSCA>
             <LastSCATimeLimit>90</LastSCATimeLimit>
             <TransactionAmountLimit>30</TransactionAmountLimit>
+            <!-- Number of maximum days of transaction history that can be accessed with the first-time consent use for Berlin.-->
+            <FirstAccessHistoryLimit>90</FirstAccessHistoryLimit>
         </TRA>
         <FraudDetection>
             <!-- Include all configurations related to Fraud Detection -->
