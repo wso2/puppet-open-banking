@@ -29,9 +29,9 @@
         AuthenticationEndpointURL is location of the web app containing
         the authentication related pages
     -->
-    <AuthenticationEndpointURL>https://<%= @iam_hostname %>:9446/ob/authenticationendpoint/login.do</AuthenticationEndpointURL>
-    <AuthenticationEndpointRetryURL>https://<%= @iam_hostname %>:9446/ob/authenticationendpoint/retry.do</AuthenticationEndpointRetryURL>
-    <AuthenticationEndpointMissingClaimsURL>/ob/authenticationendpoint/claims.do</AuthenticationEndpointMissingClaimsURL>
+    <AuthenticationEndpointURL>https://<%= @iam_hostname %>:9446/authenticationendpoint/login.do</AuthenticationEndpointURL>
+    <AuthenticationEndpointRetryURL>https://<%= @iam_hostname %>:9446/authenticationendpoint/retry.do</AuthenticationEndpointRetryURL>
+    <AuthenticationEndpointMissingClaimsURL>/authenticationendpoint/claims.do</AuthenticationEndpointMissingClaimsURL>
 
     <!--
         Extensions allow extending the default behaviour of the authentication
@@ -110,7 +110,7 @@
             <!--<Parameter name="ClaimDialectUri">http://wso2.org/facebook/claims</Parameter>-->
         </AuthenticatorConfig>
         <AuthenticatorConfig  name="FIDOAuthenticator" enabled="true">
-            <Parameter name="FidoAuth">/ob/authenticationendpoint/fido-auth.jsp</Parameter>
+            <Parameter name="FidoAuth">/authenticationendpoint/fido-auth.jsp</Parameter>
             <!--Please uncomment the following property and define AppID if you are using proxy configurations-->
             <!--<Parameter name="AppID">https://localhost</Parameter>-->
         </AuthenticatorConfig>
