@@ -82,7 +82,7 @@
          -->
         <OpenIDServerUrl>${carbon.protocol}://${carbon.host}:${carbon.management.port}/openidserver</OpenIDServerUrl>
         <OpenIDUserPattern>${carbon.protocol}://${carbon.host}:${carbon.management.port}/openid</OpenIDUserPattern>
-        <OpenIDLoginUrl>${carbon.protocol}://${carbon.host}:${carbon.management.port}/ob/authenticationendpoint/openid_login.do</OpenIDLoginUrl>
+        <OpenIDLoginUrl>${carbon.protocol}://${carbon.host}:${carbon.management.port}/authenticationendpoint/openid_login.do</OpenIDLoginUrl>
         <!-- If the users must be prompted for approval -->
         <OpenIDSkipUserConsent>false</OpenIDSkipUserConsent>
         <!-- Expiry time of the OpenID RememberMe token in minutes -->
@@ -169,10 +169,10 @@
         <OIDCCheckSessionEPUrl>${carbon.protocol}://${carbon.host}:${carbon.management.port}/oidc/checksession</OIDCCheckSessionEPUrl>
         <OIDCLogoutEPUrl>${carbon.protocol}://${carbon.host}:${carbon.management.port}/oidc/logout</OIDCLogoutEPUrl>
         <OAuth2ConsentPage>${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/ob/authenticationendpoint/oauth2_authz.do</OAuth2ConsentPage>
-        <OAuth2ErrorPage>${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/ob/authenticationendpoint/oauth2_error.do</OAuth2ErrorPage>
+        <OAuth2ErrorPage>${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/authenticationendpoint/oauth2_error.do</OAuth2ErrorPage>
         <OIDCConsentPage>${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/ob/authenticationendpoint/oauth2_consent.do</OIDCConsentPage>
-        <OIDCLogoutConsentPage>${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/ob/authenticationendpoint/oauth2_logout_consent.do</OIDCLogoutConsentPage>
-        <OIDCLogoutPage>${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/ob/authenticationendpoint/oauth2_logout.do</OIDCLogoutPage>
+        <OIDCLogoutConsentPage>${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/authenticationendpoint/oauth2_logout_consent.do</OIDCLogoutConsentPage>
+        <OIDCLogoutPage>${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/authenticationendpoint/oauth2_logout.do</OIDCLogoutPage>
         <OIDCWebFingerEPUrl>${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/.well-known/webfinger</OIDCWebFingerEPUrl>
         <!-- For tenants below urls will be modified as https://<hostname>:<port>/t/<tenant domain>/<path>-->
         <!--OB DCR url-->
@@ -239,11 +239,11 @@
                 <GrantTypeName>authorization_code</GrantTypeName>
                 <GrantTypeHandlerImplClass>com.wso2.finance.open.banking.identity.extensions.grant.type.handlers.OBAuthorizationCodeGrantHandler</GrantTypeHandlerImplClass>
             </SupportedGrantType>
-            <!--  Required to disable for OB -->
-            <!--<SupportedGrantType>
-            	<GrantTypeName>password</GrantTypeName
+            <!--  Supporting password grant types for non-regulatory apps -->
+            <SupportedGrantType>
+            	<GrantTypeName>password</GrantTypeName>
              	<GrantTypeHandlerImplClass>org.wso2.carbon.apimgt.keymgt.handlers.ExtendedPasswordGrantHandler</GrantTypeHandlerImplClass>
-            </SupportedGrantType>-->
+            </SupportedGrantType>
             <SupportedGrantType>
                 <GrantTypeName>refresh_token</GrantTypeName>
                 <GrantTypeHandlerImplClass>com.wso2.finance.open.banking.identity.extensions.grant.type.handlers.OBRefreshGrantHandler</GrantTypeHandlerImplClass>
@@ -355,7 +355,7 @@
             <!--UserType>LEGACY</UserType-->
         </SAML2Grant>
         <OpenIDConnect>
-            <IDTokenBuilder>org.wso2.carbon.identity.openidconnect.DefaultIDTokenBuilder</IDTokenBuilder>
+            <IDTokenBuilder>com.wso2.finance.open.banking.idtoken.builder.OBIDTokenBuilder</IDTokenBuilder>
             <SignatureAlgorithm>SHA256withRSA</SignatureAlgorithm>
             <!-- Default asymmetric encryption algorithm that used to encrypt CEK. -->
             <IDTokenEncryptionAlgorithm>RSA-OAEP</IDTokenEncryptionAlgorithm>
@@ -431,6 +431,10 @@
             Default value : false
         -->
         <RenewTokenPerRequest>false</RenewTokenPerRequest>
+
+        <Introspection>
+            <EnableDataProviders>true</EnableDataProviders>
+        </Introspection>
     </OAuth>
     <MultifactorAuthentication>
         <!--Enable>false</Enable-->
@@ -453,8 +457,8 @@
             If that doesn't satisfy uncomment the following config and explicitly configure the value
         -->
         <IdentityProviderURL>${carbon.protocol}://${carbon.host}:${carbon.management.port}/samlsso</IdentityProviderURL>
-        <DefaultLogoutEndpoint>${carbon.protocol}://${carbon.host}:${carbon.management.port}/ob/authenticationendpoint/samlsso_logout.do</DefaultLogoutEndpoint>
-        <NotificationEndpoint>${carbon.protocol}://${carbon.host}:${carbon.management.port}/ob/authenticationendpoint/samlsso_notification.do</NotificationEndpoint>
+        <DefaultLogoutEndpoint>${carbon.protocol}://${carbon.host}:${carbon.management.port}/authenticationendpoint/samlsso_logout.do</DefaultLogoutEndpoint>
+        <NotificationEndpoint>${carbon.protocol}://${carbon.host}:${carbon.management.port}/authenticationendpoint/samlsso_notification.do</NotificationEndpoint>
         <SingleLogoutRetryCount>5</SingleLogoutRetryCount>
         <SingleLogoutRetryInterval>60000</SingleLogoutRetryInterval>
         <!-- in milli seconds -->
@@ -495,7 +499,7 @@
             If that doesn't satisfy uncomment the following config and explicitly configure the value
         -->
         <IdentityProviderURL>${carbon.protocol}://${carbon.host}:${carbon.management.port}/passivests</IdentityProviderURL>
-        <RetryURL>${carbon.protocol}://${carbon.host}:${carbon.management.port}/ob/authenticationendpoint/retry.do</RetryURL>
+        <RetryURL>${carbon.protocol}://${carbon.host}:${carbon.management.port}/authenticationendpoint/retry.do</RetryURL>
         <TokenStoreClassName>org.wso2.carbon.identity.sts.passive.utils.NoPersistenceTokenStore</TokenStoreClassName>
         <SLOHostNameVerificationEnabled>true</SLOHostNameVerificationEnabled>
     </PassiveSTS>
@@ -689,9 +693,13 @@
                        name="org.wso2.carbon.user.mgt.listeners.UserMgtFailureAuditLogger"
                        orderId="0" type="org.wso2.carbon.user.core.listener.UserManagementErrorEventListener"/>
         <!-- Open Banking Mutual TLS Authenticator -->
-        <EventListener  enable="true"
+        <EventListener  enable="false"
                         name="com.wso2.finance.open.banking.mtls.authenticator.OBMutualTLSClientAuthenticator"
                         orderId="26" type="org.wso2.carbon.identity.core.handler.AbstractIdentityHandler"/>
+        <EventListener enable="true" name="com.wso2.finance.open.banking.identity.extensions.introspection.OBIntrospectionResponseInterceptor"
+                       orderId="27" type="org.wso2.carbon.identity.core.handler.AbstractIdentityHandler"/>
+        <EventListener enable="true" name="com.wso2.finance.open.banking.identity.extensions.introspection.OBIntrospectionDataProvider"
+                       orderId="28" type="org.wso2.carbon.identity.core.handler.AbstractIdentityHandler"/>
     </EventListeners>
     <!-- These recorders are used to write user delete information to specific sources. Default event recorder is CSV
      file recorder. This recorder is disabled by default. Enable it by setting enable="true". To run these recorders,
