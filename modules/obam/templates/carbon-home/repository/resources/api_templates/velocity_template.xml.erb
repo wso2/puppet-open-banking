@@ -283,8 +283,9 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
 
 #if($!apiVersion == "v3.0" || $!apiVersion == "v3.1" || $!apiVersion == "v3.1.1")
 <handler class="com.wso2.finance.open.banking.common.identity.validation.SignatureAlgorithmValidatorHandler"/>
-<handler class="com.wso2.finance.open.banking.gateway.jws.UKJwsSignatureHandler"/>
-#end
+<handler class="com.wso2.finance.open.banking.gateway.jws.UKJwsSignatureHandler">
+    <property name="xWso2ApiVersion" value='$apiObj.additionalProperties.get("ob-api-version")'/>
+</handler>#end
 
 ## add UK-specific consent-enforcement-handler
 <handler class="com.wso2.finance.open.banking.uk.consent.enforcement.ConsentEnforcementHandler">
