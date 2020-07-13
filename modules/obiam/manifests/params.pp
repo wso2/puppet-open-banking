@@ -14,7 +14,7 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-class obkm::params inherits ob_common::params {
+class obiam::params inherits ob_common::params {
 
   $start_script_template  = 'bin/wso2server.sh'
 
@@ -40,7 +40,7 @@ class obkm::params inherits ob_common::params {
 
     # Template list
     $template_list = [
-      'repository/conf/deployment.toml.erb',
+      'repository/conf/deployment.toml',
       'repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json',
       'repository/deployment/server/jaggeryapps/ccportal/configs/conf.json'
     ]
