@@ -302,6 +302,12 @@
                 <APIContext>/open-banking/v3.1/event-notification/</APIContext>
                 <APIContext>/open-banking/v3.1/pisp/</APIContext>
             </MandatedAPIs>
+
+            <!-- The following specified APIs will be associated with response signing. -->
+            <ResponseSignatureRequiredAPIs>
+                <APIContext>/open-banking/v3.0/pisp/</APIContext>
+                <APIContext>/open-banking/v3.1/pisp/</APIContext>
+            </ResponseSignatureRequiredAPIs>
         </SigningConfiguration>
 
         <!-- The following configuration specifies the signature algorithms that are allowed in the TPP requests.
