@@ -1,6 +1,6 @@
 #================configs related to carbon.xml=============
 [server]
-hostname = "APIM_HOSTNAME"
+hostname = "<%= @apim_hostname %>"
 node_ip = "127.0.0.1"
 mode = "single" #single or ha
 base_path = "${carbon.protocol}://${carbon.host}:${carbon.management.port}"
@@ -148,13 +148,13 @@ type = "hybrid"
 display_in_api_console = true
 description = "This is a hybrid gateway that handles both production and sandbox token traffic."
 show_as_token_endpoint_url = true
-service_url = "https://APIM_HOSTNAME:${mgt.transport.https.port}/services/"
+service_url = "https://<%= @apim_hostname %>:${mgt.transport.https.port}/services/"
 username= "${admin.username}"
 password= "${admin.password}"
 ws_endpoint = "ws://localhost:9099"
 wss_endpoint = "wss://localhost:8099"
-http_endpoint = "http://APIM_HOSTNAME:${http.nio.port}"
-https_endpoint = "https://APIM_HOSTNAME:${https.nio.port}"
+http_endpoint = "http://<%= @apim_hostname %>:${http.nio.port}"
+https_endpoint = "https://<%= @apim_hostname %>:${https.nio.port}"
 
 [apim.cors]
 allow_origins = "*"
@@ -182,8 +182,8 @@ key_manager_client_impl = "com.wso2.finance.open.banking.sca.keymanager.SCABased
 ServerURL = "https://<%= @iam_hostname %>:9446${carbon.context}services/"
 Username = "${admin.username}"
 Password = "${admin.password}"
-TokenURL = "https://APIM_HOSTNAME:${https.nio.port}/token"
-RevokeURL = "https://APIM_HOSTNAME:${https.nio.port}/revoke"
+TokenURL = "https://<%= @apim_hostname %>:${https.nio.port}/token"
+RevokeURL = "https://<%= @apim_hostname %>:${https.nio.port}/revoke"
 
 [apim.oauth_config]
 enable_outbound_auth_header = true
@@ -357,8 +357,8 @@ defaultAutoCommit=false
 
 [open_banking]
 deployed_spec = "UK"
-payable_accounts_retrieve_endpoint = "http://APIM_HOSTNAME:9763/api/openbanking/backend-uk/services/bankaccounts/bankaccountservice/payable-accounts"
-sharable_accounts_retrieve_endpoint = "http://APIM_HOSTNAME:9763/api/openbanking/backend-uk/services/bankaccounts/bankaccountservice/sharable-accounts"
+payable_accounts_retrieve_endpoint = "http://<%= @apim_hostname %>:9763/api/openbanking/backend-uk/services/bankaccounts/bankaccountservice/payable-accounts"
+sharable_accounts_retrieve_endpoint = "http://<%= @apim_hostname %>:9763/api/openbanking/backend-uk/services/bankaccounts/bankaccountservice/sharable-accounts"
 
 [open_banking.jdbc_persistence_manager.data_source]
 name= "WSO2OpenBankingDB"
@@ -366,13 +366,13 @@ name= "WSO2OpenBankingDB"
 [open_banking.event_notifications]
 enable = true
 token_issuer = "www.openbank.com"
-api_url = "https://APIM_HOSTNAME:8243/open-banking/v3.1/event-notification"
+api_url = "https://<%= @apim_hostname %>:8243/open-banking/v3.1/event-notification"
 
 [open_banking.uk]
 x_fapi_financial_id = "open-bank"
-payment_api_url = "https://APIM_HOSTNAME:8243/open-banking/{version}/pisp/"
-account_api_url = "https://APIM_HOSTNAME:8243/open-banking/{version}/aisp/"
-funds_confirmation_api_url = "https://APIM_HOSTNAME:8243/open-banking/{version}/cbpii/"
+payment_api_url = "https://<%= @apim_hostname %>:8243/open-banking/{version}/pisp/"
+account_api_url = "https://<%= @apim_hostname %>:8243/open-banking/{version}/aisp/"
+funds_confirmation_api_url = "https://<%= @apim_hostname %>:8243/open-banking/{version}/cbpii/"
 
 [open_banking.uk.acc_update_by_psu]
 enable = false
