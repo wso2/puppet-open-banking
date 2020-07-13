@@ -14,8 +14,8 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-# Class: obkm::custom
+# Class: obiam::custom
 # This class is reserved to run custom user code before starting the server.
-class obkm::custom {
+class obiam::custom {
   # If you have any custom scripts to run, please add them here
 }
