@@ -14,7 +14,7 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-class obkm inherits obkm::params {
+class obiam inherits obiam::params {
 
   include ob_common
 
