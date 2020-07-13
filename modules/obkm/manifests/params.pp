@@ -23,7 +23,7 @@ class obkm::params inherits ob_common::params {
   $jvmxmx = '2048m'
 
   # Template list
-  $template_list = [
+  $template_list_old = [
     'repository/conf/datasources/master-datasources.xml',
     'repository/conf/datasources/open-banking-datasources.xml',
     'repository/conf/carbon.xml',
@@ -37,6 +37,13 @@ class obkm::params inherits ob_common::params {
     'repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json',
     'repository/deployment/server/jaggeryapps/ccportal/configs/conf.json'
   ]
+
+    # Template list
+    $template_list = [
+      'repository/conf/deployment.toml.erb',
+      'repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json',
+      'repository/deployment/server/jaggeryapps/ccportal/configs/conf.json'
+    ]
 
   # Define file list
   $file_list = []
