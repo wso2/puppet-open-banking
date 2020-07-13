@@ -42,7 +42,7 @@ class obam::params inherits ob_common::params{
 
   # Template list
   $template_list = [
-    'repository/conf/deployment.toml.erb',
+    'repository/conf/deployment.toml',
     'repository/resources/api_templates/velocity_template.xml',
     'repository/deployment/server/jaggeryapps/admin/site/conf/site.json',
     'repository/deployment/server/jaggeryapps/devportal/site/public/theme/settings.js'

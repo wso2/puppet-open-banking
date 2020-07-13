@@ -6,8 +6,8 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
 1. Download the following zip files:<br>
 
-    * wso2-obkm-1.5.0.zip <br>
-    * wso2-obam-1.5.0.zip <br>
+    * wso2-obiam-2.0.0-M2.zip <br>
+    * wso2-obam-2.0.0-M2.zip <br>
 
     Copy them to the `<puppet_environment>/modules/ob_common/files/packs` directory in the **Puppetmaster**.
 
@@ -28,7 +28,7 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
     a. To run the ```Open Banking Key Manager profile```:
 
-        export FACTER_profile=obkm
+        export FACTER_profile=obiam
         puppet agent -vt
 
     b. To run the ```Open Banking API Manager profile```:
@@ -43,7 +43,7 @@ This repository contains the Puppet modules for WSO2 Open Banking.
     b. Create the following directories in the **Puppetmaster**:
 
 		 <puppet_environment>/modules/obam/files/repository/resources/security
-		 <puppet_environment>/modules/obkm/files/repository/resources/security
+		 <puppet_environment>/modules/obiam/files/repository/resources/security
 
 	c. Copy the custom JKS file into both directories. <br>
 
@@ -53,7 +53,7 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
             $file_list = ['repository/resources/security/custom_jks.jks',] 
 
-		 <puppet_environment>/modules/obkm/manifests/params.pp
+		 <puppet_environment>/modules/obiam/manifests/params.pp
 
             $file_list = ['repository/resources/security/custom_jks.jks',] 
 
