@@ -14,7 +14,7 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-class obiam::params inherits ob_common::params{
+class obiam::params inherits ob_common::params {
 
   $start_script_template  = 'bin/wso2server.sh'
 
