@@ -25,21 +25,6 @@ class obam::params inherits ob_common::params{
   # jaggeryapps/admin/site/conf/site.json params
   $work_flow_server_url = "https://${bps_hostname}:9445/services/"
 
-  # template list
-  $template_list_old = [
-    'repository/conf/api-manager.xml',
-    'repository/conf/datasources/master-datasources.xml',
-    'repository/conf/datasources/open-banking-datasources.xml',
-    'repository/conf/carbon.xml',
-    'repository/conf/registry.xml',
-    'repository/conf/user-mgt.xml',
-    'repository/resources/api_templates/velocity_template.xml',
-    'repository/conf/finance/open-banking.xml',
-    'repository/deployment/server/executionplans/global_FreqPerDay.siddhiql',
-    'repository/deployment/server/jaggeryapps/admin/site/conf/site.json',
-    'repository/deployment/server/jaggeryapps/store/site/conf/site.json',
-  ]
-
   # Template list
   $template_list = [
     'repository/conf/deployment.toml',
