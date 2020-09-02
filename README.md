@@ -6,8 +6,8 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
 1. Download the following zip files:<br>
 
-    * wso2-obiam-2.0.0-M2.zip <br>
-    * wso2-obam-2.0.0-M2.zip <br>
+    * wso2-obiam-2.0.0-ALPHA.zip <br>
+    * wso2-obam-2.0.0--ALPHA.zip <br>
 
     Copy them to the `<puppet_environment>/modules/ob_common/files/packs` directory in the **Puppetmaster**.
 
