@@ -250,6 +250,13 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
         #if($handlers.size() > 0)
 <handlers xmlns="http://ws.apache.org/ns/synapse">
 
+## add API properties for the message context to be used by any downstream handler
+<handler class="com.wso2.finance.open.banking.gateway.common.APIPropertiesHandler">
+    <property name="xWso2ApiSpec" value='$apiObj.additionalProperties.get("ob-spec")'/>
+    <property name="xWso2ApiVersion" value='$apiObj.additionalProperties.get("ob-api-version")'/>
+    <property name="xWso2ApiType" value='$apiObj.additionalProperties.get("ob-api-type")'/>
+</handler>
+
 #if($apiObj.additionalProperties.get("ob-spec") && $apiObj.additionalProperties.get("ob-api-type") != "dcr")
 ## add APIInvocationLatencyStats handler
 <handler class="com.wso2.finance.open.banking.management.information.reporting.data.publisher.APIInvocationLatencyStatsHandler"/>
@@ -285,6 +292,7 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
 #if($apiObj.additionalProperties.get("ob-api-type") == "dcr" && $apiObj.additionalProperties.get("ob-spec") == "au")
 <handler class="com.wso2.finance.open.banking.mtls.validator.handler.MTLSValidationHandler"/>
 <handler class="com.wso2.finance.open.banking.gateway.common.APIResourceAccessHandler"/>
+<handler class="com.wso2.finance.open.banking.management.information.reporting.data.publisher.ReportingDataHandler" />
 #end
 
 #if($apiObj.additionalProperties.get("ob-api-type") == "cdr-arrangement" && $apiObj.additionalProperties.get("ob-spec") == "au")
@@ -325,10 +333,7 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
     #if($!apiVersion == "v3.0" || $!apiVersion == "v3.1" || $!apiVersion == "v3.1.1" || $!apiVersion == "v3.1.2")
         <handler class="com.wso2.finance.open.banking.common.identity.validation.SignatureAlgorithmValidatorHandler"/>
         #if($apiObj.additionalProperties.get("ob-api-type") == "payment" || $apiObj.additionalProperties.get("ob-api-type") == "event")
-            <handler class="com.wso2.finance.open.banking.gateway.jws.UKJwsSignatureHandler">
-                <property name="xWso2ApiVersion" value='$apiObj.additionalProperties.get("ob-api-version")'/>
-                <property name="xWso2ApiType" value='$apiObj.additionalProperties.get("ob-api-type")'/>
-            </handler>
+            <handler class="com.wso2.finance.open.banking.gateway.jws.UKJwsSignatureHandler"/>
         #end
     #end
 
@@ -382,9 +387,9 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
 ## add client certificate validation handler
 <handler class="com.wso2.finance.open.banking.gateway.berlin.EIDASCertValidationHandler"/>
 
-#if($!apiVersion == "1.3.3")
+## add api resource access handler
+<handler class="com.wso2.finance.open.banking.gateway.common.APIResourceAccessHandler"/>
 <handler class="com.wso2.finance.open.banking.gateway.api.schema.validation.RequestSchemaValidationHandler"/>
-#end
 
 ## add signature validation handler
 #*

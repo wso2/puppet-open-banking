@@ -122,6 +122,18 @@ filter_policy = "include"
 remove_on_consume_from_api = "true"
 parameters = ["sessionDataKeyConsent","relyingParty", "authenticators", "authFailureMsg", "authFailure"]
 
+[authentication.authenticator.sms_otp.parameters]
+SMSOTPAuthenticationEndpointURL = "authenticationendpoint/smsotp.jsp"
+EnableAccountLockingForFailedAttempts = true
+BackupCode = false
+TokenExpiryTime = 60
+
+[[authentication.custom_authenticator]]
+name = "OBIdentifierExecutor"
+parameters.ValidateUsername = true
+parameters.throttleLimit = 3
+parameters.throttleTimePeriod = 300
+
 #================configs related to api-manager.xml=============
 
 [[apim.gateway.environment]]
@@ -201,6 +213,9 @@ client_credentials.enable = true
 client_credentials.grant_handler = "com.wso2.finance.open.banking.identity.extensions.grant.type.handlers.OBClientCredentialsGrantHandler"
 iwa_ntlm.enable = false
 jwt_bearer.enable = false
+
+[oauth.grant_type.uma_ticket]
+retrieve_uma_permission_info_through_introspection = "true"
 
 [oauth.oidc]
 extensions.id_token_builder = "com.wso2.finance.open.banking.idtoken.builder.OBIDTokenBuilder"
@@ -341,6 +356,7 @@ default_timeout = 1
 dcr_internal_url = "https://<%= @apim_hostname %>:9443/api/openbanking/dynamic-client-registration/common/register/"
 data_recipient_discovery_url = "<!--data recipient discovery url-->"
 software_product_discovery_url = "<!--software product discovery url-->"
+token_revocation_url = "https://<%= @apim_hostname %>:9443/oauth2/revoke"
 
 [open_banking.dcr]
 uri_validation.enable = false
@@ -355,6 +371,8 @@ username = "$ref{super_admin.username}"
 password = "$ref{super_admin.password}"
 
 [open_banking.cert_mgt]
+client_auth_header = "x-wso2-mutual-auth-cert"
+
 [open_banking.cert_mgt.cert_revocation_proxy]
 enable = false
 proxy_host = "PROXY_HOSTNAME"

@@ -368,6 +368,13 @@ funds_confirmation_api_url = "https://<%= @apim_hostname %>:8243/open-banking/{v
 [open_banking.uk.acc_update_by_psu]
 enable = false
 
+[open_banking.uk.payment_restrictions.cut_off_date_time]
+enable = false
+policy = "REJECT"
+daily_cut_off_time = "17:30:00+00:00"
+expected_execution_time = "10:00:00+00:00"
+expected_settlement_time = "11:00:00+00:00"
+
 [open_banking.uk.signing_config]
 enable = false
 obie.trusted_anchors.signing = "openbanking.org.uk"
@@ -388,6 +395,8 @@ username = "$ref{super_admin.username}"
 password = "$ref{super_admin.password}"
 
 [open_banking.cert_mgt]
+client_auth_header = "x-wso2-mutual-auth-cert"
+
 [open_banking.cert_mgt.cert_revocation_proxy]
 enable = false
 proxy_host = "PROXY_HOSTNAME"
@@ -421,3 +430,6 @@ enable = false
 [open_banking.bi_server.fraud_detection.receivers]
 fraud_detection_url = "http://<%= @analytics_hostname %>:8007/FraudDetectionApp/FraudDetectionStream"
 invalid_submission_url = "http://<%= @analytics_hostname %>:8006/InvalidSubmissionsApp/InvalidSubmissionsStream"
+
+[open_banking.account_id_validation_on_retrieval]
+enable = false

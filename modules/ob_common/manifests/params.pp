@@ -31,7 +31,7 @@ class ob_common::params {
   $java_home    = "${java_dir}/${jdk_name}"
 
   $wso2_service_name  = "wso2${profile}"
-  $version            = '2.0.0-M2'
+  $version            = '2.0.0-ALPHA'
   $pack               = "wso2-${profile}-${version}"
 
   # Pack directories

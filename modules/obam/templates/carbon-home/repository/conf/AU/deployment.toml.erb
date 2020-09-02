@@ -155,8 +155,8 @@ allow_headers = ["authorization","Access-Control-Allow-Origin","Content-Type","S
 allow_credentials = false
 
 [apim.throttling]
-enable_data_publishing = false
-jms.topic_connection_factory = "amqp://admin!wso2.com!carbon.super:${admin.password}@clientid/carbon?brokerlist='tcp://${carbon.local.ip}:${jms.port}'"
+enable_data_publishing = true
+jms.topic_connection_factory = "amqp://admin!wso2.com!carbon.super:$ref{super_admin.password}@clientid/carbon?brokerlist='tcp://${carbon.local.ip}:${jms.port}'"
 receiver_username = "$ref{super_admin.username}@carbon.super"
 
 [apim.analytics]
@@ -362,7 +362,11 @@ api_url = "https://<%= @apim_hostname %>:8243/open-banking/v3.1/event-notificati
 [open_banking.au]
 holder_identifier = "<!--configure bank specific identifier-->"
 
+[open_banking.au.push_authorisation]
+expiry_time = "1"
+
 [open_banking.au.metadata_cache]
+default_timeout = 1
 dcr_internal_url = "https://<%= @apim_hostname %>:9443/api/openbanking/dynamic-client-registration/common/register/"
 
 [open_banking.api_security]
@@ -373,6 +377,8 @@ username = "$ref{super_admin.username}"
 password = "$ref{super_admin.password}"
 
 [open_banking.cert_mgt]
+client_auth_header = "x-wso2-mutual-auth-cert"
+
 [open_banking.cert_mgt.cert_revocation_proxy]
 enable = false
 proxy_host = "PROXY_HOSTNAME"
@@ -406,3 +412,6 @@ enable = false
 [open_banking.bi_server.fraud_detection.receivers]
 fraud_detection_url = "http://<%= @analytics_hostname %>:8007/FraudDetectionApp/FraudDetectionStream"
 invalid_submission_url = "http://<%= @analytics_hostname %>:8006/InvalidSubmissionsApp/InvalidSubmissionsStream"
+
+[open_banking.account_id_validation_on_retrieval]
+enable = false
