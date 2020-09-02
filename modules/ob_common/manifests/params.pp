@@ -61,48 +61,36 @@ class ob_common::params {
   $db_apimgt_username                = 'wso2carbon'
   $db_apimgt_password                = 'wso2carbon'
   $db_apimgt_validation_query        = 'SELECT 1'
-  # Use below for oracle
-  # $db_apimgt_validation_query      = 'SELECT 1 FROM DUAL'
   $db_apimgt_driver                  = 'org.h2.Driver'
 
   $db_apimgt_stat_url                = 'jdbc:h2:repository/database/WSO2_APIMGT_STAT_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_apimgt_stat_username           = 'wso2carbon'
   $db_apimgt_stat_password           = 'wso2carbon'
   $db_apimgt_stat_validation_query   = 'SELECT 1'
-  # Use below for oracle
-  # $db_apimgt_stat_validation_query = 'SELECT 1 FROM DUAL'
   $db_apimgt_stat_driver             = 'org.h2.Driver'
 
   $db_am_config_url                 = 'jdbc:h2:repository/database/WSO2_AM_CONFIG_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_am_config_username            = 'wso2carbon'
   $db_am_config_password            = 'wso2carbon'
   $db_am_config_validation_query    = 'SELECT 1'
-  # Use below for oracle
-  # $db_am_config_validation_query  = 'SELECT 1 FROM DUAL'
   $db_am_config_driver              = 'org.h2.Driver'
 
   $db_iam_config_url                = 'jdbc:h2:repository/database/WSO2Config_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_iam_config_username           = 'wso2carbon'
   $db_iam_config_password           = 'wso2carbon'
   $db_iam_config_validation_query   = 'SELECT 1'
-  # Use below for oracle
-  # $db_iam_config_validation_query = 'SELECT 1 FROM DUAL'
   $db_iam_config_driver             = 'org.h2.Driver'
 
   $db_gov_url                       = 'jdbc:h2:repository/database/WSO2REG_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_gov_username                  = 'wso2carbon'
   $db_gov_password                  = 'wso2carbon'
   $db_gov_validation_query          = 'SELECT 1'
-  # Use below for oracle
-  # $db_gov_validation_query        = 'SELECT 1 FROM DUAL'
   $db_gov_driver                    = 'org.h2.Driver'
 
   $db_user_store_url                = 'jdbc:h2:repository/database/WSO2UM_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_user_store_username           = 'wso2carbon'
   $db_user_store_password           = 'wso2carbon'
   $db_user_store_validation_query   = 'SELECT 1'
-  # Use below for oracle
-  # $db_user_store_validation_query = 'SELECT 1 FROM DUAL'
   $db_user_store_driver             = 'org.h2.Driver'
 
   # open-banking-datasources.xml params
@@ -110,7 +98,5 @@ class ob_common::params {
   $db_open_banking_store_username           = 'wso2carbon'
   $db_open_banking_store_password           = 'wso2carbon'
   $db_open_banking_store_validation_query   = 'SELECT 1'
-  # Use below for oracle
-  # $db_open_banking_store_validation_query = 'SELECT 1 FROM DUAL'
   $db_open_banking_store_driver             = 'org.h2.Driver'
 }

@@ -26,7 +26,7 @@ This repository contains the Puppet modules for WSO2 Open Banking.
    Banking Spec (UK, AU, Berlin). The default value is set as UK.
    
 5. Set up the databases in the **Puppet agent** by following the [Configuring Databases](https://docs.wso2.com/display/OB150/Configuring+Databases+for+UK) documentation. <br>
-      Update the `<puppet_environment>modules/ob_common/manifests/params.pp` of **Puppetmaster** to point the created databases.
+   Update the `<puppet_environment>modules/ob_common/manifests/params.pp` of **Puppetmaster** to point the created databases.
 
 6. Run the following profiles on the **Puppet agent**, by executing the following commands.
 
@@ -60,6 +60,18 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 		 <puppet_environment>/modules/obiam/manifests/params.pp
 
             $file_list = ['repository/resources/security/custom_jks.jks',] 
+
+
+## Customizations
+
+1.  When updating the `<puppet_environment>modules/ob_common/manifests/params.pp` of **Puppetmaster** to point the created databases, 
+    change the configurations based on the database type (mysql/oracle/mssql).
+    
+    For mysql/mssql:
+    ```$<db_name>_validation_query        = 'SELECT 1'```
+    
+    For oracle:
+    ```$<db_name>_validation_query  = 'SELECT 1 FROM DUAL'```
 
 ## Manifests in a module
 
