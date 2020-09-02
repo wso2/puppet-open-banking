@@ -61,6 +61,17 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
             $file_list = ['repository/resources/security/custom_jks.jks',] 
 
+## Manifests in a module
+
+The run stages for Puppet are described in `<puppet_environment>/manifests/site.pp`, and they follow the given order Main -> Custom.
+
+Each Puppet module contains the following ```.pp``` files.
+
+* Main
+    * params.pp: Contains all the parameters required for main configuration and template.
+    * init.pp: Contains the main script of the module.
+* Custom
+    * custom.pp: To add custom configurations to the Puppet module.
 
 ## Customizations
 
@@ -73,14 +84,3 @@ This repository contains the Puppet modules for WSO2 Open Banking.
     For oracle:
     ```$<db_name>_validation_query  = 'SELECT 1 FROM DUAL'```
 
-## Manifests in a module
-
-The run stages for Puppet are described in `<puppet_environment>/manifests/site.pp`, and they follow the given order Main -> Custom.
-
-Each Puppet module contains the following ```.pp``` files.
-
-* Main
-    * params.pp: Contains all the parameters required for main configuration and template.
-    * init.pp: Contains the main script of the module.
-* Custom
-    * custom.pp: To add custom configurations to the Puppet module.
