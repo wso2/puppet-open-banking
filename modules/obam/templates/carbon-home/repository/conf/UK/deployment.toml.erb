@@ -81,8 +81,6 @@ maxWait = "60000"
 minIdle = "5"
 testOnBorrow = true
 validationQuery= "<%= @db_apimgt_validation_query %>"
-#Use below for oracle
-#validationQuery="SELECT 1 FROM DUAL"
 validationInterval="30000"
 defaultAutoCommit=false
 
@@ -99,8 +97,6 @@ maxWait = "60000"
 minIdle ="5"
 testOnBorrow = true
 validationQuery = "<%= @db_am_config_validation_query %>"
-#Use below for oracle
-#validationQuery="SELECT 1 FROM DUAL"
 validationInterval="30000"
 defaultAutoCommit=false
 
@@ -117,8 +113,6 @@ pool_options.maxWait = "60000"
 pool_options.minIdle = "5"
 pool_options.testOnBorrow = true
 pool_options.validationQuery = "<%= @db_user_store_validation_query %>"
-#Use below for oracle
-#validationQuery="SELECT 1 FROM DUAL"
 pool_options.validationInterval="30000"
 pool_options.defaultAutoCommit=false
 
@@ -135,8 +129,6 @@ pool_options.maxWait = "60000"
 pool_options.minIdle = "5"
 pool_options.testOnBorrow = true
 pool_options.validationQuery = "<%= @db_apimgt_stat_validation_query %>"
-#Use below for oracle
-#validationQuery="SELECT 1 FROM DUAL"
 pool_options.validationInterval="30000"
 pool_options.defaultAutoCommit=false
 
@@ -190,7 +182,7 @@ enable_outbound_auth_header = true
 white_listed_scopes = ["^device_.*", "openid", "^OB_.*", "^TIME_.*"]
 
 [apim.devportal]
-#url = "https://<%= @apim_hostname %>:${mgt.transport.https.port}/devportal"
+url = "https://<%= @apim_hostname %>:${mgt.transport.https.port}/devportal"
 display_multiple_versions = true
 enable_comments = false
 enable_ratings = false
@@ -338,19 +330,17 @@ subscriptions=["POST_ADD_USER"]
 #================configs related to open-banking-datasources.xml=============
 
 [open_banking_database]
-config.url = "DB_OPEN_BANKING_STORE_URL"
-config.username = "DB_USER"
-config.password = "DB_PASS"
-config.driver = "DB_DRIVER"
+config.url = "<%= @db_open_banking_store_url %>"
+config.username = "<%= @db_open_banking_store_username %>"
+config.password = "<%= @db_open_banking_store_password %>"
+config.driver = "<%= @db_open_banking_store_driver %>"
 
 [open_banking_database.config.pool_options]
 maxActive = "150"
 maxWait = "60000"
 minIdle ="5"
 testOnBorrow = true
-validationQuery="SELECT 1"
-#Use below for oracle
-#validationQuery="SELECT 1 FROM DUAL"
+validationQuery = "<%= @db_open_banking_store_validation_query %>"
 validationInterval="30000"
 defaultAutoCommit=false
 

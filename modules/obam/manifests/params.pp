@@ -25,13 +25,19 @@ class obam::params inherits ob_common::params{
   # jaggeryapps/admin/site/conf/site.json params
   $work_flow_server_url = "https://${bps_hostname}:9445/services/"
 
+  # Deployment.toml file
+  $toml_file_path = 'repository/conf'
+  $toml_file_name = 'deployment.toml'
+
   # Template list
   $template_list = [
-    'repository/conf/deployment.toml',
     'repository/resources/api_templates/velocity_template.xml',
     'repository/deployment/server/jaggeryapps/admin/site/conf/site.json',
     'repository/deployment/server/jaggeryapps/devportal/site/public/theme/settings.js'
   ]
+
+  # Common_auth_script_file for AU DCR
+  $au_common_auth_script_file = 'repository/conf/finance/common.auth.script.js'
 
   # Define file list
   $file_list = []

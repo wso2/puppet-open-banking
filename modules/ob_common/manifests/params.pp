@@ -52,7 +52,7 @@ class ob_common::params {
   $bps_hostname       = 'localhost'
 
   # jaggeryapps/admin/site/conf/site.json,deployment.toml params
-  $spec = 'UK' #UK,Berlin or STET 
+  $spec = 'UK' #UK,Berlin or AU
   
   # DBMS related variables
 

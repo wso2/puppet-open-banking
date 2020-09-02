@@ -18,6 +18,15 @@ class obiam inherits obiam::params {
 
   include ob_common
 
+  # Copy relevant deployment.toml to installed directory according to the spec
+  file { "${carbon_home}/${toml_file_path}/${toml_file_name}":
+    ensure  => file,
+    mode    => '0644',
+    content => template("${module_name}/carbon-home/${toml_file_path}/${spec}/${toml_file_name}.erb"),
+    notify  => Service["${wso2_service_name}"],
+    require => Class["ob_common"]
+  }
+
   # Copy configuration changes to the installed directory
   $template_list.each |String $template| {
     file { "${carbon_home}/${template}":

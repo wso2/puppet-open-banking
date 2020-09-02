@@ -22,9 +22,12 @@ class obiam::params inherits ob_common::params {
   $jvmxms = '2048m'
   $jvmxmx = '2048m'
 
+  # Deployment.toml file
+  $toml_file_path = 'repository/conf'
+  $toml_file_name = 'deployment.toml'
+
   # Template list
   $template_list = [
-    'repository/conf/deployment.toml',
     'repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json',
     'repository/deployment/server/jaggeryapps/ccportal/configs/conf.json'
   ]
