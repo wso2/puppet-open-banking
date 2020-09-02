@@ -20,13 +20,13 @@ This repository contains the Puppet modules for WSO2 Open Banking.
     matches with the name of the extracted folder Ex: jdk1.8.0_161) <br>
     b. Reassign the *$jdk_name* variable in `<puppet_environment>/modules/ob_common/manifests/params.pp` to the name of the downloaded JDK distribution.
 
-3. Change the hostnames in `<puppet_environment>modules/ob_common/manifests/params.pp` of **Puppetmaster**.
+3. Change the hostnames in `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster**.
 
-4. Update the `<puppet_environment>modules/ob_common/manifests/params.pp` of **Puppetmaster** according to the Open 
+4. Update the `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster** according to the Open 
    Banking Spec (UK, AU, Berlin). The default value is set as UK.
    
 5. Set up the databases in the **Puppet agent** by following the [Configuring Databases](https://docs.wso2.com/display/OB150/Configuring+Databases+for+UK) documentation. <br>
-   Update the `<puppet_environment>modules/ob_common/manifests/params.pp` of **Puppetmaster** to point the created databases.
+   Update the `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster** to point the created databases.
 
 6. Run the following profiles on the **Puppet agent**, by executing the following commands.
 
@@ -64,7 +64,7 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
 ## Customizations
 
-1.  When updating the `<puppet_environment>modules/ob_common/manifests/params.pp` of **Puppetmaster** to point the created databases, 
+1.  When updating the `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster** to point the created databases, 
     change the configurations based on the database type (mysql/oracle/mssql).
     
     For mysql/mssql:
