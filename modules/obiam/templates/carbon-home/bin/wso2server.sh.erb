@@ -157,28 +157,6 @@ do
           CMD="restart"
     elif [ "$c" = "--test" ] || [ "$c" = "-test" ] || [ "$c" = "test" ]; then
           CMD="test"
-    elif [ "$c" = "--optimize" ] || [ "$c" = "-optimize" ] || [ "$c" = "optimize" ]; then
-      for option in $*; do
-        if [ "$option" = "--skipConfigOptimization" ] || [ "$option" = "-skipConfigOptimization" ] ||
-        [ "$option" = "skipConfigOptimization" ]; then
-          passedSkipConfigOptimizationOption=true
-          echo "Passed skipConfigOptimization Option: $passedSkipConfigOptimizationOption"
-        fi
-      done
-
-      for profile in $*; do
-        case "$profile" in
-          *Dprofile=*)
-            cd $(dirname "$0")
-            if [ "$passedSkipConfigOptimizationOption" = true ]; then
-              sh profileSetup.sh $profile --skipConfigOptimization
-            else
-              sh profileSetup.sh $profile
-            fi
-            echo "Starting the server..."
-            ;;
-        esac
-      done
     else
         args="$args $c"
     fi
@@ -264,10 +242,6 @@ for t in "$CARBON_HOME"/lib/*.jar
 do
     CARBON_CLASSPATH="$CARBON_CLASSPATH":$t
 done
-for t in "$CARBON_HOME"/lib/endorsed/*.jar
-do
-    CARBON_CLASSPATH="$CARBON_CLASSPATH":$t
-done
 
 
 # For Cygwin, switch paths to Windows format before running java
@@ -299,7 +273,7 @@ if [ -z "$JVM_MEM_OPTS" ]; then
    java_version=$("$JAVACMD" -version 2>&1 | awk -F '"' '/version/ {print $2}')
    JVM_MEM_OPTS="-Xms<%= @jvmxms %> -Xmx<%= @jvmxmx %>"
    if [ "$java_version" \< "1.8" ]; then
-      JVM_MEM_OPTS="$JVM_MEM_OPTS -XX:MaxPermSize=<%= @jvmxms %>"
+      JVM_MEM_OPTS="$JVM_MEM_OPTS -XX:MaxPermSize=256m"
    fi
 fi
 echo "Using Java memory options: $JVM_MEM_OPTS"
@@ -309,10 +283,13 @@ echo "Using Java memory options: $JVM_MEM_OPTS"
 
 JAVA_VER_BASED_OPTS=""
 
-
+NASHRON_ARGS="" 
+ 
 if [ $java_version_formatted -ge 1100 ]; then
-    JAVA_VER_BASED_OPTS="--add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens java.rmi/sun.rmi.transport=ALL-UNNAMED"
+ NASHRON_ARGS="--no-deprecation-warning"
+    JAVA_VER_BASED_OPTS="--add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens java.rmi/sun.rmi.transport=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED"
 fi
+
 
 while [ "$status" = "$START_EXIT_STATUS" ]
 do
@@ -347,12 +324,12 @@ do
     -Dfile.encoding=UTF8 \
     -Djava.net.preferIPv4Stack=true \
     -Dcom.ibm.cacheLocalHost=true \
-    -Dorg.opensaml.httpclient.https.disableHostnameVerification=true \
-    -Dhttpclient.hostnameVerifier=AllowAll \
     -DworkerNode=false \
     -DenableCorrelationLogs=false \
+    -Dhttpclient.hostnameVerifier="DefaultAndLocalhost" \
+ -Dorg.apache.xml.security.ignoreLineBreaks=false \
+ -Dnashorn.args="$NASHRON_ARGS" \
     -Dcarbon.new.config.dir.path="$CARBON_HOME/repository/resources/conf" \
-    -Djavax.xml.xpath.XPathFactory:http://java.sun.com/jaxp/xpath/dom=net.sf.saxon.xpath.XPathFactoryImpl \
     org.wso2.carbon.bootstrap.Bootstrap $*
     status=$?
 done

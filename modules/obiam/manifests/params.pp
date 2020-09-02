@@ -14,7 +14,7 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-class obam::params inherits ob_common::params{
+class obiam::params inherits ob_common::params {
 
   $start_script_template  = 'bin/wso2server.sh'
 
@@ -22,22 +22,15 @@ class obam::params inherits ob_common::params{
   $jvmxms = '2048m'
   $jvmxmx = '2048m'
 
-  # jaggeryapps/admin/site/conf/site.json params
-  $work_flow_server_url = "https://${bps_hostname}:9445/services/"
-
   # Deployment.toml file
   $toml_file_path = 'repository/conf'
   $toml_file_name = 'deployment.toml'
 
   # Template list
   $template_list = [
-    'repository/resources/api_templates/velocity_template.xml',
-    'repository/deployment/server/jaggeryapps/admin/site/conf/site.json',
-    'repository/deployment/server/jaggeryapps/devportal/site/public/theme/settings.js'
+    'repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json',
+    'repository/deployment/server/jaggeryapps/ccportal/configs/conf.json'
   ]
-
-  # Common_auth_script_file for AU DCR
-  $au_common_auth_script_file = 'repository/conf/finance/common.auth.script.js'
 
   # Define file list
   $file_list = []

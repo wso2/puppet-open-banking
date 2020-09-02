@@ -31,7 +31,7 @@ class ob_common::params {
   $java_home    = "${java_dir}/${jdk_name}"
 
   $wso2_service_name  = "wso2${profile}"
-  $version            = '1.5.0'
+  $version            = '2.0.0-ALPHA'
   $pack               = "wso2-${profile}-${version}"
 
   # Pack directories
@@ -45,35 +45,29 @@ class ob_common::params {
   $server_script_path = "${product_dir}/${pack}/bin/wso2server.sh"
   $pid_file_path      = "${product_dir}/${pack}/wso2carbon.pid"
 
-  # Hostname changes in apimanager.xml, openbanking.xml, carbon.xml, identity.xml, application-authentication.xml, conf.json params and velocity_template.xml params
+  # Hostname changes in deployment.toml, conf.json params and velocity_template.xml params
   $iam_hostname       = 'localhost'
   $analytics_hostname = 'localhost'
   $apim_hostname      = 'localhost'
   $bps_hostname       = 'localhost'
 
-  # jaggeryapps/admin/site/conf/site.json,openbaking.xml params
-  $spec = 'UK' #UK,Berlin or STET 
+  # jaggeryapps/admin/site/conf/site.json,deployment.toml params
+  $spec = 'UK' #UK,Berlin or AU
   
   # DBMS related variables
 
   # master-datasources.xml params
-  $db_apimgt_url              = 'jdbc:h2:repository/database/WSO2AM_DB;DB_CLOSE_ON_EXIT=FALSE'
-  $db_apimgt_username         = 'wso2carbon'
-  $db_apimgt_password         = 'wso2carbon'
-  $db_apimgt_validation_query = 'SELECT 1'
-  $db_apimgt_driver           = 'org.h2.Driver'
+  $db_apimgt_url                     = 'jdbc:h2:repository/database/WSO2AM_DB;DB_CLOSE_ON_EXIT=FALSE'
+  $db_apimgt_username                = 'wso2carbon'
+  $db_apimgt_password                = 'wso2carbon'
+  $db_apimgt_validation_query        = 'SELECT 1'
+  $db_apimgt_driver                  = 'org.h2.Driver'
 
-  $db_mb_store_url              = 'jdbc:h2:repository/database/WSO2MB_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
-  $db_mb_store_username         = 'wso2carbon'
-  $db_mb_store_password         = 'wso2carbon'
-  $db_mb_store_validation_query = 'SELECT 1'
-  $db_mb_store_driver           = 'org.h2.Driver'
-
-  $db_apimgt_stat_url               = 'jdbc:h2:repository/database/WSO2_APIMGT_STAT_DB;DB_CLOSE_ON_EXIT=FALSE'
-  $db_apimgt_stat_username          = 'wso2carbon'
-  $db_apimgt_stat_password          = 'wso2carbon'
-  $db_apimgt_stat_validation_query  = 'SELECT 1'
-  $db_apimgt_stat_driver            = 'org.h2.Driver'
+  $db_apimgt_stat_url                = 'jdbc:h2:repository/database/WSO2_APIMGT_STAT_DB;DB_CLOSE_ON_EXIT=FALSE'
+  $db_apimgt_stat_username           = 'wso2carbon'
+  $db_apimgt_stat_password           = 'wso2carbon'
+  $db_apimgt_stat_validation_query   = 'SELECT 1'
+  $db_apimgt_stat_driver             = 'org.h2.Driver'
 
   $db_am_config_url                 = 'jdbc:h2:repository/database/WSO2_AM_CONFIG_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_am_config_username            = 'wso2carbon'
@@ -81,11 +75,11 @@ class ob_common::params {
   $db_am_config_validation_query    = 'SELECT 1'
   $db_am_config_driver              = 'org.h2.Driver'
 
-  $db_km_config_url               = 'jdbc:h2:repository/database/WSO2Config_DB;DB_CLOSE_ON_EXIT=FALSE'
-  $db_km_config_username          = 'wso2carbon'
-  $db_km_config_password          = 'wso2carbon'
-  $db_km_config_validation_query  = 'SELECT 1'
-  $db_km_config_driver            = 'org.h2.Driver'
+  $db_iam_config_url                = 'jdbc:h2:repository/database/WSO2Config_DB;DB_CLOSE_ON_EXIT=FALSE'
+  $db_iam_config_username           = 'wso2carbon'
+  $db_iam_config_password           = 'wso2carbon'
+  $db_iam_config_validation_query   = 'SELECT 1'
+  $db_iam_config_driver             = 'org.h2.Driver'
 
   $db_gov_url                       = 'jdbc:h2:repository/database/WSO2REG_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_gov_username                  = 'wso2carbon'
@@ -100,9 +94,9 @@ class ob_common::params {
   $db_user_store_driver             = 'org.h2.Driver'
 
   # open-banking-datasources.xml params
-  $db_open_banking_store_url              = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_STORE_DB;DB_CLOSE_ON_EXIT=FALSE'
-  $db_open_banking_store_username         = 'wso2carbon'
-  $db_open_banking_store_password         = 'wso2carbon'
-  $db_open_banking_store_validation_query = 'SELECT 1'
-  $db_open_banking_store_driver           = 'org.h2.Driver'
+  $db_open_banking_store_url                = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_STORE_DB;DB_CLOSE_ON_EXIT=FALSE'
+  $db_open_banking_store_username           = 'wso2carbon'
+  $db_open_banking_store_password           = 'wso2carbon'
+  $db_open_banking_store_validation_query   = 'SELECT 1'
+  $db_open_banking_store_driver             = 'org.h2.Driver'
 }

@@ -6,8 +6,8 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
 1. Download the following zip files:<br>
 
-    * wso2-obkm-1.5.0.zip <br>
-    * wso2-obam-1.5.0.zip <br>
+    * wso2-obiam-2.0.0-ALPHA.zip <br>
+    * wso2-obam-2.0.0-ALPHA.zip <br>
 
     Copy them to the `<puppet_environment>/modules/ob_common/files/packs` directory in the **Puppetmaster**.
 
@@ -15,20 +15,24 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
     The Puppet modules for WSO2 Open Banking use Oracle JDK 8 as the JDK distribution. However, you can use any [supported JDK distribution](https://docs.wso2.com/display/compatibility/Tested+Operating+Systems+and+JDKs).
 
-    a. Download Java SE Development Kit 8u161 for Linux x64 from [here](https://www.oracle
-    .com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) and copy the archive into the 
-    `<puppet_environment>/modules/ob_common/files/jdk` directory.<br> (please make sure that the name of the archive 
+    a. Download Java SE Development Kit 8u161 for Linux x64 from [here](https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) and copy the archive into the
+    `<puppet_environment>/modules/ob_common/files/jdk` directory of **Puppetmaster**. <br> (please make sure that the name of the archive 
     matches with the name of the extracted folder Ex: jdk1.8.0_161) <br>
     b. Reassign the *$jdk_name* variable in `<puppet_environment>/modules/ob_common/manifests/params.pp` to the name of the downloaded JDK distribution.
 
-3. Set up the databases by following the [Configuring Databases](https://docs.wso2
-.com/display/OB140/Configuring+Databases) documentation.
+3. Change the hostnames in `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster**.
 
-4. Run the following profiles on the **Puppet agent**, by executing the following commands.
+4. Update the `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster** according to the Open 
+   Banking Spec (UK, AU, Berlin). The default value is set as UK.
+   
+5. Set up the databases in the **Puppet agent** by following the [Configuring Databases](https://docs.wso2.com/display/OB150/Configuring+Databases+for+UK) documentation. <br>
+   Update the `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster** to point the created databases.
 
-    a. To run the ```Open Banking Key Manager profile```:
+6. Run the following profiles on the **Puppet agent**, by executing the following commands.
 
-        export FACTER_profile=obkm
+    a. To run the ```Open Banking Identity & Access Management profile```:
+
+        export FACTER_profile=obiam
         puppet agent -vt
 
     b. To run the ```Open Banking API Manager profile```:
@@ -36,14 +40,14 @@ This repository contains the Puppet modules for WSO2 Open Banking.
         export FACTER_profile=obam
         puppet agent -vt
 
-5. To use a custom Java KeyStore (JKS) file in Open Banking Key Manager and Open Banking API Manager, follow the steps below:
+6. To use a custom Java KeyStore (JKS) file in Open Banking Key Manager and Open Banking API Manager, follow the steps below:
 
 	a. Create a custom JKS by following the steps in the [Creating New Keystores](https://docs.wso2.com/display/ADMIN44x/Creating+New+Keystores#CreatingNewKeystores-ca_certificateAddingCA-signedcertificatestokeystores) documentation.
 
     b. Create the following directories in the **Puppetmaster**:
 
 		 <puppet_environment>/modules/obam/files/repository/resources/security
-		 <puppet_environment>/modules/obkm/files/repository/resources/security
+		 <puppet_environment>/modules/obiam/files/repository/resources/security
 
 	c. Copy the custom JKS file into both directories. <br>
 
@@ -53,7 +57,7 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
             $file_list = ['repository/resources/security/custom_jks.jks',] 
 
-		 <puppet_environment>/modules/obkm/manifests/params.pp
+		 <puppet_environment>/modules/obiam/manifests/params.pp
 
             $file_list = ['repository/resources/security/custom_jks.jks',] 
 
@@ -68,3 +72,15 @@ Each Puppet module contains the following ```.pp``` files.
     * init.pp: Contains the main script of the module.
 * Custom
     * custom.pp: To add custom configurations to the Puppet module.
+
+## Customizations
+
+1.  When updating the `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster** to point the created databases, 
+    change the configurations based on the database type (mysql/oracle/mssql).
+    
+    For mysql/mssql:
+    ```$<db_name>_validation_query        = 'SELECT 1'```
+    
+    For oracle:
+    ```$<db_name>_validation_query  = 'SELECT 1 FROM DUAL'```
+
