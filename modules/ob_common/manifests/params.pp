@@ -56,7 +56,7 @@ class ob_common::params {
   
   # DBMS related variables
 
-  # master-datasources.xml params
+  # deployment.toml params for databases
   $db_apimgt_url                     = 'jdbc:h2:repository/database/WSO2AM_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_apimgt_username                = 'wso2carbon'
   $db_apimgt_password                = 'wso2carbon'
