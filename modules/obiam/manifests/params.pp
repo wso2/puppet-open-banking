@@ -32,10 +32,6 @@ class obiam::params inherits ob_common::params {
     'repository/deployment/server/jaggeryapps/ccportal/configs/conf.json'
   ]
 
-  # AU specific file locations for authentication endpoint webapp
-  $auth_endpoint_source_dir = 'repository/resources/finance/cds-authenticationendpoint/.'
-  $auth_endpoint_target_dir = 'repository/deployment/server/webapps/authenticationendpoint'
-
   # Define file list
   $file_list = []
 
