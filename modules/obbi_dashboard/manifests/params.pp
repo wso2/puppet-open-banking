@@ -32,9 +32,7 @@ class obbi_dashboard::params inherits ob_common::params {
   ]
 
   # Define file list
-  $file_list = [
-    'resources/security/client-truststore.jks'
-  ]
+  $file_list = []
 
   # Define remove file list
   $file_removelist = []
