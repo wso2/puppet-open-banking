@@ -41,12 +41,12 @@ class obiam inherits obiam::params {
   # Copy AU specific files to authentication endpoint webapp
   if $spec == 'AU' {
     file { "${carbon_home}/${auth_endpoint_target_dir}" :
-      ensure => 'directory',
-      owner => $user,
+      ensure  => present,
+      owner   => $user,
       recurse => true,
-      group => $user_group,
-      mode => '0644',
-      source => "file:///${carbon_home}/${auth_endpoint_source_dir}",
+      group   => $user_group,
+      mode    => '0644',
+      source  => "file:///${carbon_home}/${auth_endpoint_source_dir}",
       notify  => Service["${wso2_service_name}"],
       require => Class["ob_common"]
     }
@@ -55,12 +55,12 @@ class obiam inherits obiam::params {
   # Copy files to carbon home directory
   $file_list.each | String $file | {
     file { "${carbon_home}/${file}":
-      ensure => present,
-      owner => $user,
+      ensure  => present,
+      owner   => $user,
       recurse => remote,
-      group => $user_group,
-      mode => '0755',
-      source => "puppet:///modules/${module_name}/${file}",
+      group   => $user_group,
+      mode    => '0755',
+      source  => "puppet:///modules/${module_name}/${file}",
       notify  => Service["${wso2_service_name}"],
       require => Class["ob_common"]
     }
