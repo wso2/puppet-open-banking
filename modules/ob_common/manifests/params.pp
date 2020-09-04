@@ -76,7 +76,7 @@ class ob_common::params {
 
   # DBMS related variables
 
-  # deployment.toml params for databases
+  # master-datasources.xml params for databases
   $db_apimgt_url                     = 'jdbc:h2:repository/database/WSO2AM_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_apimgt_username                = 'wso2carbon'
   $db_apimgt_password                = 'wso2carbon'
@@ -122,22 +122,22 @@ class ob_common::params {
 
   # worker/deployment.yaml and dashboard/deployment.yaml params for databases
 
-   $db_geo_location_url                     = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_GEOLOCATION_DB;DB_CLOSE_ON_EXIT=FALSE'
-   $db_geo_location_username                = 'wso2carbon'
-   $db_geo_location_password                = 'wso2carbon'
-   $db_geo_location_validation_query        = 'SELECT 1'
-   $db_geo_location_driver                  = 'org.h2.Driver'
+  $db_geo_location_url                     = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_GEOLOCATION_DB;DB_CLOSE_ON_EXIT=FALSE'
+  $db_geo_location_username                = 'wso2carbon'
+  $db_geo_location_password                = 'wso2carbon'
+  $db_geo_location_validation_query        = 'SELECT 1'
+  $db_geo_location_driver                  = 'org.h2.Driver'
 
-   $db_ob_reporting_url                     = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_REPORTING_STATS_DB;DB_CLOSE_ON_EXIT=FALSE'
-   $db_ob_reporting_username                = 'wso2carbon'
-   $db_ob_reporting_password                = 'wso2carbon'
-   $db_ob_reporting_validation_query        = 'SELECT 1'
-   $db_ob_reporting_driver                  = 'org.h2.Driver'
+  $db_ob_reporting_url                     = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_REPORTING_STATS_DB;DB_CLOSE_ON_EXIT=FALSE'
+  $db_ob_reporting_username                = 'wso2carbon'
+  $db_ob_reporting_password                = 'wso2carbon'
+  $db_ob_reporting_validation_query        = 'SELECT 1'
+  $db_ob_reporting_driver                  = 'org.h2.Driver'
 
-   $db_ob_reporting_summarized_url                 = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_REPORTING_SUMMARIZED_DB;DB_CLOSE_ON_EXIT=FALSE'
-   $db_ob_reporting_summarized_username            = 'wso2carbon'
-   $db_ob_reporting_summarized_password            = 'wso2carbon'
-   $db_ob_reporting_summarized_validation_query    = 'SELECT 1'
-   $db_ob_reporting_summarized_driver              = 'org.h2.Driver'
+  $db_ob_reporting_summarized_url                 = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_REPORTING_SUMMARIZED_DB;DB_CLOSE_ON_EXIT=FALSE'
+  $db_ob_reporting_summarized_username            = 'wso2carbon'
+  $db_ob_reporting_summarized_password            = 'wso2carbon'
+  $db_ob_reporting_summarized_validation_query    = 'SELECT 1'
+  $db_ob_reporting_summarized_driver              = 'org.h2.Driver'
 }
 
