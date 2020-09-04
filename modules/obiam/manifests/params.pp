@@ -37,5 +37,4 @@ class obiam::params inherits ob_common::params {
 
   # Define remove file list
   $file_removelist = []
-
 }
