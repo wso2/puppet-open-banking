@@ -76,7 +76,7 @@ class ob_common::params {
 
   # DBMS related variables
 
-  # master-datasources.xml params
+  # deployment.toml params for databases
   $db_apimgt_url                     = 'jdbc:h2:repository/database/WSO2AM_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_apimgt_username                = 'wso2carbon'
   $db_apimgt_password                = 'wso2carbon'
@@ -113,7 +113,6 @@ class ob_common::params {
   $db_user_store_validation_query   = 'SELECT 1'
   $db_user_store_driver             = 'org.h2.Driver'
 
-  # open-banking-datasources.xml params
   $db_open_banking_store_url                = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_STORE_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_open_banking_store_username           = 'wso2carbon'
   $db_open_banking_store_password           = 'wso2carbon'
@@ -121,7 +120,6 @@ class ob_common::params {
   $db_open_banking_store_driver             = 'org.h2.Driver'
 
   # worker/deployment.yaml and dashboard/deployment.yaml params for databases
-
   $db_geo_location_url                     = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_GEOLOCATION_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_geo_location_username                = 'wso2carbon'
   $db_geo_location_password                = 'wso2carbon'
@@ -140,4 +138,3 @@ class ob_common::params {
   $db_ob_reporting_summarized_validation_query    = 'SELECT 1'
   $db_ob_reporting_summarized_driver              = 'org.h2.Driver'
 }
-
