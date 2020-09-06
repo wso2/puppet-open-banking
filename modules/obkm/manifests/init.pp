@@ -53,6 +53,8 @@ class obkm inherits obkm::params {
       require => Class["ob_common"]
     }
   }
+  
+  include obkm::obkmau
 
   # Copy wso2server.sh to installed directory
   file { "${carbon_home}/${start_script_template}":

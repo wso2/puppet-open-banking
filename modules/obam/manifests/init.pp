@@ -53,6 +53,8 @@ class obam inherits obam::params{
       require => Class["ob_common"]
     }
   }
+  
+  include obam::obamau
 
   # Copy wso2server.sh to installed directory
   file { "${carbon_home}/${start_script_template}":
