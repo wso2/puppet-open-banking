@@ -17,6 +17,10 @@
 class obkm::params inherits ob_common::params {
 
   $start_script_template  = 'bin/wso2server.sh'
+  
+  #File paths obkm
+  $obkm_identity = "${product_dir}/${pack}/repository/conf/identity/identity.xml"
+  $obkm_openbanking = "${product_dir}/${pack}/repository/conf/finance/open-banking.xml"
 
   # Maximum and minimum memory sizes for JVM
   $jvmxms = '2048m'

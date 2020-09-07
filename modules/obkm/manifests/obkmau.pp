@@ -19,16 +19,6 @@ class obkm::obkmau inherits obkm::params{
 
 include stdlib
 
-#File paths obkm
-$obkm_identity = "${product_dir}/${pack}/repository/conf/identity/identity.xml"
-$obkm_openbanking = "${product_dir}/${pack}/repository/conf/finance/open-banking.xml"
-
-$obkmopenbanking= "${product_dir}/${pack}/repository/conf/finance/open-banking.xml"
-$obkmjaggery= "${product_dir}/${pack}/repository/deployment/server/jaggeryapps/ccportal/configs/conf.json"
-$obkmidentity="${product_dir}/${pack}/repository/conf/identity/identity.xml"
-
-
-
 if ($spec =="STET")  {
 
 notify{"Executing Spec ${spec} for OBKM":}
@@ -38,18 +28,21 @@ file_line {'editing AU spec UserAccessTokenDefaultValidityPeriod, obkm identity.
   path  => $obkm_identity,
   line   => '<UserAccessTokenDefaultValidityPeriod>120</UserAccessTokenDefaultValidityPeriod>',
   match => '<UserAccessTokenDefaultValidityPeriod>',
+  append_on_no_match => false,
 }
 
 file_line {'editing AU spec ValidateAccountIdOnRetrieval, open-banking.xml' :
   path  => $obkm_openbanking,
   line   => '<ValidateAccountIdOnRetrieval>true</ValidateAccountIdOnRetrieval>',
   match => '<ValidateAccountIdOnRetrieval>',
+  append_on_no_match => false,
 }
 
 file_line {'editing AU spec EnableMTLSTokenBinding, open-banking.xml' :
   path  => $obkm_openbanking,
   line   => '<EnableMTLSTokenBinding>true</EnableMTLSTokenBinding>',
   match => '<EnableMTLSTokenBinding>',
+  append_on_no_match => false,
 }
 
 file_line {'Appending AU spec EventListener, identity.xml' :

@@ -17,6 +17,10 @@
 class obam::params inherits ob_common::params{
 
   $start_script_template  = 'bin/wso2server.sh'
+  
+  #File paths obam
+  $obam_openbanking = "${product_dir}/${pack}/repository/conf/finance/open-banking.xml"
+  $obam_tokenapi = "${product_dir}/${pack}/repository/deployment/server/synapse-configs/default/api/_TokenAPI_.xml"
 
   # Maximum and minimum memory sizes for JVM
   $jvmxms = '2048m'

@@ -19,15 +19,6 @@ class obam::obamau inherits obam::params{
 
 include stdlib
 
-#File paths obam
-$obam_openbanking = "${product_dir}/${pack}/repository/conf/finance/open-banking.xml"
-$obam_tokenapi = "${product_dir}/${pack}/repository/deployment/server/synapse-configs/default/api/_TokenAPI_.xml"
-
-$obamopenbanking = "${product_dir}/${pack}/repository/conf/finance/open-banking.xml"
-$obamjaggery= "${product_dir}/${pack}/repository/deployment/server/jaggeryapps/store/site/conf/site.json"
-$obamtoken ="${product_dir}/${pack}/repository/deployment/server/synapse-configs/default/api/_TokenAPI_.xml"
-
-
 if ($spec =="STET")  {
 notify{"Executing Spec ${spec} for OBAM":}
 #OBAM Config Edits for AU Spec
