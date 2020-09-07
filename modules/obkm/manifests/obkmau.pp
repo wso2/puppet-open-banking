@@ -43,13 +43,13 @@ file_line {'editing AU spec UserAccessTokenDefaultValidityPeriod, obkm identity.
 file_line {'editing AU spec ValidateAccountIdOnRetrieval, open-banking.xml' :
   path  => $obkm_openbanking,
   line   => '<ValidateAccountIdOnRetrieval>true</ValidateAccountIdOnRetrieval>',
-  match => '<ValidateAccountIdOnRetrieval>false</ValidateAccountIdOnRetrieval>',
+  match => '<ValidateAccountIdOnRetrieval>',
 }
 
 file_line {'editing AU spec EnableMTLSTokenBinding, open-banking.xml' :
   path  => $obkm_openbanking,
   line   => '<EnableMTLSTokenBinding>true</EnableMTLSTokenBinding>',
-  match => '<EnableMTLSTokenBinding>false</EnableMTLSTokenBinding>',
+  match => '<EnableMTLSTokenBinding>',
 }
 
 file_line {'Appending AU spec EventListener, identity.xml' :
@@ -61,7 +61,7 @@ file_line {'Appending AU spec EventListener, identity.xml' :
 }
 
 
-file_line {'editing AU spec , open-banking.xml' :
+file_line {'editing AU spec ClientAuthenticationHeader, open-banking.xml' :
   path  => $obkm_openbanking,
   line   => '<ClientAuthenticationHeader>x-wso2-mutual-auth-cert</ClientAuthenticationHeader>',
   after => '<CertificateManagement>',
