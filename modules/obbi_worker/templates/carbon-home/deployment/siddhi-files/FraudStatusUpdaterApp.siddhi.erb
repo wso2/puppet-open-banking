@@ -56,5 +56,3 @@ select consentId, option as status
 update FraudulentTransactionData
 set FraudulentTransactionData.status = status
 on FraudulentTransactionData.consentId == consentId;
-
-

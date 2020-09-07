@@ -61,7 +61,7 @@ class ob_common::params {
     }
   }
 
-  # Pack Directories
+  # OB solution pack locations
   $carbon_home    = "${product_dir}/${pack}"
   $product_binary = "${pack}.zip"
 
