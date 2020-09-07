@@ -32,12 +32,12 @@ class obbi_worker inherits obbi_worker::params {
   # Copy AU specific siddhi app files
   if $spec == 'AU' {
     file { "${carbon_home}/${au_siddhi_apps_target_dir}" :
-      ensure => present,
-      owner => $user,
+      ensure  => present,
+      owner   => $user,
       recurse => true,
-      group => $user_group,
-      mode => '0644',
-      source => "file:///${carbon_home}/${au_siddhi_apps_source_dir}",
+      group   => $user_group,
+      mode    => '0644',
+      source  => "file:///${carbon_home}/${au_siddhi_apps_source_dir}",
       notify  => Service["${wso2_service_name}"],
       require => Class["ob_common"]
     }
@@ -46,12 +46,12 @@ class obbi_worker inherits obbi_worker::params {
   # Copy files to carbon home directory
   $file_list.each | String $file | {
     file { "${carbon_home}/${file}":
-      ensure => present,
-      owner => $user,
+      ensure  => present,
+      owner   => $user,
       recurse => remote,
-      group => $user_group,
-      mode => '0755',
-      source => "puppet:///modules/${module_name}/${file}",
+      group   => $user_group,
+      mode    => '0755',
+      source  => "puppet:///modules/${module_name}/${file}",
       notify  => Service["${wso2_service_name}"],
       require => Class["ob_common"]
     }
@@ -60,9 +60,9 @@ class obbi_worker inherits obbi_worker::params {
   # Delete files to carbon home directory
   $file_removelist.each | String $removefile | {
     file { "${carbon_home}/${removefile}":
-      ensure => absent,
-      owner => $user,
-      group => $user_group,
+      ensure  => absent,
+      owner   => $user,
+      group   => $user_group,
       notify  => Service["${wso2_service_name}"],
       require => Class["ob_common"]
     }
