@@ -19,7 +19,7 @@ class obam::obamau inherits obam::params{
 
 include stdlib
 
-if ($spec =="STET")  {
+if ($spec =="AU")  {
 notify{"Executing Spec ${spec} for OBAM":}
 #OBAM Config Edits for AU Spec
 

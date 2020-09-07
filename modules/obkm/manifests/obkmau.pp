@@ -19,7 +19,7 @@ class obkm::obkmau inherits obkm::params{
 
 include stdlib
 
-if ($spec =="STET")  {
+if ($spec =="AU")  {
 
 notify{"Executing Spec ${spec} for OBKM":}
 #OBKM Config Edits for AU Spec
