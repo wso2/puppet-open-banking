@@ -54,7 +54,7 @@ class obam inherits obam::params{
     }
   }
   
-  include obam::obamau
+  include obam::obam_au
 
   # Copy wso2server.sh to installed directory
   file { "${carbon_home}/${start_script_template}":

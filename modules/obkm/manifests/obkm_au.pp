@@ -15,7 +15,7 @@
 #----------------------------------------------------------------------------
 
 
-class obkm::obkmau inherits obkm::params{
+class obkm::obkm_au inherits obkm::params{
 
 include stdlib
 

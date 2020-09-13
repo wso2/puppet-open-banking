@@ -14,8 +14,7 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-
-class obam::obamau inherits obam::params{
+class obam::obam_au inherits obam::params{
 
 include stdlib
 
