@@ -14,7 +14,6 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-
 class obkm::obkm_au inherits obkm::params{
 
 include stdlib
@@ -53,13 +52,12 @@ file_line {'Appending AU spec EventListener, identity.xml' :
   match   => '<EventListener enable="true" name="com.wso2.finance.open.banking.identity.extensions.listeners.TokenRevocationListener" orderId="100" type="org.wso2.carbon.identity.core.handler.AbstractIdentityHandler"/>',
 }
 
-
 file_line {'editing AU spec ClientAuthenticationHeader, open-banking.xml' :
   path  => $obkm_openbanking,
   line   => '<ClientAuthenticationHeader>x-wso2-mutual-auth-cert</ClientAuthenticationHeader>',
   after => '<CertificateManagement>',
   multiple => false,
-  match   => '<ClientAuthenticationHeader>x-wso2-mutual-auth-cert</ClientAuthenticationHeader>',
+  match   => '<ClientAuthenticationHeader>',
 }
 
 }else {
