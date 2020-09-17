@@ -176,7 +176,7 @@ oauth2_token_url = "${carbon.protocol}://<%= @apim_hostname %>:8243/token"
 oauth2_user_info_url = "${carbon.protocol}://<%= @apim_hostname %>:8243/userinfo"
 oauth2_consent_page = "${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/ob/authenticationendpoint/oauth2_authz.do"
 oidc_consent_page = "${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/ob/authenticationendpoint/oauth2_consent.do"
-oauth2_dcr_url = "${carbon.protocol}://<%= @apim_hostname %>:8243/register"
+oauth2_dcr_url = "${carbon.protocol}://<%= @apim_hostname %>:8243/open-banking/v3.2/register"
 
 [oauth.token_renewal]
 renew_refresh_token = false
