@@ -133,6 +133,11 @@ pool_options.validationInterval="30000"
 pool_options.defaultAutoCommit=false
 
 #================configs related to api-manager.xml=============
+[apim.idp]
+server_url = "https://<%= @iam_hostname %>:9446"
+authorize_endpoint = "https://<%= @iam_hostname %>:9446/oauth2/authorize"
+oidc_logout_endpoint = "https://<%= @iam_hostname %>:9446/oidc/logout"
+oidc_check_session_endpoint = "https://<%= @iam_hostname %>:9446/oidc/checksession"
 
 [[apim.gateway.environment]]
 name = "Production and Sandbox"
@@ -140,7 +145,7 @@ type = "hybrid"
 display_in_api_console = true
 description = "This is a hybrid gateway that handles both production and sandbox token traffic."
 show_as_token_endpoint_url = true
-service_url = "https://<%= @apim_hostname %>:${mgt.transport.https.port}/services/"
+service_url = "https://localhost:${mgt.transport.https.port}/services/"
 username= "${admin.username}"
 password= "${admin.password}"
 ws_endpoint = "ws://localhost:9099"
@@ -252,13 +257,6 @@ permissions=["/permission/admin"]
 [authentication.adaptive.event_publisher]
 url = "https://localhost:8280/"
 authentication.basic.enable = true
-
-#================configs related to application-authentication.xml=============
-
-[authentication.endpoints]
-login_url = "https://<%= @iam_hostname %>:9446/authenticationendpoint/login.do"
-retry_url = "https://<%= @iam_hostname %>:9446/authenticationendpoint/retry.do"
-request_missing_claims_url = "https://<%= @iam_hostname %>:9446/authenticationendpoint/claims.do"
 
 #================configs related to identity-event.properties=============
 
