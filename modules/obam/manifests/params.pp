@@ -21,6 +21,7 @@ class obam::params inherits ob_common::params{
   #File paths obam
   $obam_openbanking = "${product_dir}/${pack}/repository/conf/finance/open-banking.xml"
   $obam_tokenapi = "${product_dir}/${pack}/repository/deployment/server/synapse-configs/default/api/_TokenAPI_.xml"
+  $obam_apimanager = "${product_dir}/${pack}/repository/conf/api-manager.xml"
 
   # Maximum and minimum memory sizes for JVM
   $jvmxms = '2048m'

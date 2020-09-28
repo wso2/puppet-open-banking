@@ -38,6 +38,87 @@ file_line {'appending AU handler class, _TokenAPI_.xml' :
   multiple => false,
 }
 
+file_line {'Updating api-manager.xml attributes with software_id_sandbox, api-manager.xml' :
+  path  => $obam_apimanager ,
+  line   => '<Attribute required="false"> <Name>software_id_sandbox</Name> <Description>Software ID of the sandbox</Description> </Attribute>',
+  after => '<ApplicationAttributes>',
+  match => '<Attribute required="false"> <Name>software_id_sandbox</Name> <Description>Software ID of the sandbox</Description> </Attribute>',
+  multiple => false,
+}
+
+file_line {'Updating api-manager.xml attributes with software_id_production, api-manager.xml' :
+  path  => $obam_apimanager ,
+  line   => '<Attribute required="false"> <Name>software_id_production</Name> <Description>Software ID of the production</Description> </Attribute>',
+  after => '<ApplicationAttributes>',
+  match => '<Attribute required="false"> <Name>software_id_production</Name> <Description>Software ID of the production</Description> </Attribute>',
+  multiple => false,
+}
+
+file_line {'Updating api-manager.xml attributes with software_roles_sandbox, api-manager.xml' :
+  path  => $obam_apimanager ,
+  line   => '<Attribute required="false"> <Name>software_roles_sandbox</Name> <Description>Software roles of the sandbox</Description> </Attribute>',
+  after => '<ApplicationAttributes>',
+  match => '<Attribute required="false"> <Name>software_roles_sandbox</Name> <Description>Software roles of the sandbox</Description> </Attribute>',
+  multiple => false,
+}
+
+file_line {'Updating api-manager.xml attributes with software_roles_production, api-manager.xml' :
+  path  => $obam_apimanager ,
+  line   => '<Attribute required="false"> <Name>software_roles_production</Name> <Description>Software roles of the production</Description> </Attribute>',
+  after => '<ApplicationAttributes>',
+  match => '<Attribute required="false"> <Name>software_roles_production</Name> <Description>Software roles of the production</Description> </Attribute>',
+  multiple => false,
+}
+
+file_line {'Updating api-manager.xml attributes with software_jwks_endpoint_sandbox, api-manager.xml' :
+  path  => $obam_apimanager ,
+  line   => '<Attribute required="false"> <Name>software_jwks_endpoint_sandbox</Name> <Description>JWKS endpoint of sandbox</Description> </Attribute>',
+  after => '<ApplicationAttributes>',
+  match => '<Attribute required="false"> <Name>software_jwks_endpoint_sandbox</Name> <Description>JWKS endpoint of sandbox</Description> </Attribute>',
+  multiple => false,
+}
+
+file_line {'Updating api-manager.xml attributes with software_jwks_endpoint_production, api-manager.xml' :
+  path  => $obam_apimanager ,
+  line   => '<Attribute required="false"> <Name>software_jwks_endpoint_production</Name> <Description>JWKS endpoint of production</Description> </Attribute>',
+  after => '<ApplicationAttributes>',
+  match => '<Attribute required="false"> <Name>software_jwks_endpoint_production</Name> <Description>JWKS endpoint of production</Description> </Attribute>',
+  multiple => false,
+}
+
+file_line {'Updating api-manager.xml attributes with org_id_sandbox, api-manager.xml' :
+  path  => $obam_apimanager ,
+  line   => '<Attribute required="false"> <Name>org_id_sandbox</Name> <Description>Organization ID of the sandbox</Description> </Attribute>',
+  after => '<ApplicationAttributes>',
+  match => '<Attribute required="false"> <Name>org_id_sandbox</Name> <Description>Organization ID of the sandbox</Description> </Attribute>',
+  multiple => false,
+}
+
+file_line {'Updating api-manager.xml attributes with org_id_production, api-manager.xml' :
+  path  => $obam_apimanager ,
+  line   => '<Attribute required="false"> <Name>org_id_production</Name> <Description>Organization ID of the production</Description> </Attribute>',
+  after => '<ApplicationAttributes>',
+  match => '<Attribute required="false"> <Name>org_id_production</Name> <Description>Organization ID of the production</Description> </Attribute>',
+  multiple => false,
+}
+
+file_line {'Updating api-manager.xml attributes with scope_sandbox, api-manager.xml' :
+  path  => $obam_apimanager ,
+  line   => '<Attribute required="false"> <Name>scope_sandbox</Name> <Description>Allowed scopes for sandbox</Description> </Attribute>',
+  after => '<ApplicationAttributes>',
+  match => '<Attribute required="false"> <Name>scope_sandbox</Name> <Description>Allowed scopes for sandbox</Description> </Attribute>',
+  multiple => false,
+}
+
+file_line {'Updating api-manager.xml attributes with scope_production, api-manager.xml' :
+  path  => $obam_apimanager ,
+  line   => '<Attribute required="false"> <Name>scope_production</Name> <Description>Allowed scopes for production</Description> </Attribute>',
+  after => '<ApplicationAttributes>',
+  match => '<Attribute required="false"> <Name>scope_production</Name> <Description>Allowed scopes for production</Description> </Attribute>',
+  multiple => false,
+}
+
+
 }else {
   notify{"Default Spec ${spec}":}
 }
