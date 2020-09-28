@@ -60,6 +60,13 @@ file_line {'editing AU spec ClientAuthenticationHeader, open-banking.xml' :
   match   => '<ClientAuthenticationHeader>',
 }
 
+file_line {'Updating identity.xml to display the DCR endpoint in OpenID Connect Discovery, identity.xml' :
+  path  => $obkm_identity,
+  line   => '<OAuth2DCREPUrl>${carbon.protocol}://localhost:8243/open-banking/0.1/register</OAuth2DCREPUrl>',
+  match => '<OAuth2DCREPUrl>',
+  append_on_no_match => false,
+}
+
 }else {
   notify{"Default Spec ${spec}":}
 }
