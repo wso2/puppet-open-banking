@@ -26,7 +26,7 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 4. Update the `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster** according to the Open 
    Banking Spec (UK, AU, Berlin). The default value is set as UK.
    
-5. Set up the databases in the **Puppet agent** by following the [Configuring Databases](https://docs.wso2.com/display/OB150/Configuring+Databases+for+UK) documentation. <br>
+5. Set up the databases in the **Puppet agent** by following the [Configuring Databases](https://docs.wso2.com/display/OB200/Configuring+Databases+for+UK) documentation. <br>
    Update the `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster** to point the created databases.
 
 6. Run the following profiles on the **Puppet agent**, by executing the following commands.
