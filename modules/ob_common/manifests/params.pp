@@ -30,7 +30,7 @@ class ob_common::params {
   $jdk_name     = 'jdk1.8.0_161'
   $java_home    = "${java_dir}/${jdk_name}"
 
-  $version            = '2.0.0-ALPHA'
+  $version            = '2.0.0'
 
   $target         = '/mnt'
   $product_dir    = "${target}/${profile}"
