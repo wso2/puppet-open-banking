@@ -70,5 +70,4 @@ class obkm inherits obkm::params {
     notify  => Service["${wso2_service_name}"],
     require => Class["ob_common"]
   }
-
 }

@@ -22,8 +22,6 @@ class obkm::params inherits ob_common::params {
   $obkm_identity = "${product_dir}/${pack}/repository/conf/identity/identity.xml"
   $obkm_openbanking = "${product_dir}/${pack}/repository/conf/finance/open-banking.xml"
   $obkm_apimanager = "${product_dir}/${pack}/repository/conf/api-manager.xml"
-  
-  #$obkm_open_banking_common = "${product_dir}/${pack}/repository/components/plugins/com.wso2.finance.open.banking.common_1.5.0.jar"
 
   # Maximum and minimum memory sizes for JVM
   $jvmxms = '2048m'

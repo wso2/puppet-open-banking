@@ -27,8 +27,6 @@ class obam::params inherits ob_common::params{
   $obam_application_key ="${product_dir}/${pack}/repository/deployment/server/jaggeryapps/store/site/themes/wso2/subthemes/wso2-open-banking/templates/application/application-keys/template.jag"
   $obam_generate_jwt ="${product_dir}/${pack}/repository/deployment/server/jaggeryapps/store/site/blocks/generate-jwt/ajax/generate-jwt.jag"
   $obam_token_generator="${product_dir}/${pack}/repository/components/dropins/com.wso2.finance.open.banking.token.generator-1.5.0.jar"
-  
-  #--------------------------------------------------
   $obam_open_banking_common="${product_dir}/${pack}/repository/components/plugins/com.wso2.finance.open.banking.common_1.5.0.jar"
 
   # Maximum and minimum memory sizes for JVM

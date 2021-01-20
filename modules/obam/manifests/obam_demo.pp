@@ -1,5 +1,5 @@
 #----------------------------------------------------------------------------
-#  Copyright (c) 2020 WSO2, Inc. http://www.wso2.org
+#  Copyright (c) 2021 WSO2, Inc. http://www.wso2.org
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -16,65 +16,56 @@
 
 class obam::obam_demo inherits obam::params{
 
-#Puppet scripts to update templates for OBAM demo site deployment.
-notify{"Executing OBAM Demo site template replacement":}
+  #Puppet scripts to update templates for OBAM demo site deployment.
+  notify{"Executing OBAM Demo site template replacement":}
 
-file { $obam_swagger:
-    mode => "0644",
-    owner => 'root',
-    group => 'root',
-    source => 'puppet:///modules/obam/swagger.jag',
-}
+  file { $obam_swagger:
+      mode => "0644",
+      owner => 'root',
+      group => 'root',
+      source => 'puppet:///modules/obam/swagger.jag',
+  }
 
-file { $obam_header:
-    mode => "0644",
-    owner => 'root',
-    group => 'root',
-    source => 'puppet:///modules/obam/header.jag',
-}
+  file { $obam_header:
+      mode => "0644",
+      owner => 'root',
+      group => 'root',
+      source => 'puppet:///modules/obam/header.jag',
+  }
 
-file { $obam_application_key:
-    mode => "0644",
-    owner => 'root',
-    group => 'root',
-    source => 'puppet:///modules/obam/application-keys.jag',
-}
+  file { $obam_application_key:
+      mode => "0644",
+      owner => 'root',
+      group => 'root',
+      source => 'puppet:///modules/obam/application-keys.jag',
+  }
 
-file { ["${product_dir}/${pack}/repository/deployment/server/jaggeryapps/store/site/blocks/generate-jwt/",
-        "${product_dir}/${pack}/repository/deployment/server/jaggeryapps/store/site/blocks/generate-jwt/ajax/"]:
-        ensure => directory,
-        owner => 'root',
-        group => 'root',
-        mode   => '0755'
-    }
+  file { ["${product_dir}/${pack}/repository/deployment/server/jaggeryapps/store/site/blocks/generate-jwt/",
+  "${product_dir}/${pack}/repository/deployment/server/jaggeryapps/store/site/blocks/generate-jwt/ajax/"]:
+      ensure => directory,
+      owner => 'root',
+      group => 'root',
+      mode   => '0755'
+  }
 
-file { $obam_generate_jwt:
-    mode => "0644",
-    owner => 'root',
-    group => 'root',
-    source => 'puppet:///modules/obam/generate-jwt.jag',
-}
+  file { $obam_generate_jwt:
+      mode => "0644",
+      owner => 'root',
+      group => 'root',
+      source => 'puppet:///modules/obam/generate-jwt.jag',
+  }
 
-file { $obam_token_generator:
-    mode => "0644",
-    owner => 'root',
-    group => 'root',
-    source => 'puppet:///modules/obam/com.wso2.finance.open.banking.token.generator-1.5.0.jar',
-}
+  file { $obam_token_generator:
+      mode => "0644",
+      owner => 'root',
+      group => 'root',
+      source => 'puppet:///modules/obam/com.wso2.finance.open.banking.token.generator-1.5.0.jar',
+  }
 
-#--------------------------------------------------
-file { $obam_open_banking_common:
-    mode => "0644",
-    owner => 'root',
-    group => 'root',
-    source => 'puppet:///modules/obam/com.wso2.finance.open.banking.common-1.5.0.jar',
-}
-
-#file_line {'Cross origin configuration, api-manager.xml' :
-#    path  => $obam_apimanager,
-#    line   => '<Access-Control-Allow-Headers>x-idempotency-key,x-jws-signature,x-fapi-financial-id,authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction</Access-Control-Allow-Headers>',
-#    multiple => false,
-#    match => '<Access-Control-Allow-Headers>',
-#}
-
+  file { $obam_open_banking_common:
+      mode => "0644",
+      owner => 'root',
+      group => 'root',
+      source => 'puppet:///modules/obam/com.wso2.finance.open.banking.common-1.5.0.jar',
+  }
 }
