@@ -54,6 +54,12 @@ class obkm inherits obkm::params {
     }
   }
 
+  if ($spec =="AU")  {
+    include obkm::obkm_au
+  }else {
+    notify{"Default Spec ${spec}":}
+  }
+
   # Copy wso2server.sh to installed directory
   file { "${carbon_home}/${start_script_template}":
     ensure  => file,
@@ -64,4 +70,5 @@ class obkm inherits obkm::params {
     notify  => Service["${wso2_service_name}"],
     require => Class["ob_common"]
   }
+
 }
