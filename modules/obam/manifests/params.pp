@@ -17,6 +17,17 @@
 class obam::params inherits ob_common::params{
 
   $start_script_template  = 'bin/wso2server.sh'
+  
+  #File paths obam
+  $obam_openbanking = "${product_dir}/${pack}/repository/conf/finance/open-banking.xml"
+  $obam_tokenapi = "${product_dir}/${pack}/repository/deployment/server/synapse-configs/default/api/_TokenAPI_.xml"
+  $obam_apimanager = "${product_dir}/${pack}/repository/conf/api-manager.xml"
+  $obam_swagger = "${product_dir}/${pack}/repository/deployment/server/jaggeryapps/store/site/themes/wso2/templates/api/swagger/template.jag"
+  $obam_header = "${product_dir}/${pack}/repository/deployment/server/jaggeryapps/store/site/themes/wso2/subthemes/wso2-open-banking/templates/menu/header/template.jag"
+  $obam_application_key ="${product_dir}/${pack}/repository/deployment/server/jaggeryapps/store/site/themes/wso2/subthemes/wso2-open-banking/templates/application/application-keys/template.jag"
+  $obam_generate_jwt ="${product_dir}/${pack}/repository/deployment/server/jaggeryapps/store/site/blocks/generate-jwt/ajax/generate-jwt.jag"
+  $obam_token_generator="${product_dir}/${pack}/repository/components/dropins/com.wso2.finance.open.banking.token.generator-1.5.0.jar"
+  $obam_open_banking_common="${product_dir}/${pack}/repository/components/plugins/com.wso2.finance.open.banking.common_1.5.0.jar"
 
   # Maximum and minimum memory sizes for JVM
   $jvmxms = '2048m'

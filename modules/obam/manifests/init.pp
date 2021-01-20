@@ -54,6 +54,14 @@ class obam inherits obam::params{
     }
   }
 
+  if ($spec =="AU")  {
+    include obam::obam_demo
+    include obam::obam_au
+  }
+  else {
+    notify{"Default Spec ${spec}":}
+  }
+
   # Copy wso2server.sh to installed directory
   file { "${carbon_home}/${start_script_template}":
     ensure  => file,
