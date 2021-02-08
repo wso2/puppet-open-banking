@@ -97,7 +97,7 @@ Each Puppet module contains the following ```.pp``` files.
 
 ## Customizations
 
-1.  When updating the `<puppet_environment>/modules/ob_common/manifests/params.pp` file of **Puppetmaster** to point the created databases, 
+When updating the `<puppet_environment>/modules/ob_common/manifests/params.pp` file of **Puppetmaster** to point the created databases, 
     change the configurations based on the database type (mysql/oracle/mssql).
     
     For mysql/mssql:
