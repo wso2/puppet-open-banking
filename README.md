@@ -23,11 +23,11 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
 3. Change the hostnames in `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster**.
 
-4. Update the `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster** according to the Open 
-   Banking Spec (UK, AU, Berlin). The default value is set as UK.
+4. Update the `<puppet_environment>/modules/ob_common/manifests/params.pp` file of **Puppetmaster** according to the Open 
+   Banking specification (UK, AU, Berlin). The default value is set as UK.
    
 5. Set up the databases in the **Puppet agent** by following the [Configuring Databases](https://docs.wso2.com/display/OB200/Configuring+Databases+for+UK) documentation. <br>
-   Update the `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster** to point the created databases.
+   Update the `<puppet_environment>/modules/ob_common/manifests/params.pp` file of **Puppetmaster** to point the created databases.
 
 6. Run the following profiles on the **Puppet agent**, by executing the following commands.
 
@@ -97,7 +97,7 @@ Each Puppet module contains the following ```.pp``` files.
 
 ## Customizations
 
-1.  When updating the `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster** to point the created databases, 
+1.  When updating the `<puppet_environment>/modules/ob_common/manifests/params.pp` file of **Puppetmaster** to point the created databases, 
     change the configurations based on the database type (mysql/oracle/mssql).
     
     For mysql/mssql:
