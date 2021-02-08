@@ -440,7 +440,7 @@ auth.configs:
     portalAppContext: analytics-dashboard
     businessRulesAppContext : business-rules
     cacheTimeout: 30
-    baseUrl: https://localhost:9649
+    baseUrl: https://<%= @analytics_hostname %>:9649
     grantType: authorization_code
     publisherUrl: https://<%= @apim_hostname %>:9443
     devPortalUrl: https://<%= @apim_hostname %>:9443

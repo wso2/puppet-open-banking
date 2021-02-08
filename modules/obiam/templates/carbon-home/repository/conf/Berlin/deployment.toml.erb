@@ -324,12 +324,11 @@ name= "WSO2OpenBankingDB"
 
 [open_banking.berlin]
 accounts_retrieve_endpoint = "https://<%= @apim_hostname %>:9443/api/openbanking/backend-berlin/services/accounts/accounts"
-account_consent_self_link = "https://<%= @apim_hostname %>:8243/xs2a/1.3.3/consents/%s"
-payment_resource_self_link = "https://<%= @apim_hostname %>:8243/xs2a/1.3.3/%s/%s/%s"
+account_consent_self_link = "https://<%= @apim_hostname %>:8243/xs2a/v1/consents/%s"
+payment_resource_self_link = "https://<%= @apim_hostname %>:8243/xs2a/v1/%s/%s/%s"
+cof_resource_self_link = "https://<%= @apim_hostname %>:8243/xs2a/v2/consents/confirmation-of-funds/%s"
 iban_single_acc_retrieval_validation.enable = "false"
 iban_acc_retrieval_validation.enable = "true"
-host = "<%= @apim_hostname %>"
-port = "8243"
 acc_ref_type = "iban"
 
 [open_banking.berlin.freq_per_day]

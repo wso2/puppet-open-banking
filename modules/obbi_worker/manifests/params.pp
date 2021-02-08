@@ -29,7 +29,8 @@ class obbi_worker::params inherits ob_common::params {
     'conf/worker/deployment.yaml',
     'deployment/siddhi-files/TRAAccountValidationApp.siddhi',
     'deployment/siddhi-files/TRAPaymentValidationApp.siddhi',
-    'deployment/siddhi-files/FraudStatusUpdaterApp.siddhi'
+    'deployment/siddhi-files/FraudStatusUpdaterApp.siddhi',
+    'resources/finance/cds-siddhi-files/GetInvocationDataApp.siddhi'
   ]
 
   # AU specific siddhi apps file locations

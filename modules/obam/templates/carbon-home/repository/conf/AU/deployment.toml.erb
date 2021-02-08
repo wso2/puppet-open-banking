@@ -133,11 +133,6 @@ pool_options.validationInterval="30000"
 pool_options.defaultAutoCommit=false
 
 #================configs related to api-manager.xml=============
-[apim.idp]
-server_url = "https://<%= @iam_hostname %>:9446"
-authorize_endpoint = "https://<%= @iam_hostname %>:9446/oauth2/authorize"
-oidc_logout_endpoint = "https://<%= @iam_hostname %>:9446/oidc/logout"
-oidc_check_session_endpoint = "https://<%= @iam_hostname %>:9446/oidc/checksession"
 
 [[apim.gateway.environment]]
 name = "Production and Sandbox"
@@ -145,7 +140,7 @@ type = "hybrid"
 display_in_api_console = true
 description = "This is a hybrid gateway that handles both production and sandbox token traffic."
 show_as_token_endpoint_url = true
-service_url = "https://localhost:${mgt.transport.https.port}/services/"
+service_url = "https://<%= @apim_hostname %>:${mgt.transport.https.port}/services/"
 username= "${admin.username}"
 password= "${admin.password}"
 ws_endpoint = "ws://localhost:9099"
@@ -166,11 +161,12 @@ receiver_username = "$ref{super_admin.username}@carbon.super"
 
 [apim.analytics]
 enable = false
-receiver_urls = "{tcp://<%= @apim_hostname %>:7612}"
+receiver_urls = "{tcp://<%= @analytics_hostname %>:7612}"
 event_publisher_impl = "com.wso2.finance.open.banking.gateway.uk.monitoring.publisher.OBUsageDataBridgeDataPublisher"
 receiver_username = "$ref{super_admin.username}@carbon.super"
 receiver_password = "$ref{super_admin.password}"
 store_api_username = "$ref{super_admin.username}@carbon.super"
+store_api_url = "https://<%= @analytics_hostname %>:7444"
 
 [apim.key_manager]
 service_url = "https://<%= @iam_hostname %>:9446${carbon.context}services/"
@@ -361,7 +357,7 @@ api_url = "https://<%= @apim_hostname %>:8243/open-banking/v3.1/event-notificati
 holder_identifier = "<!--configure bank specific identifier-->"
 
 [open_banking.au.push_authorisation]
-expiry_time = "1"
+expiry_time = "60"
 
 [open_banking.au.metadata_cache]
 default_timeout = 1
@@ -413,3 +409,15 @@ invalid_submission_url = "http://<%= @analytics_hostname %>:8006/InvalidSubmissi
 
 [open_banking.account_id_validation_on_retrieval]
 enable = false
+
+[open_banking.jwt_authentication_handler]
+enable = true
+issuer = "cdr-register"
+subject = "cdr-register"
+audience = "https://wso2-ob/cds-au"
+jwks_url = ""
+cache_expiry_time = "1440"
+
+[open_banking.sca]
+primary_authenticator.name="OBIdentifierExecutor"
+primary_authenticator.display_name="ob-identifier-first"

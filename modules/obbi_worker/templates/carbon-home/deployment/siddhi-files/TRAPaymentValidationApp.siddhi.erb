@@ -36,7 +36,7 @@ define stream TRAPaymentDataStream (USER_ID string, MESSAGE_ID string, CONSENT_I
 define table PAYMENTS_RAW_DATA(ID string,CONSENT_ID string,USER_ID string,TPP_ID string,CLIENT_ID string,CREDITOR_ACCOUNT_ID string,
                         DEBTOR_ACCOUNT_ID string,MULTI_AUTHORISATION bool,PAYMENT_TYPE string,CURRENCY string,
                         NO_OF_TRANSACTIONS string,LOCAL_INSTRUMENT string,AMOUNT string,PAYMENT_SUBMISSION_ID string,
-                        TIMESTAMP long,TRA_DECISION bool, EXEMPTION string, IS_FRAUD bool, MULTI_AUTH_USERS_COUNT int,API_SPEC_VERSION string);
+                        TIMESTAMP long,TRA_DECISION bool, EXEMPTION string, IS_FRAUD int, MULTI_AUTH_USERS_COUNT int,API_SPEC_VERSION string, FRAUD_PARTY string, FRAUD_TYPE string);
 
 @info(name='getTransactionData')
 from TRAValidationStream as v join PAYMENTS_RAW_DATA as t

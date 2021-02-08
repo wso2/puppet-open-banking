@@ -28,8 +28,12 @@ class obbi_dashboard::params inherits ob_common::params {
     'conf/dashboard/deployment.yaml',
     'deployment/siddhi-files/TRAAccountValidationApp.siddhi',
     'deployment/siddhi-files/TRAPaymentValidationApp.siddhi',
-    'deployment/siddhi-files/FraudStatusUpdaterApp.siddhi'
+    'deployment/siddhi-files/FraudStatusUpdaterApp.siddhi',
+    'resources/finance/cds-siddhi-files/GetInvocationDataApp.siddhi'
   ]
+
+  # AU specific file to be removed
+  $ob_report_generic_summarization_file = 'deployment/siddhi-files/OB_REPORT_GENERIC_SUMMARIZATION.siddhi'
 
   # Define file list
   $file_list = []

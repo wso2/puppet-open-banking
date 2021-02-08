@@ -43,6 +43,18 @@ class obbi_dashboard inherits obbi_dashboard::params {
     }
   }
 
+ # Remove ob report generic summarization file for AU
+ if $spec == 'AU' {
+    file { "${carbon_home}/${ob_report_generic_summarization_file}":
+      ensure  => absent,
+      owner   => $user,
+      group   => $user_group,
+      notify  => Service["${wso2_service_name}"],
+      require => Class["ob_common"]
+    }
+  }
+
+
   # Delete files to carbon home directory
   $file_removelist.each | String $removefile | {
     file { "${carbon_home}/${removefile}":

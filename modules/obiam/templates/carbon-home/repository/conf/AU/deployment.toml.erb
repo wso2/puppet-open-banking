@@ -302,6 +302,10 @@ permissions=["/permission/admin"]
 [authentication.adaptive.event_publisher]
 url = "http://localhost:8006/"
 
+[[oauth.oidc.custom_request_object_builder]]
+type = "request_uri_param_value_builder"
+class = "com.wso2.finance.open.banking.identity.extensions.builders.RequestUriRequestObjectBuilder"
+
 #================configs related to identity-event.properties=============
 
 [[event_handler]]

@@ -176,7 +176,7 @@ oauth2_token_url = "${carbon.protocol}://<%= @apim_hostname %>:8243/token"
 oauth2_user_info_url = "${carbon.protocol}://<%= @apim_hostname %>:8243/userinfo"
 oauth2_consent_page = "${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/ob/authenticationendpoint/oauth2_authz.do"
 oidc_consent_page = "${carbon.protocol}://<%= @iam_hostname %>:${carbon.management.port}/ob/authenticationendpoint/oauth2_consent.do"
-oauth2_dcr_url = "${carbon.protocol}://<%= @apim_hostname %>:8243/open-banking/v3.2/register"
+oauth2_dcr_url = "${carbon.protocol}://<%= @apim_hostname %>:8243/register"
 
 [oauth.token_renewal]
 renew_refresh_token = false
@@ -251,36 +251,42 @@ context = "(.*)/berlin110/(.*)"
 secure="true"
 http_method="all"
 permissions=["/permission/admin"]
+allowed_auth_handlers = ["BasicAuthentication"]
 
 [[resource.access_control]]
 context = "(.*)/berlin130/(.*)"
 secure="true"
 http_method="all"
 permissions=["/permission/admin"]
+allowed_auth_handlers = ["BasicAuthentication"]
 
 [[resource.access_control]]
 context = "(.*)/stet140/(.*)"
 secure="true"
 http_method="all"
 permissions=["/permission/admin"]
+allowed_auth_handlers = ["BasicAuthentication"]
 
 [[resource.access_control]]
 context = "(.*)/uk110/(.*)"
 secure="true"
 http_method="all"
 permissions=["/permission/admin"]
+allowed_auth_handlers = ["BasicAuthentication"]
 
 [[resource.access_control]]
 context = "(.*)/uk200/(.*)"
 secure="true"
 http_method="all"
 permissions=["/permission/admin"]
+allowed_auth_handlers = ["BasicAuthentication"]
 
 [[resource.access_control]]
 context = "(.*)/uk300/(.*)"
 secure="true"
 http_method="all"
 permissions=["/permission/admin"]
+allowed_auth_handlers = ["BasicAuthentication"]
 
 [authentication.adaptive.event_publisher]
 url = "http://localhost:8006/"
@@ -378,7 +384,7 @@ proxy_port = "8080"
 [open_banking.dcr]
 uri_validation.enable = false
 hostname_validation.enable = false
-software_id_as_application_name.enable = false
+software_id_as_application_name.enable = true
 
 [open_banking.bi_server]
 username = "$ref{super_admin.username}@carbon.super"
@@ -404,5 +410,5 @@ enable = false
 fraud_detection_url = "http://<%= @analytics_hostname %>:8007/FraudDetectionApp/FraudDetectionStream"
 invalid_submission_url = "http://<%= @analytics_hostname %>:8006/InvalidSubmissionsApp/InvalidSubmissionsStream"
 
- [open_banking.account_id_validation_on_retrieval]
- enable = false
+[open_banking.account_id_validation_on_retrieval]
+enable = false
