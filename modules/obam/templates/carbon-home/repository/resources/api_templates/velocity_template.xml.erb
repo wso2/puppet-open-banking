@@ -278,7 +278,8 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
 ##
 
 #if($apiObj.additionalProperties.get("ob-spec") == "au" && $apiObj.additionalProperties.get("ob-api-type") != "dcr"
-&& $apiObj.additionalProperties.get("ob-api-type") != "cdr-arrangement")
+&& $apiObj.additionalProperties.get("ob-api-type") != "cdr-arrangement"
+&& $apiObj.additionalProperties.get("ob-api-type") != "cds-admin")
 <handler class="com.wso2.finance.open.banking.custom.throttling.CDSThrottlingPolicyHandler"/>
 <handler class="com.wso2.finance.open.banking.mtls.validator.handler.MTLSValidationHandler"/>
 <handler class="com.wso2.finance.open.banking.gateway.common.APIResourceAccessHandler"/>
@@ -297,6 +298,11 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
 
 #if($apiObj.additionalProperties.get("ob-api-type") == "cdr-arrangement" && $apiObj.additionalProperties.get("ob-spec") == "au")
 <handler class="com.wso2.finance.open.banking.mtls.validator.handler.MTLSValidationHandler"/>
+#end
+
+#if($apiObj.additionalProperties.get("ob-api-type") == "cds-admin" && $apiObj.additionalProperties.get("ob-spec") == "au")
+<handler class="com.wso2.finance.open.banking.gateway.auth.JWTAuthenticationHandler"/>
+<handler class="com.wso2.finance.open.banking.gateway.api.schema.validation.RequestSchemaValidationHandler"/>
 #end
 
 ##
@@ -389,6 +395,7 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
 
 ## add api resource access handler
 <handler class="com.wso2.finance.open.banking.gateway.common.APIResourceAccessHandler"/>
+
 <handler class="com.wso2.finance.open.banking.gateway.api.schema.validation.RequestSchemaValidationHandler"/>
 
 ## add signature validation handler
