@@ -30,7 +30,7 @@ class ob_common::params {
   $jdk_name     = 'jdk1.8.0_161'
   $java_home    = "${java_dir}/${jdk_name}"
 
-  $version            = '2.0.0'
+  $version            = '3.0.0'
 
   $target         = '/mnt'
   $product_dir    = "${target}/${profile}"
@@ -40,39 +40,34 @@ class ob_common::params {
   # Profile configurations
   case $profile {
     'obiam': {
-      $pack               = "wso2-obiam-${version}"
+      $pack               = "wso2is-5.11.0"
+      $accellerator_pack  = "wso2ob-is-accelerator-${version}"
       $server_script_path = "${product_dir}/${pack}/bin/wso2server.sh"
       $pid_file_path      = "${product_dir}/${pack}/wso2carbon.pid"
     }
     'obam': {
-      $pack               = "wso2-obam-${version}"
-      $server_script_path = "${product_dir}/${pack}/bin/wso2server.sh"
+      $pack               = "wso2am-4.0.0"
+      $accellerator_pack  = "wso2ob-apim-accelerator-${version}"
+      $server_script_path = "${product_dir}/${pack}/bin/api-manager.sh"
       $pid_file_path      = "${product_dir}/${pack}/wso2carbon.pid"
     }
-    'obbi_dashboard': {
-      $pack               = "wso2-obbi-${version}"
-      $server_script_path = "${product_dir}/${pack}/bin/dashboard.sh"
-      $pid_file_path      = "${product_dir}/${pack}/wso2/dashboard/runtime.pid"
-    }
-    'obbi_worker': {
-      $pack               = "wso2-obbi-${version}"
-      $server_script_path = "${product_dir}/${pack}/bin/worker.sh"
-      $pid_file_path      = "${product_dir}/${pack}/wso2/worker/runtime.pid"
+    'obbi': {
+      $pack               = "wso2si-4.0.0"
+      $accellerator_pack  = "wso2ob-bi-accelerator-${version}"
+      $server_script_path = "${product_dir}/${pack}/bin/server.sh"
+      $pid_file_path      = "${product_dir}/${pack}/wso2/server/runtime.pid"
     }
   }
 
   # OB solution pack locations
-  $carbon_home    = "${product_dir}/${pack}"
-  $product_binary = "${pack}.zip"
+  $carbon_home          = "${product_dir}/${pack}"
+  $product_binary       = "${pack}.zip"
+  $accellerator_binary  = "${accellerator_pack}.zip"
 
   # Hostname changes in deployment.toml, conf.json params and velocity_template.xml params
   $iam_hostname       = 'localhost'
-  $analytics_hostname = 'localhost'
   $apim_hostname      = 'localhost'
-  $bps_hostname       = 'localhost'
-
-  # jaggeryapps/admin/site/conf/site.json,deployment.toml params
-  $spec = 'UK' #UK,Berlin or AU
+  $bi_hostname       = 'localhost'
 
   # DBMS related variables
 
