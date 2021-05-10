@@ -6,9 +6,12 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
 1. Download the following zip files:<br>
 
-    * wso2-obiam-2.0.0.zip <br>
-    * wso2-obam-2.0.0.zip <br>
-    * wso2-obbi-2.0.0.zip <br>
+    * wso2is-5.11.0.zip <br>
+    * wso2am-4.0.0.zip <br>
+    * wso2si-4.0.0.zip <br>
+    * wso2ob-is-accelerator-3.0.0.zip <br>
+    * wso2ob-apim-accelerator-3.0.0.zip <br>
+    * wso2ob-bi-accelerator-3.0.0.zip <br>
 
     Copy them to the `<puppet_environment>/modules/ob_common/files/packs` directory in the **Puppetmaster**.
 
@@ -22,31 +25,28 @@ This repository contains the Puppet modules for WSO2 Open Banking.
     b. Reassign the *$jdk_name* variable in `<puppet_environment>/modules/ob_common/manifests/params.pp` to the name of the downloaded JDK distribution.
 
 3. Change the hostnames in `<puppet_environment>/modules/ob_common/manifests/params.pp` of **Puppetmaster**.
-
-4. Update the `<puppet_environment>/modules/ob_common/manifests/params.pp` file of **Puppetmaster** according to the Open 
-   Banking specification (UK, AU, Berlin). The default value is set as UK.
    
-5. Set up the databases in the **Puppet agent** by following the [Configuring Databases](https://docs.wso2.com/display/OB200/Configuring+Databases+for+UK) documentation. <br>
+4. Set up the databases in the **Puppet agent** by following the [Configuring Databases](https://ob.docs.wso2.com/en/latest/install-and-setup/setting-up-databases) documentation. <br>
    Update the `<puppet_environment>/modules/ob_common/manifests/params.pp` file of **Puppetmaster** to point the created databases.
 
-6. Run the following profiles on the **Puppet agent**, by executing the following commands.
+5. Run the following profiles on the **Puppet agent**, by executing the following commands.
 
-    b. To run the ```Open Banking Business Intelligence profile```:
-
+    a. To run the ```Open Banking Business Intelligence profile```:
+    
         export FACTER_profile=obbi
         puppet agent -vt
         
-    c. To run the ```Open Banking Identity & Access Management profile```:
+    b. To run the ```Open Banking Identity & Access Management profile```:
 
         export FACTER_profile=obiam
         puppet agent -vt
 
-    d. To run the ```Open Banking API Manager profile```:
+    c. To run the ```Open Banking API Manager profile```:
 
         export FACTER_profile=obam
         puppet agent -vt
 
-7. To use a custom Java KeyStore (JKS) file in the Open Banking Identity & Access Management server, Open Banking API Manager
+6. To use a custom Java KeyStore (JKS) file in the Open Banking Identity & Access Management server, Open Banking API Manager 
     and Open Banking Business Intelligence profiles, follow the steps below:
 
 	a. Create a custom JKS by following the steps in the [Creating New Keystores](https://docs.wso2.com/display/ADMIN44x/Creating+New+Keystores#CreatingNewKeystores-ca_certificateAddingCA-signedcertificatestokeystores) documentation.
@@ -59,7 +59,7 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
 	c. Copy the custom JKS file into the above directories. <br>
 
-	d. Update the *$file_list* variable in the files below, with the custom JKS file path ```(repository/resources/security/custom_jks.jks)```. <br>
+	d. Update the *$file_list* variable in the files below, with the custom JKS file path ```(repository/resources/security/custom_jks.jks)```. <br> 
 
         <puppet_environment>/modules/obbi/manifests/params.pp
 
