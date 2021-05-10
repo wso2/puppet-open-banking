@@ -27,14 +27,7 @@ class obiam::params inherits ob_common::params {
   $toml_file_name = 'deployment.toml'
 
   # Template list
-  $template_list = [
-    'repository/deployment/server/jaggeryapps/consentmgt/configs/conf.json',
-    'repository/deployment/server/jaggeryapps/ccportal/configs/conf.json'
-  ]
-
-  # AU specific file locations for authentication endpoint webapp
-  $auth_endpoint_source_dir = 'repository/resources/finance/cds-authenticationendpoint/.'
-  $auth_endpoint_target_dir = 'repository/deployment/server/webapps/authenticationendpoint'
+  $template_list = []
 
   # Define file list
   $file_list = []

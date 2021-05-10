@@ -31,17 +31,12 @@ This repository contains the Puppet modules for WSO2 Open Banking.
 
 6. Run the following profiles on the **Puppet agent**, by executing the following commands.
 
-    a. To run the ```Open Banking Business Intelligence Dashboard profile```:
-    
-        export FACTER_profile=obbi_dashboard
-        puppet agent -vt
+    b. To run the ```Open Banking Business Intelligence profile```:
 
-    b. To run the ```Open Banking Business Intelligence Worker profile```:
-    
-        export FACTER_profile=obbi_worker
+        export FACTER_profile=obbi
         puppet agent -vt
         
-    c. To run the ```Open Banking Identity & Access Management profile```:    
+    c. To run the ```Open Banking Identity & Access Management profile```:
 
         export FACTER_profile=obiam
         puppet agent -vt
@@ -51,27 +46,22 @@ This repository contains the Puppet modules for WSO2 Open Banking.
         export FACTER_profile=obam
         puppet agent -vt
 
-6. To use a custom Java KeyStore (JKS) file in the Open Banking Identity & Access Management server, Open Banking API Manager 
+7. To use a custom Java KeyStore (JKS) file in the Open Banking Identity & Access Management server, Open Banking API Manager
     and Open Banking Business Intelligence profiles, follow the steps below:
 
 	a. Create a custom JKS by following the steps in the [Creating New Keystores](https://docs.wso2.com/display/ADMIN44x/Creating+New+Keystores#CreatingNewKeystores-ca_certificateAddingCA-signedcertificatestokeystores) documentation.
 
     b. Create the following directories in the **Puppetmaster**:
 
-		 <puppet_environment>/modules/obbi_dashboard/files/resources/security
-		 <puppet_environment>/modules/obbi_worker/files/resources/security
+		 <puppet_environment>/modules/obbi/files/resources/security
 		 <puppet_environment>/modules/obam/files/repository/resources/security
 		 <puppet_environment>/modules/obiam/files/repository/resources/security
 
 	c. Copy the custom JKS file into the above directories. <br>
 
-	d. Update the *$file_list* variable in the files below, with the custom JKS file path ```(repository/resources/security/custom_jks.jks)```. <br> 
+	d. Update the *$file_list* variable in the files below, with the custom JKS file path ```(repository/resources/security/custom_jks.jks)```. <br>
 
-        <puppet_environment>/modules/obbi_dashboard/manifests/params.pp
-
-            $file_list = ['resources/security/custom_jks.jks',] 
-
-        <puppet_environment>/modules/obbi_worker/manifests/params.pp
+        <puppet_environment>/modules/obbi/manifests/params.pp
 
             $file_list = ['resources/security/custom_jks.jks',] 
 

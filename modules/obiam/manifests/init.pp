@@ -18,13 +18,30 @@ class obiam inherits obiam::params {
 
   include ob_common
 
-  # Copy relevant deployment.toml to installed directory according to the spec
+  # Copy deployment.toml to installed directory
   file { "${carbon_home}/${toml_file_path}/${toml_file_name}":
     ensure  => file,
     mode    => '0644',
-    content => template("${module_name}/carbon-home/${toml_file_path}/${spec}/${toml_file_name}.erb"),
+    content => template("${module_name}/carbon-home/${toml_file_path}/${toml_file_name}.erb"),
     notify  => Service["${wso2_service_name}"],
     require => Class["ob_common"]
+  }
+
+  # Copy iskm connector script to installed directory
+  file { "${carbon_home}/${accellerator_pack}/bin/merge-connector.sh":
+    ensure  => file,
+    mode    => '0755',
+    source => "puppet:///modules/${module_name}/merge-connector.sh",
+    notify  => Service["${wso2_service_name}"],
+    require => Class["ob_common"]
+  }
+
+  # Merge iskm connector
+  exec { "merge-iskm-connector":
+    command => "${product_dir}/${pack}/${accellerator_pack}/bin/merge-connector.sh",
+    user    => $user,
+    group   => $user_group,
+    cwd     => "${product_dir}/${pack}/${accellerator_pack}/bin",
   }
 
   # Copy configuration changes to the installed directory
@@ -33,20 +50,6 @@ class obiam inherits obiam::params {
       ensure  => file,
       mode    => '0644',
       content => template("${module_name}/carbon-home/${template}.erb"),
-      notify  => Service["${wso2_service_name}"],
-      require => Class["ob_common"]
-    }
-  }
-
-  # Copy AU specific files to authentication endpoint webapp
-  if $spec == 'AU' {
-    file { "${carbon_home}/${auth_endpoint_target_dir}" :
-      ensure  => present,
-      owner   => $user,
-      recurse => true,
-      group   => $user_group,
-      mode    => '0644',
-      source  => "file:///${carbon_home}/${auth_endpoint_source_dir}",
       notify  => Service["${wso2_service_name}"],
       require => Class["ob_common"]
     }

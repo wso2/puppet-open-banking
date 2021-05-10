@@ -87,6 +87,16 @@ class ob_common inherits ob_common::params {
     require => File["${product_dir}", "${pack_dir}"],
   }
 
+  # Copy accellerator binary to distribution path
+  file { "wso2-accelerator-binary":
+    path    => "${pack_dir}/${accellerator_binary}",
+    owner   => $user,
+    group   => $user_group,
+    mode    => '0644',
+    source  => "puppet:///modules/${module_name}/packs/${accellerator_binary}",
+    require => File["${product_dir}", "${pack_dir}"],
+  }
+
   # Stop the existing setup
   exec { "stop-server":
     command   => "systemctl stop ${wso2_service_name}",
@@ -106,12 +116,29 @@ class ob_common inherits ob_common::params {
   }
 
   # Unzip the binary and create setup
-  exec { "unzip-update":
+  exec { "unzip-update-base-pack":
     command => "unzip -o ${product_binary} -d ${product_dir}",
     path    => "/usr/bin/",
     user    => $user,
     group   => $user_group,                         
     cwd     => "${pack_dir}",
+  }
+
+  # Unzip the accellerator and create setup
+  exec { "unzip-update-accelerator":
+    command => "unzip -o ${accellerator_binary} -d ${product_dir}/${pack}",
+    path    => "/usr/bin/",
+    user    => $user,
+    group   => $user_group,
+    cwd     => "${pack_dir}",
+  }
+
+  # Merge accelerator with base packs
+  exec { "merge-accelerator":
+    command => "${product_dir}/${pack}/${accellerator_pack}/bin/merge.sh",
+    user    => $user,
+    group   => $user_group,
+    cwd     => "${product_dir}/${pack}/${accellerator_pack}/bin",
   }
 
   # Copy the unit file required to deploy the server as a service

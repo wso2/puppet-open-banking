@@ -1,5 +1,5 @@
 #----------------------------------------------------------------------------
-#  Copyright (c) 2019 WSO2, Inc. http://www.wso2.org
+#  Copyright (c) 2020 WSO2, Inc. http://www.wso2.org
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -14,24 +14,8 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-class obam::params inherits ob_common::params{
-
-  $start_script_template  = 'bin/api-manager.sh'
-
-  # Maximum and minimum memory sizes for JVM
-  $jvmxms = '2048m'
-  $jvmxmx = '2048m'
-
-  # Deployment.toml file
-  $toml_file_path = 'repository/conf'
-  $toml_file_name = 'deployment.toml'
-
-  # Template list
-  $template_list = []
-
-  # Define file list
-  $file_list = ['repository/deployment/server/synapse-configs/default/sequences/_cors_request_handler_.xml']
-
-  # Define remove file list
-  $file_removelist = []
+# Class: obbi_worker::custom
+# This class is reserved to run custom user code before starting the server.
+class obbi::custom {
+  # If you have any custom scripts to run, please add them here
 }
