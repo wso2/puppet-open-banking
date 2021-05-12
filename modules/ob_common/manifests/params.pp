@@ -41,19 +41,19 @@ class ob_common::params {
   case $profile {
     'obiam': {
       $pack               = "wso2is-5.11.0"
-      $accellerator_pack  = "wso2ob-is-accelerator-${version}"
+      $accellerator_pack  = "wso2-obiam-accelerator-${version}"
       $server_script_path = "${product_dir}/${pack}/bin/wso2server.sh"
       $pid_file_path      = "${product_dir}/${pack}/wso2carbon.pid"
     }
     'obam': {
       $pack               = "wso2am-4.0.0"
-      $accellerator_pack  = "wso2ob-apim-accelerator-${version}"
+      $accellerator_pack  = "wso2-obam-accelerator-${version}"
       $server_script_path = "${product_dir}/${pack}/bin/api-manager.sh"
       $pid_file_path      = "${product_dir}/${pack}/wso2carbon.pid"
     }
     'obbi': {
       $pack               = "wso2si-4.0.0"
-      $accellerator_pack  = "wso2ob-bi-accelerator-${version}"
+      $accellerator_pack  = "wso2-obbi-accelerator-${version}"
       $server_script_path = "${product_dir}/${pack}/bin/server.sh"
       $pid_file_path      = "${product_dir}/${pack}/wso2/server/runtime.pid"
     }
