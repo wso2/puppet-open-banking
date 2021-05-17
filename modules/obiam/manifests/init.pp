@@ -28,7 +28,7 @@ class obiam inherits obiam::params {
   }
 
   # Copy iskm connector script to installed directory
-  file { "${carbon_home}/${accellerator_pack}/bin/merge-connector.sh":
+  file { "${carbon_home}/${accelerator_pack}/bin/merge-connector.sh":
     ensure  => file,
     mode    => '0755',
     source => "puppet:///modules/${module_name}/merge-connector.sh",
@@ -38,10 +38,10 @@ class obiam inherits obiam::params {
 
   # Merge iskm connector
   exec { "merge-iskm-connector":
-    command => "${product_dir}/${pack}/${accellerator_pack}/bin/merge-connector.sh",
+    command => "${product_dir}/${pack}/${accelerator_pack}/bin/merge-connector.sh",
     user    => $user,
     group   => $user_group,
-    cwd     => "${product_dir}/${pack}/${accellerator_pack}/bin",
+    cwd     => "${product_dir}/${pack}/${accelerator_pack}/bin",
   }
 
   # Copy configuration changes to the installed directory
