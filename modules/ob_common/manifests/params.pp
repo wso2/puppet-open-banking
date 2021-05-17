@@ -41,19 +41,19 @@ class ob_common::params {
   case $profile {
     'obiam': {
       $pack               = "wso2is-5.11.0"
-      $accellerator_pack  = "wso2-obiam-accelerator-${version}"
+      $accelerator_pack  = "wso2-obiam-accelerator-${version}"
       $server_script_path = "${product_dir}/${pack}/bin/wso2server.sh"
       $pid_file_path      = "${product_dir}/${pack}/wso2carbon.pid"
     }
     'obam': {
       $pack               = "wso2am-4.0.0"
-      $accellerator_pack  = "wso2-obam-accelerator-${version}"
+      $accelerator_pack  = "wso2-obam-accelerator-${version}"
       $server_script_path = "${product_dir}/${pack}/bin/api-manager.sh"
       $pid_file_path      = "${product_dir}/${pack}/wso2carbon.pid"
     }
     'obbi': {
       $pack               = "wso2si-4.0.0"
-      $accellerator_pack  = "wso2-obbi-accelerator-${version}"
+      $accelerator_pack  = "wso2-obbi-accelerator-${version}"
       $server_script_path = "${product_dir}/${pack}/bin/server.sh"
       $pid_file_path      = "${product_dir}/${pack}/wso2/server/runtime.pid"
     }
@@ -62,7 +62,7 @@ class ob_common::params {
   # OB solution pack locations
   $carbon_home          = "${product_dir}/${pack}"
   $product_binary       = "${pack}.zip"
-  $accellerator_binary  = "${accellerator_pack}.zip"
+  $accelerator_binary  = "${accelerator_pack}.zip"
 
   # Hostname changes in deployment.toml, conf.json params and velocity_template.xml params
   $iam_hostname       = 'localhost'
@@ -114,7 +114,7 @@ class ob_common::params {
   $db_open_banking_store_validation_query   = 'SELECT 1'
   $db_open_banking_store_driver             = 'org.h2.Driver'
 
-  # worker/deployment.yaml and dashboard/deployment.yaml params for databases
+  # obbi deployment.yaml params for databases
   $db_geo_location_url                     = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_GEOLOCATION_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_geo_location_username                = 'wso2carbon'
   $db_geo_location_password                = 'wso2carbon'
