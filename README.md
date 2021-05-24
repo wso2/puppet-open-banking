@@ -46,7 +46,7 @@ This repository contains the Puppet modules for WSO2 Open Banking.
         export FACTER_profile=obam
         puppet agent -vt
 
-6. To use a custom Java KeyStore (JKS) file in the Open Banking Identity & Access Management server, Open Banking API Manager 
+6. To use a custom Java KeyStore (JKS) file in the Open Banking Identity Server, Open Banking API Manager 
     and Open Banking Business Intelligence profiles, follow the steps below:
 
 	a. Create a custom JKS by following the steps in the [Creating New Keystores](https://docs.wso2.com/display/ADMIN44x/Creating+New+Keystores#CreatingNewKeystores-ca_certificateAddingCA-signedcertificatestokeystores) documentation.
