@@ -36,7 +36,7 @@ This repository contains the Puppet modules for WSO2 Open Banking.
         export FACTER_profile=obbi
         puppet agent -vt
         
-    b. To run the ```Open Banking Identity & Access Management profile```:
+    b. To run the ```Open Banking Identity Server profile```:
 
         export FACTER_profile=obiam
         puppet agent -vt
