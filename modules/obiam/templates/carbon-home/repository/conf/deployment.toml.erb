@@ -472,5 +472,9 @@ alias="wso2carbon"
 [open_banking.consent.admin]
 handler="com.wso2.openbanking.accelerator.consent.extensions.admin.impl.DefaultConsentAdminHandler"
 
+[open_banking.identity]
+signing_certificate_kid="123"
+client_transport_cert_as_header_enabled = true
+
 [open_banking.identity.extensions]
 request_object_validator="com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.DefaultOBRequestObjectValidator"
