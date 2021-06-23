@@ -422,6 +422,9 @@ roles = "AISP,PISP"
 api_name = "AccountandTransactionAPI"
 roles = "AISP"
 
+[open_banking.gateway]
+consent.validation.endpoint = "https://<%= @iam_hostname %>:9446/api/openbanking/consent/validate"
+
 #============executors=========================
 [[open_banking.gateway.openbanking_gateway_executors.type]]
 name = "Default"
