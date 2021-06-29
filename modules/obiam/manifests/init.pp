@@ -18,15 +18,6 @@ class obiam inherits obiam::params {
 
   include ob_common
 
-  # Copy deployment.toml to installed directory
-  file { "${carbon_home}/${toml_file_path}":
-    ensure  => file,
-    mode    => '0644',
-    content => template("${module_name}/carbon-home/${toml_file_path}.erb"),
-    notify  => Service["${wso2_service_name}"],
-    require => Class["ob_common"]
-  }
-
   # Copy iskm connector script to installed directory
   file { "${carbon_home}/${accelerator_pack}/bin/merge-connector.sh":
     ensure  => file,
