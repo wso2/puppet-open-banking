@@ -23,8 +23,7 @@ class obam::params inherits ob_common::params{
   $jvmxmx = '2048m'
 
   # Deployment.toml file
-  $toml_file_path = 'repository/conf'
-  $toml_file_name = 'deployment.toml'
+  $toml_file_path = 'repository/conf/deployment.toml'
 
   # Template list
   $template_list = []
