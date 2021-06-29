@@ -22,11 +22,8 @@ class obam::params inherits ob_common::params{
   $jvmxms = '2048m'
   $jvmxmx = '2048m'
 
-  # Deployment.toml file
-  $toml_file_path = 'repository/conf/deployment.toml'
-
   # Template list
-  $template_list = []
+  $template_list = ['repository/conf/deployment.toml']
 
   # Define file list
   $file_list = ['repository/deployment/server/synapse-configs/default/sequences/_cors_request_handler_.xml']

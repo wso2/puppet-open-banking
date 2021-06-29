@@ -24,11 +24,8 @@ class obbi::params inherits ob_common::params {
   $jvmxms = '2048m'
   $jvmxmx = '2048m'
 
-  # Deployment.toml file
-  $toml_file_path = 'conf/server/deployment.yaml'
-
   # Template list
-  $template_list = []
+  $template_list = ['conf/server/deployment.yaml']
 
   # Define file list
   $file_list = []
