@@ -115,12 +115,6 @@ class ob_common::params {
   $db_open_banking_store_driver             = 'org.h2.Driver'
 
   # obbi deployment.yaml params for databases
-  $db_geo_location_url                     = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_GEOLOCATION_DB;DB_CLOSE_ON_EXIT=FALSE'
-  $db_geo_location_username                = 'wso2carbon'
-  $db_geo_location_password                = 'wso2carbon'
-  $db_geo_location_validation_query        = 'SELECT 1'
-  $db_geo_location_driver                  = 'org.h2.Driver'
-
   $db_ob_reporting_url                     = 'jdbc:h2:repository/database/WSO2_OPEN_BANKING_REPORTING_STATS_DB;DB_CLOSE_ON_EXIT=FALSE'
   $db_ob_reporting_username                = 'wso2carbon'
   $db_ob_reporting_password                = 'wso2carbon'
