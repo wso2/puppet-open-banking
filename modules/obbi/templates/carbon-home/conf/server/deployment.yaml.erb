@@ -401,7 +401,7 @@ wso2.datasources:
           driverClassName: '<%= @db_ob_reporting_driver %>'
           maxPoolSize: 20
           idleTimeout: 60000
-          connectionTestQuery: SELECT 1
+          connectionTestQuery: <%= @db_ob_reporting_validation_query %>
           # Use below for oracle database
           # connectionTestQuery: SELECT 1 FROM DUAL
           validationTimeout: 30000
@@ -419,7 +419,7 @@ wso2.datasources:
           driverClassName: '<%= @db_ob_reporting_summarized_driver %>'
           maxPoolSize: 20
           idleTimeout: 60000
-          connectionTestQuery: SELECT 1
+          connectionTestQuery: <%= @db_ob_reporting_summarized_validation_query %>
           # Use below for oracle database
           # connectionTestQuery: SELECT 1 FROM DUAL
           validationTimeout: 30000
