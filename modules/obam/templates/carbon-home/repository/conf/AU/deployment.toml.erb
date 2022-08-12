@@ -184,7 +184,6 @@ enable_outbound_auth_header = true
 white_listed_scopes = ["^device_.*", "openid", "^OB_.*", "^TIME_.*"]
 
 [apim.devportal]
-url = "https://<%= @apim_hostname %>:${mgt.transport.https.port}/devportal"
 display_multiple_versions = true
 enable_comments = false
 enable_ratings = false
@@ -250,6 +249,18 @@ description = "Organization ID of the production"
 [[apim.devportal.application_attributes]]
 required = false
 hidden = false
+name ="legal_entity_id_sandbox"
+description = "Sandbox Legal Entity ID for the Organization"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="legal_entity_id_production"
+description = "Production Legal Entity ID for the Organization"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
 name ="scope_sandbox"
 description = "Allowed scopes for sandbox"
 
@@ -258,6 +269,102 @@ required = false
 hidden = false
 name ="scope_production"
 description = "Allowed scopes for production"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="id_token_encrypted_response_enc_sandbox"
+description = "ID token encrypted response encryption method for sandbox"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="id_token_encrypted_response_enc_production"
+description = "ID token encrypted response encryption method for production"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="id_token_encrypted_response_alg_sandbox"
+description = "ID token encrypted response algorithm for sandbox"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="id_token_encrypted_response_alg_production"
+description = "ID token encrypted response algorithm for production"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="client_name_sandbox"
+description = "Client name for sandbox"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="client_name_production"
+description = "Client name for production"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="logo_uri_sandbox"
+description = "Logo uri for sandbox"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="logo_uri_production"
+description = "Logo uri for production"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="org_name_sandbox"
+description = "Organization name for sandbox"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="org_name_production"
+description = "Organization name for production"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="sector_identifier_uri_sandbox"
+description = "Client's sector identifier URI for sandbox"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="sector_identifier_uri_production"
+description = "Client's sector identifier URI for production"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="id_token_signed_response_alg_production"
+description = "id token signed response alg for production"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="id_token_signed_response_alg_sandbox"
+description = "id token signed response alg for sandbox"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="recipient_base_uri_sandbox"
+description = "Recipient Base URI of the sandbox"
+
+[[apim.devportal.application_attributes]]
+required = false
+hidden = false
+name ="recipient_base_uri_production"
+description = "Recipient Base URI of the production"
 
 #================configs related to axis2.xml=============
 
@@ -354,7 +461,7 @@ token_issuer = "www.openbank.com"
 api_url = "https://<%= @apim_hostname %>:8243/open-banking/v3.1/event-notification"
 
 [open_banking.au]
-holder_identifier = "<!--configure bank specific identifier-->"
+holder_identifier = "ABC-Bank"
 
 [open_banking.au.push_authorisation]
 expiry_time = "60"
@@ -362,6 +469,15 @@ expiry_time = "60"
 [open_banking.au.metadata_cache]
 default_timeout = 1
 dcr_internal_url = "https://<%= @apim_hostname %>:9443/api/openbanking/dynamic-client-registration/common/register/"
+
+[open_banking.au.id_permanence]
+secret_key = "wso2"
+
+[open_banking.au.admin.api]
+self_url = "https://<%= @apim_hostname %>:8243/cds-au/v2/admin/"
+
+[open_banking.au.unattended_session_count_throttling]
+enable = false
 
 [open_banking.api_security]
 mtls_token_binding.enable = false
@@ -382,6 +498,11 @@ proxy_port = "8080"
 uri_validation.enable = false
 hostname_validation.enable = false
 software_id_as_application_name.enable = true
+ssa_signature_validation.enable = false
+sector_identifier_uri_validation.enable = false
+request_jti_validation.enable = true
+ssa_jti_validation.enable = false
+jti_cache_expiry_time = 60
 
 [open_banking.bi_server]
 username = "$ref{super_admin.username}@carbon.super"
